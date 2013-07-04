@@ -81,7 +81,7 @@ public class MergeSort <T extends Comparable<T>> {
 	 * @param rightBound right limit
 	 * 
 	 */
-	protected void merge (int leftBound, int center, int rightBound) {
+	private void merge (int leftBound, int center, int rightBound) {
 		
 		// Create Left Array
 		@SuppressWarnings("unchecked")

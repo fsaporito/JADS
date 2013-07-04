@@ -15,7 +15,7 @@ public class TestSort {
 
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException, OutOfBoundException {
 		
-		boolean TEST_ALL_SORT = true;
+		boolean TEST_ALL_SORT = false;
 		
 		boolean JAVA_SORT = true;
 		
@@ -28,7 +28,7 @@ public class TestSort {
 		boolean TEST_HEAP_SORT = false;
 		
 		int SEED = 1111;
-		int LENGHT = 100000;
+		int LENGHT = 10000000;
 		int RANGE = 100;	
 		
 		long timeStart = 0;

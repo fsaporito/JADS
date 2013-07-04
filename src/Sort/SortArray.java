@@ -22,22 +22,26 @@ public class SortArray <T extends Comparable<T>> {
 	 * 
 	 * Constructor With Generic Array Parameter
 	 * 
-	 * @param Array Array To Sort, Mustn't Be Empty
+	 * @param array Array To Sort, Mustn't Be Empty
 	 * 
 	 * @throws EmptyArrayException 
 	 * 
 	 */
-	public SortArray (T[] Array) throws EmptyArrayException {
+	public SortArray (T[] array) throws EmptyArrayException {
 		
-		System.out.println ("Array");
+		if (array ==  null) {
+			
+			throw new NullPointerException ("Null Array");
+			
+		}
 		
-		if (Array.length == 0) {
+		if (array.length == 0) {
 			
 			throw new EmptyArrayException ("Empty Array");
 			
 		}
 		
-		this.arraySort = Array;	
+		this.arraySort = array;	
 		
 	}
 	
@@ -46,25 +50,29 @@ public class SortArray <T extends Comparable<T>> {
 	 * 
 	 * Constructor With Generic ArrayList Parameter
 	 * 
-	 * @param Arr ArrayList To Sort, Mustn't Be Empty
+	 * @param arrayList ArrayList To Sort, Mustn't Be Empty
 	 * 
 	 * @throws EmptyArrayException 
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public SortArray (ArrayList<T> Arr) throws EmptyArrayException {
+	public SortArray (ArrayList<T> arrayList) throws EmptyArrayException {
 		
 		//(T[]) this.Array.toArray((T[])Array.newInstance(this.Arr.get(0).getClass(), this.Arr.size()));
 		
-		System.out.println ("ArrayList");
+		if (arrayList ==  null) {
+			
+			throw new NullPointerException ("Null ArrayList");
+			
+		}
 		
-		if (Arr.size() == 0) {
+		if (arrayList.size() == 0) {
 			
 			throw new EmptyArrayException ("Empty ArrayList");
 			
 		}
 
-		this.arraySort =(T[]) Arr.toArray((T[])Array.newInstance(Arr.get(0).getClass(), Arr.size()));
+		this.arraySort =(T[]) arrayList.toArray((T[])Array.newInstance(arrayList.get(0).getClass(), arrayList.size()));
 		
 	}
 
