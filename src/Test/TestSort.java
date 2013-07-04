@@ -17,7 +17,7 @@ public class TestSort {
 
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException {
 		
-		boolean TEST_ALL_SORT = false;
+		boolean TEST_ALL_SORT = true;
 		
 		boolean TEST_INSERTION_SORT = false;
 		boolean TEST_SELECTION_SORT = false;
@@ -28,15 +28,9 @@ public class TestSort {
 		boolean TEST_HEAP_SORT = false;
 		
 		int SEED = 1111;
-		int LENGHT = 50000000;
-		int RANGE = 100;		
+		int LENGHT = 100000;
+		int RANGE = 100;	
 		
-		
-		
-		
-// ################################################################
-//		Random Array Creation
-// ################################################################
 		
 		
 		
@@ -48,16 +42,16 @@ public class TestSort {
 		
 		System.out.println("\n\n################################################################\n");
 		
-		System.out.println("Sort Test \n");			
+		System.out.println("Sort Test \n");
 		
-		System.out.println ("Random Array Creation");
+		System.out.print ("Processors: " + Runtime.getRuntime().availableProcessors());
+		System.out.println ("    Threads: " + 2*Runtime.getRuntime().availableProcessors());
+		
+		System.out.println ("Random Array Creation [Lenght = " + LENGHT + "]");
 		
 		ParallelRandInt rand = new ParallelRandInt(SEED, LENGHT, RANGE);		
-		Integer[] Arr = rand.getRandIntArr();	
-		
-		System.out.println ("DONE!!! ");
-		System.out.println ("Lenght = " + LENGHT);
-		
+
+		Integer[] Arr = rand.getRandIntArr();		
 		
 				
 		

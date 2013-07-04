@@ -80,18 +80,17 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 		
 		this.cores = Runtime.getRuntime().availableProcessors();
 		
-		this.threadNum = this.cores;
+		this.threadNum = 2*this.cores;
 		
 		// If more core than required random number, decrease thread number
-		if (this.threadNum > this.seqLength) { 
+		while (this.threadNum > this.seqLength) { 
 			
-			this.threadNum = this.seqLength;
+			this.threadNum--;
 			
-		}		
+		}			
 		
 		// Random Number Per Core
 		this.seqPerThread = (int)(this.seqLength / this.threadNum);
-	
 		
 		// Initialize Threads Array
 		this.t = new Thread[this.threadNum];
@@ -100,10 +99,30 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 		for (int i = 0; i < this.threadNum; i++) {
 		
 			t[i] = new Thread (this, "Rand Int Thread " + i);
-						
-			t[i].run();
+			
+			t[i].start();
 		
-		}
+		}		
+		
+		
+		for (int i = 0; i < this.threadNum; i++) {
+			
+			while (t[i].isAlive()) {
+				
+				try {
+					
+					Thread.sleep(50);
+				
+				} catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				
+				}					
+				
+			}
+		
+		}	
+		
 		
 		// Number Of The Remaining Random Values To Calculate
 		int remainingNumbers = this.seqLength - (this.seqPerThread*this.threadNum); 
@@ -111,20 +130,10 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 		// If There Are Other Numbers To Calculate
 		if (remainingNumbers > 0) {
 			
-			Integer[] rem = new Integer[remainingNumbers];
+			this.IntegerRandGen(remainingNumbers, this.range);
 			
-			rem = this.IntegerRandGen(remainingNumbers, this.range);
 			
-			// Add The Remaining Random Numbers To The ArrayList
-			for (int i = 0; i < rem.length; i++) {
-				
-				this.randIntArrList.add(rem[i]);
-				
-			}
-			
-		}
-		
-		
+		}			
 			
 	}
 		
@@ -136,28 +145,10 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 	@Override
 	public void run() {
 			
-		Integer[] integ = this.IntegerRandGen();
-		
-		for (int i=0; i<integ.length; i++) {
+		this.IntegerRandGen(this.seqPerThread, this.range);
 				
-			this.randIntArrList.add(integ[i]);
-				
-		}
-			
 	}
 
-	
-	
-	/** 
-	 * Calculate Random Integers With Private Arguments
-	 * @return Integer Array Of Random Numbers
-	 */
-	private Integer[] IntegerRandGen () {
-			
-		return this.IntegerRandGen(this.seqPerThread, this.range);
-			
-	}
-	
 	
 	
 	/** 
@@ -165,18 +156,15 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 	 * @param seqLength Array's Length
 	 * @param range Range For The Random Numbers
 	 * @return Integer Array Of Random Numbers
+	 * @throws InterruptedException 
 	 */
-	public Integer[] IntegerRandGen (int seqLength, int range) {
-		
-		Integer[] Arr = new Integer[seqLength];
+	public synchronized void IntegerRandGen (int seqLength, int range) {
 		
 		for (int i = 0; i < seqLength; i++) {
 			
-			Arr[i] = this.nextInt(range);
+			this.randIntArrList.add(this.nextInt(range));		
 			
 		}
-		
-		return Arr;
 		
 	}
 
@@ -209,6 +197,17 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 	
 	}
 
+	
+	
+	/**
+	 * Return The ArrayList Size
+	 * @return Int Contatining The ArrayList Size
+	 */
+	public int getRandIntArrSize() {
+		
+		return this.randIntArrList.size();
+		
+	}
 	
 	
 	 /**
