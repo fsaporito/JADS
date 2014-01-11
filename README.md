@@ -6,19 +6,19 @@ Java Library With Implementations Of Various Data Structures And Sorting Algorit
 
 Data Structures:
 
-MinHeap - Implemented & In Testing
-MaxHeap - Implemented & In Testing
-Queue - Implemented & Working
-Research Tree - Implemented & Working
-Stack - Implemented & Working
-Tree - Implemented & Working
+MinHeap - Implemented & Testing
+MaxHeap - Implemented & Testing
+Queue - Implemented & Finished Testing & Working
+Research Tree - Implemented & Finished Testing & Working
+Stack - Implemented & Finished Testing & Working
+Tree - Implemented & Finished Testing & Working
 
 
 Sorting Algorithms:
-Insertion Sort - Implemented & Working
-Selection Sort - Implemented & Working
+Insertion Sort - Implemented & Finished Testing & Working
+Selection Sort - Implemented & Finished Testing & Working
 Bubble Sort
-Merge Sort
+Merge Sort - Work In Progress
 Parallel Merge Sort 
 Parallel Merge Sort Hybridated With Selection Sort
 QuickSort
