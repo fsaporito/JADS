@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import parallelRandomGenerator.ParallelRandInt;
 
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws EmptyArrayException {
 		
 
 // ################################################################
@@ -137,18 +138,37 @@ public class Test {
 		
 		
 		// Insertion Sort
-		System.out.print("\n\n");
-		sort.insertionSort();
-		System.out.print("InsertionSort: ");
-		sort.printArray();
+		
+		try {
+			
+			System.out.print("\n\n");
+			sort.insertionSort();
+			System.out.print("InsertionSort: ");
+			sort.printArray();
+		
+		} catch (OutOfBoundException e) {
+			
+			e.printStackTrace();
+		
+		}
+		
 
 		
-		// Selection Sort
-		System.out.print("\n\n");
-		sort = new SortArray<Integer>(Arr.clone()); 
-		System.out.print("SelectionSort: ");
-		sort.selectionSort();
-		sort.printArray();
+		// Selection Sort		
+		try {
+			
+			System.out.print("\n\n");
+			sort = new SortArray<Integer>(Arr.clone()); 
+			System.out.print("SelectionSort: ");
+			sort.selectionSort();
+			sort.printArray();
+			
+		} catch (OutOfBoundException e) {
+			
+			e.printStackTrace();
+		
+		}
+		
 		
 		
 		
