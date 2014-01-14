@@ -11,12 +11,21 @@ public class Test {
 
 	public static void main(String[] args) throws EmptyArrayException {
 		
-
+		
+		boolean TEST_QUEUE = false;
+		boolean TEST_STACK = false;
+		boolean TEST_INSERTION_SORT = false;
+		boolean TEST_SELECTION_SORT = false;
+		boolean TEST_MERGE_SORT = true;
+		
+		
+		
+		
 // ################################################################
 //		Random Array Creation
 // ################################################################
 		
-		ParallelRandInt rand = new ParallelRandInt(1111, 30, 100);	
+		ParallelRandInt rand = new ParallelRandInt(1111, 200, 1000000);	
 		
 		Integer[] Arr = rand.getRandIntArr();
 		ArrayList<Integer> ArrList = rand.getRandIntArrList();
@@ -31,174 +40,194 @@ public class Test {
 //		Queue Test
 // ################################################################		
 		
-		System.out.println("################################################################\n");
-		System.out.println("Queue Test: \n");
+		if (TEST_QUEUE) {
+			
+			System.out.println("################################################################\n");
 		
-		System.out.println("With Array");
+			System.out.println("Queue Test: \n");
 		
-		Queue<Integer> q = new Queue<Integer>(Arr);
+			System.out.println("With Array");
 		
-		System.out.println(q.toString());
+			Queue<Integer> q = new Queue<Integer>(Arr);
+			
+			System.out.println(q.toString());
 		
-		System.out.println("Empty: " + q.emptyQueue());
+			System.out.println("Empty: " + q.emptyQueue());
 		
-		q.enQueue(10);
+			q.enQueue(10);
 		
-		System.out.println(q.toString());
+			System.out.println(q.toString());
 		
-		q.deQueue();
+			q.deQueue();
 		
-		System.out.println(q.toString());
+			System.out.println(q.toString());
 		
-		q.clear();
+			q.clear();
 		
-		System.out.println("Empty: " + q.emptyQueue());
+			System.out.println("Empty: " + q.emptyQueue());
 		
-		System.out.println("\n\nWith ArrayList");
+			System.out.println("\n\nWith ArrayList");
 		
-		q = new Queue<Integer>(ArrList);
+			q = new Queue<Integer>(ArrList);
 		
-		System.out.println(q.toString());
+			System.out.println(q.toString());
 		
-		System.out.println("Empty: " + q.emptyQueue());
+			System.out.println("Empty: " + q.emptyQueue());
 		
-		q.enQueue(10);
+			q.enQueue(10);
 		
-		System.out.println(q.toString());
+			System.out.println(q.toString());
 		
-		q.deQueue();
+			q.deQueue();
 		
-		System.out.println(q.toString());
+			System.out.println(q.toString());
 		
-		q.clear();
+			q.clear();
 		
-		System.out.println("Empty: " + q.emptyQueue());
+			System.out.println("Empty: " + q.emptyQueue());
 		
-		
-		
+			
+		}
 		
 		
 // ################################################################
 //		Stack Test
 // ################################################################		
 		
-		System.out.println("################################################################\n");
-		System.out.println("Stack Test: \n");
 		
-		System.out.println("With Array");
+		if (TEST_STACK) {
+			
+			System.out.println("################################################################\n");
 		
-		Stack<Integer> s = new Stack<Integer>(Arr);
+			System.out.println("Stack Test: \n");
 		
-		System.out.println(s.toString());
+			System.out.println("With Array");
 		
-		System.out.println("Empty: " + s.emptyStack());
+			Stack<Integer> s = new Stack<Integer>(Arr);
 		
-		s.pushStack(10);
+			System.out.println(s.toString());
 		
-		System.out.println(s.toString());
+			System.out.println("Empty: " + s.emptyStack());
 		
-		s.popStack();
+			s.pushStack(10);
 		
-		System.out.println(s.toString());
+			System.out.println(s.toString());
 		
-		s.clear();
+			s.popStack();
 		
-		System.out.println("Empty: " + s.emptyStack());
+			System.out.println(s.toString());
 		
-		System.out.println("\n\nWith ArrayList");
+			s.clear();
 		
-		s = new Stack<Integer>(ArrList);
+			System.out.println("Empty: " + s.emptyStack());
 		
-		System.out.println(s.toString());
+			System.out.println("\n\nWith ArrayList");
 		
-		System.out.println("Empty: " + s.emptyStack());
+			s = new Stack<Integer>(ArrList);
 		
-		s.pushStack(10);
+			System.out.println(s.toString());
 		
-		System.out.println(s.toString());
+			System.out.println("Empty: " + s.emptyStack());
 		
-		s.popStack();
+			s.pushStack(10);
 		
-		System.out.println(s.toString());
+			System.out.println(s.toString());
 		
-		s.clear();
+			s.popStack();
 		
-		System.out.println("Empty: " + s.emptyStack());
+			System.out.println(s.toString());
 		
-	
+			s.clear();
+		
+			System.out.println("Empty: " + s.emptyStack());
+		
+		}
 		
 		
 // ################################################################
 //		Sort Test
 // ################################################################		
 		
-		System.out.println("\n\n################################################################\n");
-		System.out.println("Sort Test: \n");		
+		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_MERGE_SORT) {
+			
+			System.out.println("\n\n################################################################\n");
+		
+			System.out.println("Sort Test: \n");		
 		
 				
 		
-		SortArray<Integer> sort = new SortArray<Integer>(Arr.clone()); 
-		System.out.print("Array To Sort: ");
-		sort.printArray();
-		
-		
-		// Insertion Sort
-		
-		try {
-			
-			System.out.print("\n\n");
-			System.out.print("InsertionSort: ");
-			sort.printArray();
-			sort.insertionSort();			
+			SortArray<Integer> sort = new SortArray<Integer>(Arr.clone()); 
+			System.out.print("Array To Sort: ");
 			sort.printArray();
 		
-		} catch (OutOfBoundException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
-
-		
-		// Selection Sort		
-		try {
-			
-			System.out.print("\n\n");
-			sort = new SortArray<Integer>(Arr.clone()); 
-			System.out.print("SelectionSort: ");
-			sort.printArray();
-			sort.selectionSort();
-			sort.printArray();
-			
-		} catch (OutOfBoundException e) {
-			
-			e.printStackTrace();
-		
-		}
-		
-		
-		
-		// Selection Sort		
-		try {
-					
-			System.out.print("\n\n");
-			sort = new SortArray<Integer>(Arr.clone()); 
-			System.out.print("MergeSort: ");
-			sort.printArray();
-			sort.mergeSort();
-			sort.printArray();
-					
-		} catch (OutOfBoundException e) {
-					
-			e.printStackTrace();
 				
+			// Insertion Sort
+			
+			if (TEST_INSERTION_SORT) {
+		
+				try {
+			
+					System.out.print("\n\n");
+					System.out.print("InsertionSort: ");
+					sort.printArray();
+					sort.insertionSort();			
+					sort.printArray();
+		
+				} catch (OutOfBoundException e) {
+			
+					e.printStackTrace();
+		
+				}
+		
+			}
+		
+		
+		
+			// Selection Sort	
+		
+			if (TEST_SELECTION_SORT) {
+		
+				try {
+			
+					System.out.print("\n\n");
+					sort = new SortArray<Integer>(Arr.clone()); 
+					System.out.print("SelectionSort: ");
+					sort.printArray();
+					sort.selectionSort();
+					sort.printArray();
+			
+				} catch (OutOfBoundException e) {
+			
+					e.printStackTrace();
+		
+				}
+		
+			}
+		
+		
+		
+			// Merge Sort	
+			if (TEST_MERGE_SORT) {
+			
+				try {
+		
+					System.out.print("\n\n");
+					sort = new SortArray<Integer>(Arr.clone()); 
+					System.out.print("MergeSort: ");
+					sort.printArray();
+					sort.mergeSort();
+					sort.printArray();
+					
+				} catch (OutOfBoundException e) {
+					
+					e.printStackTrace();
+			
+				}
+		
+			}
+		
 		}
 		
-		
-		
-		
-		//return (T[]) heapArrList.toArray((T[])Array.newInstance(heapArrList.get(0).getClass(), heapArrList.size()));
-
 	}
 
 }
