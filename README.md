@@ -29,7 +29,7 @@ Selection Sort - Implemented & Finished Testing & Working
 
 Bubble Sort
 
-Merge Sort - Work In Progress
+Merge Sort - Implemented & Finished Testing & Working
 
 Parallel Merge Sort 
 

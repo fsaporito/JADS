@@ -1,4 +1,9 @@
 import java.util.ArrayList;
+
+import DataStructures.Queue;
+import DataStructures.Stack;
+import Exceptions.EmptyArrayException;
+import Exceptions.OutOfBoundException;
 import parallelRandomGenerator.ParallelRandInt;
 
 
@@ -11,7 +16,7 @@ public class Test {
 //		Random Array Creation
 // ################################################################
 		
-		ParallelRandInt rand = new ParallelRandInt(100, 30, 100);	
+		ParallelRandInt rand = new ParallelRandInt(1111, 30, 100);	
 		
 		Integer[] Arr = rand.getRandIntArr();
 		ArrayList<Integer> ArrList = rand.getRandIntArrList();
@@ -142,8 +147,9 @@ public class Test {
 		try {
 			
 			System.out.print("\n\n");
-			sort.insertionSort();
 			System.out.print("InsertionSort: ");
+			sort.printArray();
+			sort.insertionSort();			
 			sort.printArray();
 		
 		} catch (OutOfBoundException e) {
@@ -160,6 +166,7 @@ public class Test {
 			System.out.print("\n\n");
 			sort = new SortArray<Integer>(Arr.clone()); 
 			System.out.print("SelectionSort: ");
+			sort.printArray();
 			sort.selectionSort();
 			sort.printArray();
 			
@@ -167,6 +174,24 @@ public class Test {
 			
 			e.printStackTrace();
 		
+		}
+		
+		
+		
+		// Selection Sort		
+		try {
+					
+			System.out.print("\n\n");
+			sort = new SortArray<Integer>(Arr.clone()); 
+			System.out.print("MergeSort: ");
+			sort.printArray();
+			sort.mergeSort();
+			sort.printArray();
+					
+		} catch (OutOfBoundException e) {
+					
+			e.printStackTrace();
+				
 		}
 		
 		
