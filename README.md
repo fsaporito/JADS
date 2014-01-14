@@ -10,26 +10,26 @@ MinHeap - Implemented & Testing
 
 MaxHeap - Implemented & Testing
 
-Queue - Implemented & Finished Testing & Working
+Queue - OK
 
-Research Tree - Implemented & Finished Testing & Working
+Research Tree - OK
 
-Stack - Implemented & Finished Testing & Working
+Stack - OK
 
-Tree - Implemented & Finished Testing & Working
+Tree - OK
 
 
 
 
 *** Sorting Algorithms:
 
-Insertion Sort - Implemented & Finished Testing & Working
+Insertion Sort - OK
 
-Selection Sort - Implemented & Finished Testing & Working
+Selection Sort - OK
 
 Bubble Sort
 
-Merge Sort - Implemented & Finished Testing & Working
+Merge Sort - OKg
 
 Parallel Merge Sort 
 
@@ -41,7 +41,7 @@ Parallel QuickSort
 
 Parallel QuickSort Hybridated With Selection Sort
 
-Conting Sort
+Counting Sort
 
 Tim Sort
 
