@@ -27,7 +27,7 @@ Insertion Sort - OK
 
 Selection Sort - OK
 
-Shell Sort
+Shell Sort - OK
 
 Bubble Sort  OK
 

@@ -12,11 +12,12 @@ public class Test {
 	public static void main(String[] args) throws EmptyArrayException {
 		
 		
-		boolean TEST_QUEUE = false;
-		boolean TEST_STACK = false;
-		boolean TEST_INSERTION_SORT = false;
-		boolean TEST_SELECTION_SORT = false;
-		boolean TEST_SHELL_SORT = false;
+		boolean TEST_QUEUE = true;
+		boolean TEST_STACK = true;
+		
+		boolean TEST_INSERTION_SORT = true;
+		boolean TEST_SELECTION_SORT = true;
+		boolean TEST_SHELL_SORT = true;
 		boolean TEST_BUBBLE_SORT = true;
 		boolean TEST_MERGE_SORT = true;
 		
@@ -27,7 +28,7 @@ public class Test {
 //		Random Array Creation
 // ################################################################
 		
-		ParallelRandInt rand = new ParallelRandInt(1111, 30, 100);	
+		ParallelRandInt rand = new ParallelRandInt(1111, 20, 100);	
 		
 		Integer[] Arr = rand.getRandIntArr();
 		ArrayList<Integer> ArrList = rand.getRandIntArrList();
@@ -150,7 +151,7 @@ public class Test {
 //		Sort Test
 // ################################################################		
 		
-		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_BUBBLE_SORT || TEST_SHELL_SORT || TEST_MERGE_SORT) {
+		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_SHELL_SORT || TEST_BUBBLE_SORT || TEST_MERGE_SORT) {
 			
 			System.out.println("\n\n################################################################\n");
 		
@@ -163,8 +164,8 @@ public class Test {
 			sort.printArray();
 		
 				
-			// Insertion Sort
 			
+			// Insertion Sort
 			if (TEST_INSERTION_SORT) {
 		
 				try {
@@ -182,11 +183,10 @@ public class Test {
 				}
 		
 			}
-		
-		
-		
-			// Selection Sort	
-		
+			
+			
+			
+			// Selection Sort			
 			if (TEST_SELECTION_SORT) {
 		
 				try {
@@ -207,6 +207,27 @@ public class Test {
 			}
 			
 			
+			// Shell Sort
+			if (TEST_SHELL_SORT) {
+					
+				try {
+						
+					System.out.print("\n\n");
+					System.out.print("ShellSort: ");
+					sort.printArray();
+					sort.shellSort();			
+					sort.printArray();
+					
+				} catch (OutOfBoundException e) {
+						
+					e.printStackTrace();
+					
+				}
+					
+			}
+			
+			
+						
 			// Bubble Sort				
 			if (TEST_BUBBLE_SORT) {
 			

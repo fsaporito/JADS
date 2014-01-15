@@ -175,7 +175,7 @@ public class SortArray <T extends Comparable<T>> {
 
 	
 //#################################################################
-//	Selection Sort: O(n^2)
+//	Insertion Sort: O(n^2)
 //################################################################	
 	
 	
@@ -314,7 +314,96 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 
-	//#################################################################
+//#################################################################
+//	Shell Sort: O(?)
+//################################################################	
+	
+	
+	/** 
+	 * O(?) - Shell Sort Implementation With Fibonacci Numbers
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public void shellSort (int leftBound, int rightBound) throws OutOfBoundException {
+		
+		this.exceptionOutOfBoundThrower(leftBound, rightBound);		
+		
+		int fib = 1; // Second Fibonacci Number
+		int fibFib = 1; // First Fibonacci Number
+		
+		while (fibFib < (rightBound - leftBound)) {
+			
+			fibFib += fib;
+			
+			fib = fibFib - fib;
+			
+		}
+		
+		T value;
+		
+		int j;
+		
+		while (fibFib > 1) {
+			
+			for (int i = fib; i <= rightBound; i++) {
+		
+				value = this.arraySort[i];
+				
+				j = i;
+				
+				while ( (j >= fib) && (this.arraySort[j-fib].compareTo(value) > 0) ) {
+					
+					this.arraySort[j] =this.arraySort[j-fib];
+					
+					j -= fib;
+					
+				}
+				
+				this.arraySort[j] = value;				
+			
+			}
+			
+			fib = fibFib - fib;
+			
+			fibFib -= fib;
+			
+		}		
+		
+	}
+	
+	/**
+	 * Calls Shell Sort On The Whole Array
+	 * @throws OutOfBoundException 
+	 */
+	public void shellSort () throws OutOfBoundException {
+			
+		this.shellSort(0, this.arraySort.length-1);
+			
+	}
+	
+	 /**
+	  * Calls Shell Sort From Index To Array's End
+	 * @throws OutOfBoundException 
+	 */
+	public void shellSortFrom (int indexFrom) throws OutOfBoundException {
+			
+		this.shellSort(indexFrom, this.arraySort.length-1);
+			
+	}
+	
+	 /**
+	  * Calls Shell Sort From Zero To Index
+	 * @throws OutOfBoundException 
+	 */
+	public void shellSortTo (int indexTo) throws OutOfBoundException {
+			
+		this.shellSort(0, indexTo);
+			
+	}
+	
+	
+	
+//#################################################################
 //	Bubble Sort: O(n^2)
 //################################################################	
 	
