@@ -27,7 +27,7 @@ Insertion Sort - OK
 
 Selection Sort - OK
 
-Bubble Sort
+Bubble Sort - OK
 
 Merge Sort - OKg
 
