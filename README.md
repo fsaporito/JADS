@@ -27,7 +27,11 @@ Insertion Sort - OK
 
 Selection Sort - OK
 
-Bubble Sort - OK
+Shel Sort- 
+
+Bubble Sort  OK
+
+BYnar tre(afte heapsor)
 
 Merge Sort - OK
 
