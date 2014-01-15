@@ -29,7 +29,7 @@ Selection Sort - OK
 
 Bubble Sort - OK
 
-Merge Sort - OKg
+Merge Sort - OK
 
 Parallel Merge Sort 
 
