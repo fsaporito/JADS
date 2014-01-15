@@ -246,7 +246,7 @@ public class SortArray <T extends Comparable<T>> {
 	
 
 //#################################################################
-//	Insertion Sort: O(n^2)
+//	Selection Sort: O(n^2)
 //################################################################	
 	
 	
@@ -314,6 +314,77 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 
+	//#################################################################
+//	Bubble Sort: O(n^2)
+//################################################################	
+	
+
+	 
+	/** 
+	 * O(n^2) - BubbleSort Implementation
+	 * @throws OutOfBoundException 
+	 * 
+	*/
+	public void bubbleSort (int leftBound, int rightBound) throws OutOfBoundException {
+		
+		this.exceptionOutOfBoundThrower(leftBound, rightBound);
+		
+		if ((rightBound - leftBound) == 0) { // One Element, Already Sorted
+			
+			return;
+			
+		} else {
+			
+			for (int i = rightBound; i >= leftBound; i--) {
+				
+				for (int j = leftBound; j < i; j++) {
+					
+					if (this.arraySort[j].compareTo(this.arraySort[j+1]) > 0) {
+						
+						this.swap(j, j+1);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+			
+	}
+		
+	/**
+	 * Calls Bubble Sort On The Whole Array
+	 * @throws OutOfBoundException 
+	 */
+	public void bubbleSort () throws OutOfBoundException {
+				
+		this.bubbleSort(0, this.arraySort.length-1);
+				
+	}
+		
+	/**
+	 * Calls Bubble Sort From Index To Array's End
+	 * @throws OutOfBoundException 
+	*/
+	public void bubbleSortFrom (int indexFrom) throws OutOfBoundException {
+			
+		this.bubbleSort(indexFrom, this.arraySort.length-1);
+			
+	}
+		
+	/**
+	* Calls Bubble Sort From Zero To Index
+	 * @throws OutOfBoundException 
+	*/
+	public void bubbleSortTo (int indexTo) throws OutOfBoundException {
+				
+		this.bubbleSort(0, indexTo);
+				
+	}
+		
+	
+	
 	
 //#################################################################
 //	Merge Sort: O(nlogn)
