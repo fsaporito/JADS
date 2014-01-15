@@ -27,11 +27,11 @@ Insertion Sort - OK
 
 Selection Sort - OK
 
-Shel Sort- 
+Shell Sort
 
 Bubble Sort  OK
 
-BYnar tre(afte heapsor)
+Binary Tree
 
 Merge Sort - OK
 
