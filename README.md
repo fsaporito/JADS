@@ -33,13 +33,13 @@ Merge Sort - OK
 
 Parallel Merge Sort 
 
-Parallel Merge Sort Hybridated With Selection Sort
+Parallel Merge Sort Hybridated With Insertion Sort
 
 QuickSort
 
 Parallel QuickSort
 
-Parallel QuickSort Hybridated With Selection Sort
+Parallel QuickSort Hybridated With Insertion Sort
 
 Counting Sort
 
