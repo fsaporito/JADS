@@ -14,9 +14,13 @@ public class SortArray <T extends Comparable<T>> {
 
 	
 	/**
+	 * 
 	 * Constructor With Array Parameter
+	 * 
 	 * @param Array Array To Sort, Mustn't Be Empty
+	 * 
 	 * @throws EmptyArrayException 
+	 * 
 	 */
 	public SortArray (T[] Array) throws EmptyArrayException {
 		
@@ -30,12 +34,15 @@ public class SortArray <T extends Comparable<T>> {
 		
 	}
 	
-	
-	
+		
 	/**
+	 * 
 	 * Constructor With ArrayList Parameter
-	 * @param arraySort ArrayList To Sort, Mustn't Be Empty
+	 * 
+	 * @param Arr ArrayList To Sort, Mustn't Be Empty
+	 * 
 	 * @throws EmptyArrayException 
+	 * 
 	 */
 	public SortArray (ArrayList<T> Arr) throws EmptyArrayException {
 		
@@ -54,7 +61,9 @@ public class SortArray <T extends Comparable<T>> {
 
 
 	/**
+	 * 
 	 * Throws Exception OutOfBound
+	 * 
 	 * @throws OutOfBoundException 
 	 * 
 	 */
@@ -95,8 +104,11 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/** 
+	 * 
 	 * Swaps Element i With Element J
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	private void swap (int i, int j) throws OutOfBoundException {
 		
@@ -122,7 +134,9 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/**
+	 * 
 	 * Print The Sorted Array To The Screen
+	 * 
 	 */
 	public void printArray () {
 		
@@ -142,8 +156,11 @@ public class SortArray <T extends Comparable<T>> {
 	
 		
 	/**
+	 * 
 	 * Return The Sorted Array
+	 * 
 	 * @return The Array
+	 * 
 	 */
 	public T[] getArray() {
 		
@@ -154,8 +171,11 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/**
+	 * 
 	 * Return The Sorted ArrayList
+	 * 
 	 * @return The ArrayList
+	 * 
 	 */
 	public ArrayList<T> getArrayList() {
 		
@@ -180,8 +200,14 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/**
+	 * 
 	 * O(n^2) - Insertion Sort Implementation
-	 * @throws OutOfBoundException 
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
+	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
+	 * 
+	 * @throws OutOfBoundException
+	 * 
 	 */
 	public void insertionSort(int leftBound, int rightBound) throws OutOfBoundException {
 		
@@ -212,9 +238,13 @@ public class SortArray <T extends Comparable<T>> {
 		
 	}
 	
+	
 	/**
+	 * 
 	 * Calls Insertion Sort On The Whole Array
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	public void insertionSort () throws OutOfBoundException {
 			
@@ -222,20 +252,32 @@ public class SortArray <T extends Comparable<T>> {
 			
 	}
 	
+	
 	 /**
+	  * 
 	  * Calls Insertion Sort From Index To Array's End
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexFrom Array's First Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException
+	  *  
+	  */
 	public void insertionSortFrom (int indexFrom) throws OutOfBoundException {
 			
 		this.insertionSort(indexFrom, this.arraySort.length);
 			
 	}
 	
+	
 	 /**
+	  * 
 	  * Calls Insertion Sort From Zero To Index
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexTo Array's Last Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException 
+	  * 
+	  */
 	public void insertionSortTo (int indexTo) throws OutOfBoundException {
 			
 		this.insertionSort(0, indexTo);
@@ -251,7 +293,12 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/** 
+	 * 
 	 * O(n^2) - Selection Sort Implementation
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
+	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
+	 * 
 	 * @throws OutOfBoundException 
 	 * 
 	 */
@@ -282,9 +329,13 @@ public class SortArray <T extends Comparable<T>> {
 		
 	}
 	
+	
 	/**
+	 * 
 	 * Calls Selection Sort On The Whole Array
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	public void selectionSort () throws OutOfBoundException {
 			
@@ -292,25 +343,38 @@ public class SortArray <T extends Comparable<T>> {
 			
 	}
 	
+	
 	 /**
+	  * 
 	  * Calls Selection Sort From Index To Array's End
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexFrom Array's First Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException 
+	  * 
+	  */
 	public void selectionSortFrom (int indexFrom) throws OutOfBoundException {
 			
 		this.selectionSort(indexFrom, this.arraySort.length);
 			
 	}
 	
+	
 	 /**
+	  * 
 	  * Calls Selection Sort From Zero To Index
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexTo Array's Last Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException 
+	  * 
+	  */
 	public void selectionSortTo (int indexTo) throws OutOfBoundException {
 			
 		this.selectionSort(0, indexTo);
 			
 	}
+	
 	
 	
 
@@ -320,7 +384,12 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/** 
+	 * 
 	 * O(?) - Shell Sort Implementation With Fibonacci Numbers
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
+	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
+	 * 
 	 * @throws OutOfBoundException 
 	 * 
 	 */
@@ -371,9 +440,13 @@ public class SortArray <T extends Comparable<T>> {
 		
 	}
 	
+	
 	/**
+	 * 
 	 * Calls Shell Sort On The Whole Array
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	public void shellSort () throws OutOfBoundException {
 			
@@ -381,26 +454,43 @@ public class SortArray <T extends Comparable<T>> {
 			
 	}
 	
+	
 	 /**
 	  * Calls Shell Sort From Index To Array's End
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexFrom Array's First Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException 
+	  * 
+	  */
 	public void shellSortFrom (int indexFrom) throws OutOfBoundException {
 			
 		this.shellSort(indexFrom, this.arraySort.length-1);
 			
 	}
 	
+	
 	 /**
+	  * 
 	  * Calls Shell Sort From Zero To Index
-	 * @throws OutOfBoundException 
-	 */
+	  * 
+	  * @param indexTo Array's Last Index To Be Sorted
+	  * 
+	  * @throws OutOfBoundException 
+	  * 
+	  */
 	public void shellSortTo (int indexTo) throws OutOfBoundException {
 			
 		this.shellSort(0, indexTo);
 			
 	}
 	
+	
+	
+
+//#################################################################
+//	Bubble Sort: O(n^2)
+//################################################################	
 	
 	
 //#################################################################
@@ -410,10 +500,15 @@ public class SortArray <T extends Comparable<T>> {
 
 	 
 	/** 
+	 * 
 	 * O(n^2) - BubbleSort Implementation
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
+	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
+	 * 
 	 * @throws OutOfBoundException 
 	 * 
-	*/
+	 */
 	public void bubbleSort (int leftBound, int rightBound) throws OutOfBoundException {
 		
 		this.exceptionOutOfBoundThrower(leftBound, rightBound);
@@ -442,9 +537,13 @@ public class SortArray <T extends Comparable<T>> {
 			
 	}
 		
+	
 	/**
+	 * 
 	 * Calls Bubble Sort On The Whole Array
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	public void bubbleSort () throws OutOfBoundException {
 				
@@ -453,19 +552,30 @@ public class SortArray <T extends Comparable<T>> {
 	}
 		
 	/**
+	 * 
 	 * Calls Bubble Sort From Index To Array's End
+	 * 
+	 * @param indexFrom Array's First Index To Be Sorted
+	 * 
 	 * @throws OutOfBoundException 
-	*/
+	 * 
+	 */
 	public void bubbleSortFrom (int indexFrom) throws OutOfBoundException {
 			
 		this.bubbleSort(indexFrom, this.arraySort.length-1);
 			
 	}
-		
+	
+	
 	/**
-	* Calls Bubble Sort From Zero To Index
+	 * 
+	 * Calls Bubble Sort From Zero To Index
+	 * 
+	 * @param indexTo Array's Last Index To Be Sorted
+	 * 
 	 * @throws OutOfBoundException 
-	*/
+	 * 
+	 */
 	public void bubbleSortTo (int indexTo) throws OutOfBoundException {
 				
 		this.bubbleSort(0, indexTo);
@@ -478,12 +588,20 @@ public class SortArray <T extends Comparable<T>> {
 //#################################################################
 //	Merge Sort: O(nlogn)
 //################################################################	
+		
+	
+//#################################################################
+//	Merge Sort: O(nlogn)
+//################################################################	
 	
 	/*
+	 * 
 	 * Merge function To Fuse Two Lists Generated By MergeSort
-	 * @param leftBound left limit
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param center center that separate the two lists
 	 * @param rightBound right limit
+	 * 
 	 */
 	private void merge (int leftBound, int center, int rightBound) {
 		
@@ -559,11 +677,16 @@ public class SortArray <T extends Comparable<T>> {
 		
 	}
 	
+	
 	/** 
 	 * O(nlogn) - MergeSort Implementation
+	 * 
+	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
+	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
+	 * 
 	 * @throws OutOfBoundException 
 	 * 
-	*/
+	 */
 	public void mergeSort (int leftBound, int rightBound) throws OutOfBoundException {
 		
 		this.exceptionOutOfBoundThrower(leftBound, rightBound);
@@ -586,9 +709,13 @@ public class SortArray <T extends Comparable<T>> {
 			
 	}
 		
+	
 	/**
+	 * 
 	 * Calls MergeSort On The Whole Array
+	 * 
 	 * @throws OutOfBoundException 
+	 * 
 	 */
 	public void mergeSort () throws OutOfBoundException {
 				
@@ -596,20 +723,31 @@ public class SortArray <T extends Comparable<T>> {
 				
 	}
 		
+	
 	/**
 	 * Calls MergeSort From Index To Array's End
+	 * 
+	 * @param indexFrom Array's First Index To Be Sorted
+	 * 
 	 * @throws OutOfBoundException 
-	*/
+	 * 
+	 */
 	public void mergeSortFrom (int indexFrom) throws OutOfBoundException {
 			
 		this.mergeSort(indexFrom, this.arraySort.length-1);
 			
 	}
 		
+	
 	/**
-	* Calls MergeSort From Zero To Index
-	 * @throws OutOfBoundException 
-	*/
+	 * 
+	 * Calls MergeSort From Zero To Index
+	 * 
+	 * @param indexTo Array's Last Index To Be Sorted
+	 * 
+	 * @throws OutOfBoundException
+	 *  
+	 */
 	public void mergeSortTo (int indexTo) throws OutOfBoundException {
 				
 		this.mergeSort(0, indexTo);
