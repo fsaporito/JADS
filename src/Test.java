@@ -16,6 +16,7 @@ public class Test {
 		boolean TEST_STACK = false;
 		boolean TEST_INSERTION_SORT = false;
 		boolean TEST_SELECTION_SORT = false;
+		boolean TEST_SHELL_SORT = false;
 		boolean TEST_BUBBLE_SORT = true;
 		boolean TEST_MERGE_SORT = true;
 		
@@ -149,7 +150,7 @@ public class Test {
 //		Sort Test
 // ################################################################		
 		
-		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_BUBBLE_SORT || TEST_MERGE_SORT) {
+		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_BUBBLE_SORT || TEST_SHELL_SORT || TEST_MERGE_SORT) {
 			
 			System.out.println("\n\n################################################################\n");
 		
@@ -206,26 +207,25 @@ public class Test {
 			}
 			
 			
-			// Bubble Sort	
+			// Bubble Sort				
+			if (TEST_BUBBLE_SORT) {
 			
-				if (TEST_BUBBLE_SORT) {
-			
-					try {
+				try {
 				
-						System.out.print("\n\n");
-						sort = new SortArray<Integer>(Arr.clone()); 
-						System.out.print("BubbleSort: ");
-						sort.printArray();
-						sort.bubbleSort();
-						sort.printArray();
+					System.out.print("\n\n");
+					sort = new SortArray<Integer>(Arr.clone()); 
+					System.out.print("BubbleSort: ");
+					sort.printArray();
+					sort.bubbleSort();
+					sort.printArray();
 				
-					} catch (OutOfBoundException e) {
+				} catch (OutOfBoundException e) {
 				
-						e.printStackTrace();
-			
-					}
+					e.printStackTrace();
 			
 				}
+			
+			}
 		
 		
 		
