@@ -195,13 +195,28 @@ public class SortArray <T extends Comparable<T>> {
 
 	
 //#################################################################
-//	Insertion Sort: O(n^2)
+//	Insertion Sort
 //################################################################	
 	
 	
 	/**
 	 * 
-	 * O(n^2) - Insertion Sort Implementation
+	 * Insertion Sort Implementation
+	 * 
+	 * Worst Case: O(n^2)
+	 * Average Case: O(n^2)
+	 * Best Case: O(n) 
+	 * 
+	 * Insertion Sort Works By Dividing The Array In Two Sublist, 
+	 * The Ordered One And The Non Ordered One. At The Beginning,
+	 * The Ordered List Is Formed By The First Element Of The Array, 
+	 * And The Not Ordered One Corresponds To The Array To Sort Minus
+	 * The First Element. The Algorithm At Every Step Takes The First
+	 * Element From The Not Ordered List Value And Places It In The End 
+	 * Of The Ordered One, By Comparing The Values Of The Added Element
+	 * With Every Other One Element Of The Ordered List
+	 * At The End Of The Algorithm The Ordered List Is The Sorted Array, 
+	 * While The Other List Is Empty.
 	 * 
 	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
@@ -288,13 +303,26 @@ public class SortArray <T extends Comparable<T>> {
 	
 
 //#################################################################
-//	Selection Sort: O(n^2)
+//	Selection Sort
 //################################################################	
 	
 	
 	/** 
 	 * 
-	 * O(n^2) - Selection Sort Implementation
+	 * Selection Sort Implementation
+	 * 
+	 * Worst Case: O(n^2)
+	 * Average Case: O(n^2)
+	 * Best Case: O(n^2) 
+	 * 
+	 * Selection Sort Works By Dividing The Array In Two Sublist, 
+	 * The Ordered One And The Non Ordered One. At The Beginning,
+	 * The Ordered List Is Empty, And The Not Ordered One Corresponds 
+	 * To The Array To Sort. The Algorithm At Every Step Selects From
+	 * The Not Ordered List The Minimum Value And Places It At The End 
+	 * Of The Ordered One.
+	 * At The End Of The Algorithm The Ordered List Is The Sorted Array, 
+	 * While The Other List Is Empty.
 	 * 
 	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
@@ -379,13 +407,24 @@ public class SortArray <T extends Comparable<T>> {
 	
 
 //#################################################################
-//	Shell Sort: O(?)
+//	Shell Sort
 //################################################################	
 	
 	
 	/** 
 	 * 
-	 * O(?) - Shell Sort Implementation With Fibonacci Numbers
+	 * Shell Sort Implementation With Fibonacci Numbers
+	 * 
+	 * Worst Case: Depends On Input
+	 * Average Case: Depends On Input
+	 * Best Case: O(n)
+	 * 
+	 * The Algorithm Works By Dividing The Array In h List, And Calling 
+	 * Insertion Sort On Them. It Then Proceeds To Lower The h Value And
+	 * Recalling Insertion Sort On The New Created Lists, Until h Reaches
+	 * 1. In This Implementation, The h Values Are Calculated By Using 
+	 * Fibonacci's Numbers, With The First h Value As The Bigger Fibonacci's
+	 * Number Less Than The Array's Length.
 	 * 
 	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
@@ -489,19 +528,22 @@ public class SortArray <T extends Comparable<T>> {
 	
 
 //#################################################################
-//	Bubble Sort: O(n^2)
+//	Bubble Sort
 //################################################################	
-	
-	
-//#################################################################
-//	Bubble Sort: O(n^2)
-//################################################################	
-	
 
 	 
 	/** 
 	 * 
-	 * O(n^2) - BubbleSort Implementation
+	 * BubbleSort Implementation
+	 * 
+	 * Worst Case: O(n^2)
+	 * Average Case: O(n^2)
+	 * Best Case: O(n)
+	 * 
+	 * The Bubble Sort Works By Comparing Every Adjacent Couple Of Elements
+	 * And Swapping Them If They Are At The Wrong Positions, For Every Adjacent
+	 * Couple In The List. When The Array Ends, The Algorithm Restart Again, Repeating
+	 * Itself Until No Swaps Are Done.
 	 * 
 	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
@@ -586,13 +628,9 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 //#################################################################
-//	Merge Sort: O(nlogn)
-//################################################################	
-		
-	
+//	Merge Sort
 //#################################################################
-//	Merge Sort: O(nlogn)
-//################################################################	
+
 	
 	/*
 	 * 
@@ -679,7 +717,16 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/** 
-	 * O(nlogn) - MergeSort Implementation
+	 * MergeSort Implementation
+	 * 
+	 * Worst Case: O(nlogn)
+	 * Average Case: O(nlogn)
+	 * Best Case: O(nlogn)
+	 * 
+	 * The Algorithms Works By Splicing The Input In Two And Calling Recursively
+	 * MergeSort On The Two Lists. If The List Has Only One Elements Stops The
+	 * Recursion, Otherwise Calls The Merge Function On The Two Sublists,
+	 * That Fuses The Two Ordered Lists Into A Single Ordered One.
 	 * 
 	 * @param leftBound Left Limit For The Range Of Array's Values To Sort
 	 * @param rightBound Right Limit For The Range Of Array's Values To Sort
@@ -770,7 +817,7 @@ public class SortArray <T extends Comparable<T>> {
  * bubbleSort
  * countingSort
  * introSort
- * smoothSort * 
+ * smoothSort 
  * 
  */	
 	
