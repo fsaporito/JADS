@@ -201,11 +201,13 @@ public class SortArray <T extends Comparable<T>> {
 	
 	/**
 	 * 
-	 * Insertion Sort Implementation
+	 * Insertion Sort Implementation:
 	 * 
+	 * <p><pre>
 	 * Worst Case: O(n^2)
 	 * Average Case: O(n^2)
 	 * Best Case: O(n) 
+	 * </pre><p>
 	 * 
 	 * Insertion Sort Works By Dividing The Array In Two Sublist, 
 	 * The Ordered One And The Non Ordered One. At The Beginning,
@@ -309,11 +311,13 @@ public class SortArray <T extends Comparable<T>> {
 	
 	/** 
 	 * 
-	 * Selection Sort Implementation
+	 * Selection Sort Implementation:
 	 * 
+	 * <p><pre>
 	 * Worst Case: O(n^2)
 	 * Average Case: O(n^2)
 	 * Best Case: O(n^2) 
+	 * </pre><p>
 	 * 
 	 * Selection Sort Works By Dividing The Array In Two Sublist, 
 	 * The Ordered One And The Non Ordered One. At The Beginning,
@@ -413,11 +417,13 @@ public class SortArray <T extends Comparable<T>> {
 	
 	/** 
 	 * 
-	 * Shell Sort Implementation With Fibonacci Numbers
+	 * Shell Sort Implementation With Fibonacci'sNumbers: 
 	 * 
+	 * <p><pre>
 	 * Worst Case: Depends On Input
 	 * Average Case: Depends On Input
 	 * Best Case: O(n)
+	 * </pre><p>
 	 * 
 	 * The Algorithm Works By Dividing The Array In h List, And Calling 
 	 * Insertion Sort On Them. It Then Proceeds To Lower The h Value And
@@ -534,11 +540,13 @@ public class SortArray <T extends Comparable<T>> {
 	 
 	/** 
 	 * 
-	 * BubbleSort Implementation
+	 * BubbleSort Implementation:
 	 * 
+	 * <p><pre>
 	 * Worst Case: O(n^2)
 	 * Average Case: O(n^2)
 	 * Best Case: O(n)
+	 * </pre><p>
 	 * 
 	 * The Bubble Sort Works By Comparing Every Adjacent Couple Of Elements
 	 * And Swapping Them If They Are At The Wrong Positions, For Every Adjacent
@@ -717,11 +725,13 @@ public class SortArray <T extends Comparable<T>> {
 	
 	
 	/** 
-	 * MergeSort Implementation
+	 * MergeSort Implementation:
 	 * 
+	 * <p><pre>
 	 * Worst Case: O(nlogn)
 	 * Average Case: O(nlogn)
 	 * Best Case: O(nlogn)
+	 * </pre><p>
 	 * 
 	 * The Algorithms Works By Splicing The Input In Two And Calling Recursively
 	 * MergeSort On The Two Lists. If The List Has Only One Elements Stops The
