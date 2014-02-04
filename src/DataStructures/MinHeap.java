@@ -1,7 +1,9 @@
 package DataStructures;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import Exceptions.EmptyHeapException;
 
 
 public class MinHeap <T extends Comparable<T>> {
@@ -9,64 +11,77 @@ public class MinHeap <T extends Comparable<T>> {
 
 	private ArrayList<T> heapArrList;
 	
-	private T[] heapArr;
-	
-	private ArrayList<T> arrListSorted;
-	
-	private T[] arrSorted;
-	
 	private int heapSize;
 	
 	
-	@SuppressWarnings("unchecked")
-	public MinHeap(ArrayList<T> arrayList) {
+	public MinHeap () {
 		
-		this.heapSize = arrayList.size();
+		this.heapSize = -1;
 		
-		this.heapArrList = arrayList;
+		this.heapArrList = new ArrayList<T>();
 		
-		for (int i =(int) (heapSize/2); i > 0; i--) { 
-			
-			this.MinHeapify(i);		
-		
-		}
-		
-		this.heapArr = (T[]) this.heapArrList.toArray();
-		
-		this.arrListSorted = new ArrayList<T>();
-		
-		this.HeapSort();
-	
 	}
 	
 	
-	@SuppressWarnings("unchecked")
+	
+	public MinHeap(ArrayList<T> arrayList) {
+		
+		this.heapSize = arrayList.size() - 1;
+		
+		this.heapArrList = arrayList;
+		
+		this.buildHeap();
+		
+	}
+	
+	
+
 	public MinHeap(T[] array) {
 		
 		this.heapArrList = new ArrayList<T>();
 		
+		System.out.println ("ArrayLength: " + array.length);
+		
 		for (int i = 0; i < array.length; i++) {
+			
+			System.out.println ("ArrayListSize: " + this.heapArrList.size());
 			
 			this.heapArrList.add(array[i]);
 			
 		}
 		
-		for (int i =(int) (heapSize/2); i > 0; i--) { 
-			
-			this.MinHeapify(i);		
+		System.out.println ("ArrayListSize: " + this.heapArrList.size());	
 		
-		}
+		this.heapSize = this.heapArrList.size() - 1;
 		
-		this.heapArr = (T[]) this.heapArrList.toArray();
+		System.out.println ("HeapSize: " + this.heapSize);
 		
-		this.arrListSorted = new ArrayList<T>();
-								
-		this.HeapSort();
+		this.buildHeap();
 		
 	}
 	
 	
-	private void MinHeapify(int i) {
+	
+	private void buildHeap () {
+		
+		if (this.heapSize > 0) {		
+			
+			for (int i =(int) (heapSize/2); i >= 0; i--) { 
+			
+				this.minHeapify(i);		
+		
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	private void minHeapify(int i) {
+		
+		System.out.print ("Inside MinHeapify, i = " + i);
+		System.out.println ("  get(I): " + this.heapArrList.get(i).toString());
 		
 		int l = 2*i; // i left son
 		int r = 2*i + 1; // i right son
@@ -75,7 +90,7 @@ public class MinHeap <T extends Comparable<T>> {
 		
 		if (l <= this.heapSize) {
 			
-			if ((this.heapArrList.get(l)).compareTo(this.heapArrList.get(i)) < 0) {
+		if ((this.heapArrList.get(l)).compareTo(this.heapArrList.get(i)) < 0) {
 				
 				min = l;
 				
@@ -101,81 +116,96 @@ public class MinHeap <T extends Comparable<T>> {
 			
 			this.heapArrList.set(min, swap);
 			
-			this.MinHeapify(min);
+			this.minHeapify(min);
 			
 		}
 				
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	private void HeapSort () {
+	public T extractMinValue () throws EmptyHeapException {
 		
-		ArrayList<T> ArrTmp = (ArrayList<T>) this.heapArrList;
-		
-		int heapSize_tmp = this.heapSize;
-		
-		for (int i = this.heapArrList.size(); i >= 1; i--) {
+		if (this.heapArrList.size() == 0) {
 			
-			T swap = this.heapArrList.get(i); 
-			
-			this.heapArrList.set(i, this.heapArrList.get(0));
-			
-			this.heapArrList.set(0, swap);
-			
-			this.heapSize--;
-			
-			this.MinHeapify(0);
+			throw new EmptyHeapException ("Heap Is Empty");
 			
 		}
 		
-		this.heapSize = heapSize_tmp;
+		T minValue = this.heapArrList.get(0);
 		
-		this.arrListSorted = this.heapArrList;
+		T lastValue = this.heapArrList.get(this.heapSize);
 		
-		this.heapArrList = ArrTmp;	
+		this.heapArrList.set(0, lastValue);
 		
-		this.arrSorted = (T[]) this.heapArrList.toArray();
+		this.heapArrList.remove(this.heapSize);
+		
+		this.heapSize = this.heapSize - 1;
+		
+		this.minHeapify(0);
+		
+		return minValue;
 		
 	}
 	
 	
-	public T[] getHeapArr() {
+	public void insert (T value) {
 		
-		return this.heapArr;
-	
+		System.out.println ("ArrayListSize: " + this.heapArrList.size());	
+		
+		System.out.println ("HeapSize: " + this.heapSize);
+		
+		this.heapArrList.add(value);
+		
+		System.out.println ("ArrayListSize: " + this.heapArrList.size());
+		
+		System.out.println ("HeapSize: " + this.heapSize);
+		
+		this.heapSize = this.heapSize + 1;
+		
+		System.out.println ("HeapSize: " + this.heapSize);
+		
+		System.out.println ("ArrayListSize: " + this.heapArrList.size());		
+		
+		this.buildHeap();
+		
+		
 	}
-	
-	
-	public ArrayList<T> getHeapArrList() {
+
+
+
+	/**
+	 * @return the heapArrList
+	 */
+	public ArrayList<T> clone() {
 		
 		return this.heapArrList;
 	
 	}
-
 	
-	public ArrayList<T> getArrListSorted() {
 	
-		return this.arrListSorted;
 	
+	/**
+	 * Create An Array With The Elements Of The Min Heap
+	 * @return The Array
+	 */
+	@SuppressWarnings("unchecked")
+	public T[] toArray () {
+		
+		T[] arr = (T[]) this.heapArrList.toArray( (T[])Array.newInstance(this.heapArrList.get(0).getClass(), this.heapSize));
+		
+		return arr;
+		
 	}
 
 
-	public T[] getArrSorted() {
-	
-		return this.arrSorted;
-	
-	}
 
-
+	/**
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((arrListSorted == null) ? 0 : arrListSorted.hashCode());
-		result = prime * result + Arrays.hashCode(arrSorted);
-		result = prime * result + Arrays.hashCode(heapArr);
 		result = prime * result
 				+ ((heapArrList == null) ? 0 : heapArrList.hashCode());
 		result = prime * result + heapSize;
@@ -183,15 +213,49 @@ public class MinHeap <T extends Comparable<T>> {
 	}
 
 
-	
-	
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MinHeap<?> other = (MinHeap<?>) obj;
+		if (heapArrList == null) {
+			if (other.heapArrList != null)
+				return false;
+		} else if (!heapArrList.equals(other.heapArrList))
+			return false;
+		if (heapSize != other.heapSize)
+			return false;
+		return true;
+	}
+
+
+
+	/** 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "MinHeap [heapArrList=" + heapArrList + ", heapArr="
-				+ Arrays.toString(heapArr) + ", arrListSorted=" + arrListSorted
-				+ ", arrSorted=" + Arrays.toString(arrSorted) + ", heapSize="
-				+ heapSize + "]";
-	}	
+		return "MinHeap [heapArrList=" + heapArrList + ", heapSize=" + heapSize
+				+ "]";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 	
 	
