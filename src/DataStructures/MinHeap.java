@@ -26,7 +26,7 @@ public class MinHeap <T extends Comparable<T>> {
 	
 	public MinHeap(ArrayList<T> arrayList) {
 		
-		this.heapSize = arrayList.size() - 1;
+		this.heapSize = arrayList.size() -1;
 		
 		this.heapArrList = arrayList;
 		
@@ -39,22 +39,14 @@ public class MinHeap <T extends Comparable<T>> {
 	public MinHeap(T[] array) {
 		
 		this.heapArrList = new ArrayList<T>();
-		
-		System.out.println ("ArrayLength: " + array.length);
-		
+				
 		for (int i = 0; i < array.length; i++) {
-			
-			System.out.println ("ArrayListSize: " + this.heapArrList.size());
 			
 			this.heapArrList.add(array[i]);
 			
-		}
-		
-		System.out.println ("ArrayListSize: " + this.heapArrList.size());	
-		
-		this.heapSize = this.heapArrList.size() - 1;
-		
-		System.out.println ("HeapSize: " + this.heapSize);
+		}		
+	
+		this.heapSize = this.heapArrList.size() -1;
 		
 		this.buildHeap();
 		
@@ -68,8 +60,8 @@ public class MinHeap <T extends Comparable<T>> {
 			
 			for (int i =(int) (heapSize/2); i >= 0; i--) { 
 			
-				this.minHeapify(i);		
-		
+				this.minHeapify(i);
+					
 			}
 			
 		}
@@ -80,46 +72,47 @@ public class MinHeap <T extends Comparable<T>> {
 	
 	private void minHeapify(int i) {
 		
-		System.out.print ("Inside MinHeapify, i = " + i);
-		System.out.println ("  get(I): " + this.heapArrList.get(i).toString());
-		
-		int l = 2*i; // i left son
-		int r = 2*i + 1; // i right son
-		
-		int min = i;
-		
-		if (l <= this.heapSize) {
+		if (this.heapSize > 0) { // More Than One Element
 			
-		if ((this.heapArrList.get(l)).compareTo(this.heapArrList.get(i)) < 0) {
+			int l = 2*i; // i Left Son
+			int r = 2*i + 1; // i Right Son
+		
+			int min = i;
+		
+			if (l <= this.heapSize) {
 				
-				min = l;
+				if ((this.heapArrList.get(l)).compareTo(this.heapArrList.get(min)) < 0) {
 				
+					min = l;
+				
+				}
+			
 			}
-			
-		}
 		
-		if (r <= this.heapSize) {
+			if (r <= this.heapSize) {
 			
-			if (this.heapArrList.get(r).compareTo(this.heapArrList.get(i)) < 0) {
+				if (this.heapArrList.get(r).compareTo(this.heapArrList.get(min)) < 0) {
 				
-				min = r;
+					min = r;
 				
+				}
+			
 			}
+		
+			if (min != i) {
 			
+				T swap = this.heapArrList.get(i); 
+				
+				this.heapArrList.set(i, this.heapArrList.get(min));
+			
+				this.heapArrList.set(min, swap);
+			
+				this.minHeapify(min);
+			
+			}
+				
 		}
 		
-		if (min != i) {
-			
-			T swap = this.heapArrList.get(i); 
-			
-			this.heapArrList.set(i, this.heapArrList.get(min));
-			
-			this.heapArrList.set(min, swap);
-			
-			this.minHeapify(min);
-			
-		}
-				
 	}
 	
 	
@@ -150,22 +143,10 @@ public class MinHeap <T extends Comparable<T>> {
 	
 	public void insert (T value) {
 		
-		System.out.println ("ArrayListSize: " + this.heapArrList.size());	
-		
-		System.out.println ("HeapSize: " + this.heapSize);
-		
 		this.heapArrList.add(value);
-		
-		System.out.println ("ArrayListSize: " + this.heapArrList.size());
-		
-		System.out.println ("HeapSize: " + this.heapSize);
-		
-		this.heapSize = this.heapSize + 1;
-		
-		System.out.println ("HeapSize: " + this.heapSize);
-		
-		System.out.println ("ArrayListSize: " + this.heapArrList.size());		
-		
+				
+		this.heapSize++;
+						
 		this.buildHeap();
 		
 		
