@@ -853,13 +853,13 @@ public class SortArray <T extends Comparable<T>> {
 			
 			MinHeap<T> heap = new MinHeap<T>();
 			
-			for (int i = leftBound; i < rightBound; i++) {
+			for (int i = leftBound; i <= rightBound; i++) {
 				
 				heap.insert(this.arraySort[i]);
 				
 			}
 			
-			for (int j = leftBound; j < rightBound; j++) {
+			for (int j = leftBound; j <= rightBound; j++) {
 				
 				this.arraySort[j] = heap.extractMinValue();
 				
@@ -928,37 +928,6 @@ public class SortArray <T extends Comparable<T>> {
  * quickSort
  * quickSortParallel
  * quickSortParallelHybrid
- * heapSort
- * 	private void HeapSort () {
-		
-		ArrayList<T> ArrTmp = (ArrayList<T>) this.heapArrList;
-		
-		int heapSize_tmp = this.heapSize;
-		
-		for (int i = this.heapArrList.size(); i >= 1; i--) {
-			
-			T swap = this.heapArrList.get(i); 
-			
-			this.heapArrList.set(i, this.heapArrList.get(0));
-			
-			this.heapArrList.set(0, swap);
-			
-			this.heapSize--;
-			
-			this.MinHeapify(0);
-			
-		}
-		
-		this.heapSize = heapSize_tmp;
-		
-		this.arrListSorted = this.heapArrList;
-		
-		this.heapArrList = ArrTmp;	
-		
-		this.arrSorted = (T[]) this.heapArrList.toArray();
-		
-	}
- * bubbleSort
  * countingSort
  * introSort
  * smoothSort 
