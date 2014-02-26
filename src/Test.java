@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import DataStructures.MaxHeap;
 import DataStructures.MinHeap;
 import DataStructures.Queue;
 import DataStructures.Stack;
@@ -16,13 +18,17 @@ public class Test {
 		
 		boolean TEST_QUEUE = false;
 		boolean TEST_STACK = false;
-		boolean TEST_HEAP_MIN = true;
+		boolean TEST_HEAP_MAX = false;
+		boolean TEST_HEAP_MIN = false;
+		
+		boolean TEST_SORT = true;
+		boolean TEST_ALL_SORT = true;
 		
 		boolean TEST_INSERTION_SORT = false;
 		boolean TEST_SELECTION_SORT = false;
 		boolean TEST_SHELL_SORT = false;
 		boolean TEST_BUBBLE_SORT = false;
-		boolean TEST_MERGE_SORT = true;
+		boolean TEST_MERGE_SORT = false;
 		boolean TEST_HEAP_SORT = true;
 		
 		
@@ -32,12 +38,12 @@ public class Test {
 //		Random Array Creation
 // ################################################################
 		
-		ParallelRandInt rand = new ParallelRandInt(1111, 3, 100);	
+		ParallelRandInt rand = new ParallelRandInt(1111, 20, 100);	
 		
 		Integer[] Arr = rand.getRandIntArr();
+		
 		ArrayList<Integer> ArrList = rand.getRandIntArrList();
 		
-	
 
 		
 // ################################################################
@@ -160,10 +166,8 @@ public class Test {
 			System.out.println("Min Heap Test: \n");
 		
 			System.out.println("With Array");
-			
-			System.out.println ((int) 1/2);
 		
-			MinHeap<Integer> minH = new MinHeap<Integer>(Arr);
+			MinHeap<Integer> minH = new MinHeap<Integer>(ArrList);
 		
 			System.out.println(minH.toString());
 			
@@ -181,44 +185,130 @@ public class Test {
 			
 			}
 			
-			System.out.println(minH.toString());
+			System.out.println(minH.toString());		
+			
+			
+					
+			System.out.println("\nWith ArrayList");
 		
+			MinHeap<Integer> minlH = new MinHeap<Integer>(Arr);
 		
+			System.out.println(minlH.toString());
+			
+			minlH.insert(35);
+			
+			System.out.println(minlH.toString());
+			
+			try {
+				
+				minlH.extractMinValue();
+			
+			} catch (EmptyHeapException e) {
+			
+				e.printStackTrace();
+			
+			}
+			
+			System.out.println(minlH.toString());		
 			
 		}
+		
+		
+		
+// ################################################################
+//		Max Heap Test
+// ################################################################		
+		
+		
+		if (TEST_HEAP_MAX) {
+			
+			System.out.println("################################################################\n");
+		
+			System.out.println("Max Heap Test: \n");
+		
+			System.out.println("With Array");
+		
+			MaxHeap<Integer> maxH = new MaxHeap<Integer>(ArrList);
+		
+			System.out.println(maxH.toString());
+			
+			maxH.insert(35);
+			
+			System.out.println(maxH.toString());
+			
+			try {
+				
+				maxH.extractMaxValue();
+			
+			} catch (EmptyHeapException e) {
+			
+				e.printStackTrace();
+			
+			}
+			
+			System.out.println(maxH.toString());		
+			
+			
+					
+			System.out.println("\nWith ArrayList");
+		
+			MaxHeap<Integer> maxlH = new MaxHeap<Integer>(Arr);
+		
+			System.out.println(maxlH.toString());
+			
+			maxlH.insert(35);
+			
+			System.out.println(maxlH.toString());
+			
+			try {
+				
+				maxlH.extractMaxValue();
+			
+			} catch (EmptyHeapException e) {
+			
+				e.printStackTrace();
+			
+			}
+			
+			System.out.println(maxlH.toString());		
+			
+		}
+		
+		
 		
 		
 // ################################################################
 //		Sort Test
 // ################################################################		
 		
-		if (TEST_INSERTION_SORT || TEST_SELECTION_SORT || TEST_SHELL_SORT || TEST_BUBBLE_SORT || TEST_MERGE_SORT || TEST_HEAP_SORT) {
+		if (TEST_SORT) {
 			
 			System.out.println("\n\n################################################################\n");
 		
-			System.out.println("Sort Test: \n");		
-		
+			System.out.println("Sort Test: \n");				
 				
-		
+			
 			SortArray<Integer> sort = new SortArray<Integer>(Arr.clone()); 
 			System.out.print("Array To Sort: ");
 			sort.printArray();
 		
-				
+			
+			Integer[] ArrSorted = Arr.clone();
+			Arrays.sort(ArrSorted);
+			
 			
 			// Insertion Sort
-			if (TEST_INSERTION_SORT) {
+			if (TEST_INSERTION_SORT || TEST_ALL_SORT) {
 		
 				try {
 			
-					System.out.print("\n\n");
+					System.out.print("\n");
 					System.out.print("InsertionSort: ");
-					sort.printArray();
 					sort.insertionSort();			
 					sort.printArray();
 		
 				} catch (OutOfBoundException e) {
-			
+					
 					e.printStackTrace();
 		
 				}
@@ -228,14 +318,13 @@ public class Test {
 			
 			
 			// Selection Sort			
-			if (TEST_SELECTION_SORT) {
+			if (TEST_SELECTION_SORT || TEST_ALL_SORT) {
 		
 				try {
 			
-					System.out.print("\n\n");
+					System.out.print("\n");
 					sort = new SortArray<Integer>(Arr.clone()); 
 					System.out.print("SelectionSort: ");
-					sort.printArray();
 					sort.selectionSort();
 					sort.printArray();
 			
@@ -249,13 +338,12 @@ public class Test {
 			
 			
 			// Shell Sort
-			if (TEST_SHELL_SORT) {
+			if (TEST_SHELL_SORT || TEST_ALL_SORT) {
 					
 				try {
 						
-					System.out.print("\n\n");
+					System.out.print("\n");
 					System.out.print("ShellSort: ");
-					sort.printArray();
 					sort.shellSort();			
 					sort.printArray();
 					
@@ -270,14 +358,13 @@ public class Test {
 			
 						
 			// Bubble Sort				
-			if (TEST_BUBBLE_SORT) {
+			if (TEST_BUBBLE_SORT || TEST_ALL_SORT) {
 			
 				try {
 				
-					System.out.print("\n\n");
+					System.out.print("\n");
 					sort = new SortArray<Integer>(Arr.clone()); 
 					System.out.print("BubbleSort: ");
-					sort.printArray();
 					sort.bubbleSort();
 					sort.printArray();
 				
@@ -292,14 +379,13 @@ public class Test {
 		
 		
 			// Merge Sort	
-			if (TEST_MERGE_SORT) {
+			if (TEST_MERGE_SORT || TEST_ALL_SORT) {
 			
 				try {
 		
-					System.out.print("\n\n");
+					System.out.print("\n");
 					sort = new SortArray<Integer>(Arr.clone()); 
 					System.out.print("MergeSort: ");
-					sort.printArray();
 					sort.mergeSort();
 					sort.printArray();
 					
@@ -313,14 +399,13 @@ public class Test {
 			
 			
 			// Heap Sort	
-			if (TEST_HEAP_SORT) {
+			if (TEST_HEAP_SORT || TEST_ALL_SORT) {
 			
 				try {
 		
-					System.out.print("\n\n");
+					System.out.print("\n");
 					sort = new SortArray<Integer>(Arr.clone()); 
 					System.out.print("HeapSort: ");
-					sort.printArray();
 					sort.heapSort();
 					sort.printArray();
 					
@@ -330,7 +415,7 @@ public class Test {
 			
 				}
 		
-			}
+			}			
 		
 		}
 		
