@@ -4,9 +4,11 @@ JDataStructures
 Java Library With Implementations Of Various Data Structures And Sorting Algorithms
 
 
+===============
+
 ***Data Structures:
 
-MinHeap - Implemented & Testing
+MinHeap - Ok
 
 MaxHeap - Implemented & Testing
 
@@ -19,7 +21,7 @@ Stack - OK
 Tree - OK
 
 
-
+===============
 
 *** Sorting Algorithms:
 
@@ -35,11 +37,15 @@ Binary Tree
 
 Merge Sort - OK
 
+Merge Sort Hybridated With Insertion Sort - OK
+
 Parallel Merge Sort 
 
 Parallel Merge Sort Hybridated With Insertion Sort
 
 QuickSort
+
+QuickSort Hybridated With Insertion Sort
 
 Parallel QuickSort
 
