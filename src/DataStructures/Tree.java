@@ -2,9 +2,9 @@ package DataStructures;
 
 public class Tree <T extends Comparable<T>> {
 
-	private Tree<T> left;
-	private Tree<T> right;
-	private T value;
+	protected Tree<T> left;
+	protected Tree<T> right;
+	protected T value;
 		
 	
 	/**
@@ -462,13 +462,10 @@ public class Tree <T extends Comparable<T>> {
 	
 	}
 
-
-
-	
 	
 	
 	/**
-	 *  Implements The hashCode Method For A Stack
+	 *  Implements The hashCode Method For A Tree
 	 */
 	@Override
 	public int hashCode() {
@@ -479,9 +476,6 @@ public class Tree <T extends Comparable<T>> {
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
-
-
-
 
 
 	
@@ -516,7 +510,25 @@ public class Tree <T extends Comparable<T>> {
 		} else if (!value.equals(other.value))
 			return false;
 		return true;
-	};
+	}
+
+
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Tree [left=" + left + ", right=" + right + ", value=" + value
+				+ ", countNodes()=" + countNodes() + ", countLeafs()="
+				+ countLeafs() + ", heightTree()=" + heightTree()
+				+ ", depthTree()=" + depthTree() + ", isResearchTree()="
+				+ isResearchTree() + "]";
+	}
+	
+	
+	
+	
 	
 	
 	

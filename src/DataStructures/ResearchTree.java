@@ -17,7 +17,7 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 		
 		super(value, a, b);
 		
-		if (this.isResearchTree()) {
+		if (! this.isResearchTree()) {
 			
 			throw new NotResearchTreeException("Not A Research Tree");
 		
@@ -26,6 +26,84 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 	}
 	
 	
+	/**
+	 * Set The Left SubTree To left Mantaining The Research Tree Structure
+	 * @param left Tree To Use As Left SubTree
+	 */
+	@Override
+	public void setLeft(Tree<T> left) {
+	
+		this.left = left;
+		
+		if (!this.isResearchTree()) {
+			
+			try {
+				
+				throw new NotResearchTreeException("Not A Research Tree");
+			
+			} catch (NotResearchTreeException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+	
+	}
+	
+	
+	/**
+	 * Set The Right SubTree To right Mantaining The Research Tree Structure
+	 * @param right Tree To Use As Right SubTree
+	 */
+	@Override
+	public void setRight(Tree<T> right) {
+
+		this.right = right;
+		
+		if (!this.isResearchTree()) {
+			
+			try {
+				
+				throw new NotResearchTreeException("Not A Research Tree");
+			
+			} catch (NotResearchTreeException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+	
+	}
+
+	
+	/**
+	 *
+	 * Set The Root Value To value Mantaining The Research Tree Structure
+	 *
+	 */
+	@Override
+	public void setValue(T value) {
+	
+		this.value = value;
+		
+		if (!this.isResearchTree()) {
+			
+			try {
+				
+				throw new NotResearchTreeException("Not A Research Tree");
+			
+			} catch (NotResearchTreeException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+		}
+	
+	}
+
 	
 	/**
 	 * Method That Verifies If The Tree Is A Research Tree
