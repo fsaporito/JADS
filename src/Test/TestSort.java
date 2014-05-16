@@ -19,16 +19,16 @@ public class TestSort {
 		
 		boolean TEST_ALL_SORT = true;
 		
-		boolean TEST_INSERTION_SORT = false;
+		boolean TEST_INSERTION_SORT = true;
 		boolean TEST_SELECTION_SORT = false;
 		boolean TEST_SHELL_SORT = false;
 		boolean TEST_BUBBLE_SORT = false;
 		boolean TEST_MERGE_SORT = true;
 		boolean TEST_MERGE_SORT_HYBRID = true;
-		boolean TEST_HEAP_SORT = false;
+		boolean TEST_HEAP_SORT = true;
 		
 		int SEED = 1111;
-		int LENGHT = 100000;
+		int LENGHT = 100;
 		int RANGE = 100;	
 		
 		
@@ -71,7 +71,7 @@ public class TestSort {
 			
 				System.out.print("\n");
 				System.out.println("*** InsertionSort ");
-				sort.insertionSort();			
+				sort.insertionSort();	
 				System.out.println ("Sorted: " + sort.isSorted());
 		
 			} catch (OutOfBoundException e) {
@@ -174,7 +174,7 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** MergeSort Hybrid ");
-				sort.mergeSortHybrid();
+				sort.mergeHybridSort();
 				System.out.print ("Sorted: "); 
 				System.out.println(sort.isSorted());
 								
