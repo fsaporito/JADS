@@ -16,9 +16,9 @@ public class HeapSort <T extends Comparable<T>> {
 	 * @throws EmptyHeapException 
 	 * 
 	 */
-	public HeapSort(T[] arraySort, int leftBound, int rightBound) throws EmptyHeapException {
+	public HeapSort(T[] Array, int leftBound, int rightBound) throws EmptyHeapException {
 		
-		this.arraySort = arraySort;
+		this.arraySort = Array;
 		
 		this.heapSort (leftBound, rightBound);
 		
