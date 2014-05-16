@@ -242,7 +242,7 @@ public class SortArray <T extends Comparable<T>> {
 	 */
 	public void insertionSort () throws OutOfBoundException {
 			
-		this.insertionSort(0, this.arraySort.length);
+		this.insertionSort(0, this.arraySort.length-1);
 			
 	}
 	
@@ -258,7 +258,7 @@ public class SortArray <T extends Comparable<T>> {
 	  */
 	public void insertionSortFrom (int indexFrom) throws OutOfBoundException {
 			
-		this.insertionSort(indexFrom, this.arraySort.length);
+		this.insertionSort(indexFrom, this.arraySort.length-1);
 			
 	}
 	

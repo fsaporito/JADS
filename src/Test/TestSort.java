@@ -19,16 +19,16 @@ public class TestSort {
 		
 		boolean TEST_ALL_SORT = true;
 		
-		boolean TEST_INSERTION_SORT = true;
-		boolean TEST_SELECTION_SORT = false;
-		boolean TEST_SHELL_SORT = false;
-		boolean TEST_BUBBLE_SORT = false;
+		boolean TEST_INSERTION_SORT = true; 
+		boolean TEST_SELECTION_SORT = false; 
+		boolean TEST_SHELL_SORT = false; 
+		boolean TEST_BUBBLE_SORT = false; 
 		boolean TEST_MERGE_SORT = true;
-		boolean TEST_MERGE_SORT_HYBRID = true;
+		boolean TEST_MERGE_SORT_HYBRID = false; 
 		boolean TEST_HEAP_SORT = true;
 		
 		int SEED = 1111;
-		int LENGHT = 100;
+		int LENGHT = 100000;
 		int RANGE = 100;	
 		
 		
@@ -53,10 +53,9 @@ public class TestSort {
 
 		Integer[] Arr = rand.getRandIntArr();		
 		
-				
-		
 		SortArray<Integer> sort = new SortArray<Integer>(Arr.clone()); 
-		//System.out.print("Array To Sort: ");
+		
+		//System.out.print("\nArray To Sort: ");
 		//sort.printArray();
 		
 			
@@ -71,7 +70,9 @@ public class TestSort {
 			
 				System.out.print("\n");
 				System.out.println("*** InsertionSort ");
+				//sort.printArray();
 				sort.insertionSort();	
+				//sort.printArray();
 				System.out.println ("Sorted: " + sort.isSorted());
 		
 			} catch (OutOfBoundException e) {
@@ -92,7 +93,9 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** SelectionSort ");
+				//sort.printArray();
 				sort.selectionSort();
+				//sort.printArray();
 				System.out.println ("Sorted: " + sort.isSorted());
 		
 			} catch (OutOfBoundException e) {
@@ -112,9 +115,10 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** BubbleSort ");
+				//sort.printArray();
 				sort.bubbleSort();
-				System.out.print ("Sorted: "); 
-				System.out.println(sort.isSorted());
+				//sort.printArray();
+				System.out.println ("Sorted: " + sort.isSorted());
 			
 			} catch (OutOfBoundException e) {
 				
@@ -132,9 +136,10 @@ public class TestSort {
 									
 				System.out.print("\n");
 				System.out.println("*** ShellSort ");
+				//sort.printArray();
 				sort.shellSort();			
-				System.out.print ("Sorted: "); 
-				System.out.println(sort.isSorted());
+				//sort.printArray();
+				System.out.println ("Sorted: " + sort.isSorted());
 							
 			} catch (OutOfBoundException e) {
 									
@@ -153,9 +158,10 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** MergeSort ");
+				//sort.printArray();
 				sort.mergeSort();
-				System.out.print ("Sorted: "); 
-				System.out.println(sort.isSorted());
+				//sort.printArray();
+				System.out.println ("Sorted: " + sort.isSorted());
 					
 			} catch (OutOfBoundException e) {
 					
@@ -174,9 +180,10 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** MergeSort Hybrid ");
+				//sort.printArray();
 				sort.mergeHybridSort();
-				System.out.print ("Sorted: "); 
-				System.out.println(sort.isSorted());
+				//sort.printArray();
+				System.out.println ("Sorted: " + sort.isSorted());
 								
 			} catch (OutOfBoundException e) {
 								
@@ -195,9 +202,10 @@ public class TestSort {
 				System.out.print("\n");
 				sort = new SortArray<Integer>(Arr.clone()); 
 				System.out.println("*** HeapSort ");
+				//sort.printArray();
 				sort.heapSort();
-				System.out.print ("Sorted: "); 
-				System.out.println(sort.isSorted());
+				//sort.printArray();
+				System.out.println ("Sorted: " + sort.isSorted());
 				
 			} catch (OutOfBoundException e) {
 					

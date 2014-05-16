@@ -155,7 +155,6 @@ public class ParallelRandInt extends SecureRandom implements Runnable {
 	 * Calculate Random Integers With Inputed Arguments
 	 * @param seqLength Array's Length
 	 * @param range Range For The Random Numbers
-	 * @return Integer Array Of Random Numbers
 	 * @throws InterruptedException 
 	 */
 	public synchronized void IntegerRandGen (int seqLength, int range) {

@@ -16,7 +16,11 @@ public class SelectionSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.selectionSort(leftBound, rightBound);		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+			
+			this.selectionSort(leftBound, rightBound);	
+			
+		}
 		
 	}
 	

@@ -20,7 +20,11 @@ public class HeapSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.heapSort (leftBound, rightBound);
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+			
+			this.heapSort(leftBound, rightBound);	
+			
+		}
 		
 	}
 
@@ -46,28 +50,20 @@ public class HeapSort <T extends Comparable<T>> {
 	 */
 	private void heapSort(int leftBound, int rightBound) throws EmptyHeapException {
 		
-		if ((rightBound - leftBound) == 0) { // One Element, Already Sorted
+		MinHeap<T> heap = new MinHeap<T>();
 			
-			return;
-			
-		} else {
-			
-			MinHeap<T> heap = new MinHeap<T>();
-			
-			for (int i = leftBound; i <= rightBound; i++) {
+		for (int i = leftBound; i <= rightBound; i++) {
 				
-				heap.insert(this.arraySort[i]);
+			heap.insert(this.arraySort[i]);
 				
-			}
-			
-			for (int j = leftBound; j <= rightBound; j++) {
-				
-				this.arraySort[j] = heap.extractMinValue();
-				
-			}
-			
 		}
-		
+			
+		for (int j = leftBound; j <= rightBound; j++) {
+				
+			this.arraySort[j] = heap.extractMinValue();
+				
+		}
+			
 	}
 
 	

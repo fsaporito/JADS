@@ -19,8 +19,12 @@ public class MergeSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.mergeSort(leftBound, rightBound);		
-		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+			
+			this.mergeSort(leftBound, rightBound);	
+			
+		}
+				
 	}
 	
 	
@@ -75,7 +79,7 @@ public class MergeSort <T extends Comparable<T>> {
 	 * @param rightBound right limit
 	 * 
 	 */
-	private void merge (int leftBound, int center, int rightBound) {
+	protected void merge (int leftBound, int center, int rightBound) {
 		
 		// Create Left Array
 		@SuppressWarnings("unchecked")

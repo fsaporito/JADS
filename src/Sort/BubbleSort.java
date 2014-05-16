@@ -16,7 +16,11 @@ public class BubbleSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.bubbleSort(leftBound, rightBound);		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
+			this.bubbleSort(leftBound, rightBound);	
+			
+		}
 		
 	}
 	
@@ -44,28 +48,20 @@ public class BubbleSort <T extends Comparable<T>> {
 	 */
 	private void bubbleSort (int leftBound, int rightBound) {
 		
-		if ((rightBound - leftBound) == 0) { // One Element, Already Sorted
-			
-			return;
-			
-		} else {
-			
-			for (int i = rightBound; i >= leftBound; i--) {
+		for (int i = rightBound; i >= leftBound; i--) {
 				
-				for (int j = leftBound; j < i; j++) {
+			for (int j = leftBound; j < i; j++) {
 					
-					if (this.arraySort[j].compareTo(this.arraySort[j+1]) > 0) {
+				if (this.arraySort[j].compareTo(this.arraySort[j+1]) > 0) {
 						
-						this.swap(j, j+1);
+					this.swap(j, j+1);
 						
-					}
-					
 				}
-				
+					
 			}
-			
+				
 		}
-		
+			
 	}
 
 	

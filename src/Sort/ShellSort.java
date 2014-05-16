@@ -17,7 +17,11 @@ public class ShellSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.shellSort(leftBound, rightBound);		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+			
+			this.shellSort(leftBound, rightBound);
+			
+		}		
 		
 	}
 	

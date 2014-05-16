@@ -17,8 +17,12 @@ public class InsertionSort <T extends Comparable<T>> {
 		
 		this.arraySort = Array;
 		
-		this.insertionSort(leftBound, rightBound);		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 		
+			this.insertionSort(leftBound, rightBound);		
+		
+		}	
+			
 	}
 	
 	
@@ -54,7 +58,7 @@ public class InsertionSort <T extends Comparable<T>> {
 		
 		int j;
 		
-		for (int i = leftBound+1; i < rightBound; i++) {
+		for (int i = leftBound+1; i <= rightBound; i++) {
 			
 			val = this.arraySort[i];
 			
