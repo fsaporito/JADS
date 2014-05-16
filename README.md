@@ -10,7 +10,7 @@ Java Library With Implementations Of Various Data Structures And Sorting Algorit
 
 MinHeap - Ok
 
-MaxHeap - Implemented & Testing
+MaxHeap - Ok
 
 Queue - OK
 
