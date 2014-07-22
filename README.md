@@ -7,12 +7,18 @@ Sorting
 
 ===============
 
-Java Library With Implementations Of Various Data Structures And Sorting Algorithms
+Java Library With Implementations Of Various Automata, Data Structures And Sorting Algorithms
 
 
 ===============
 
 ***Data Structures:
+
+Arch - Ok
+
+Node - Ok
+
+Graph - Ok
 
 MinHeap - Ok
 
@@ -25,6 +31,25 @@ Research Tree - OK
 Stack - OK
 
 Tree - OK
+
+
+===============
+
+***Automata:
+
+DFA - Ok
+
+NDFA
+
+lambda-NDFA
+
+PDA Not Deterministic
+
+PDA Deterministic Empty Stack
+
+PDA Deterministic Final State
+
+Turing Machine
 
 
 ===============
