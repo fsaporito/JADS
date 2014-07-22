@@ -1,4 +1,10 @@
-JDataStructures
+JADS
+
+Java
+Automata
+Datastructures
+Sorting
+
 ===============
 
 Java Library With Implementations Of Various Data Structures And Sorting Algorithms
