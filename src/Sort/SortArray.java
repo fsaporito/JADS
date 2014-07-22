@@ -12,6 +12,7 @@ import Exceptions.OutOfBoundException;
 public class SortArray <T extends Comparable<T>> {
 		
 	
+	/** Array To Be Sorted (Holds The Final Result) */
 	private T[] arraySort;
 	
 

@@ -17,7 +17,7 @@ public class TestStructures {
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException {
 		
 		
-		boolean TEST_QUEUE = false;
+		boolean TEST_QUEUE = true;
 		boolean TEST_STACK = false;
 		boolean TEST_HEAP_MAX = false;
 		boolean TEST_HEAP_MIN = false;

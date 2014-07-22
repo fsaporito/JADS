@@ -3,6 +3,8 @@ package Sort;
 
 public class ShellSort <T extends Comparable<T>> {
 	
+	
+	/** Array To Be Sorted (Holds The Final Result) */
 	private T[] arraySort;
 		
 	

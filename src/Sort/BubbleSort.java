@@ -2,6 +2,8 @@ package Sort;
 
 public class BubbleSort <T extends Comparable<T>> {
 	
+	
+	/** Array To Be Sorted (Holds The Final Result) */
 	private T[] arraySort;
 		
 	

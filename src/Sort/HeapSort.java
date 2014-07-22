@@ -5,6 +5,8 @@ import Exceptions.EmptyHeapException;
 
 public class HeapSort <T extends Comparable<T>> {
 
+	
+	/** Array To Be Sorted (Holds The Final Result) */
 	private T[] arraySort;
 	
 	

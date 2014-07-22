@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Stack<T> {
 	
 	
+	/** ArrayList Used To Contain The Stack's Elements */
 	private ArrayList<T> Stack;
 	
 	

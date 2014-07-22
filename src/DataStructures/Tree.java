@@ -1,9 +1,14 @@
 package DataStructures;
 
 public class Tree <T extends Comparable<T>> {
-
+	
+	/** Left Tree */
 	protected Tree<T> left;
+	
+	/** Right Tree */
 	protected Tree<T> right;
+	
+	/** Root's Value */
 	protected T value;
 		
 	

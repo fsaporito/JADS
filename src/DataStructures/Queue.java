@@ -7,10 +7,8 @@ import java.util.ArrayList;
 public class Queue<T> {
 	
 	
+	/** ArrayList Used To Contain The Queue's Elements */
 	private ArrayList<T> Queue;
-	
-	
-	
 	
 	
 	
@@ -33,6 +31,7 @@ public class Queue<T> {
 	
 	/**
 	 * Constructor With An Array As Parameter
+	 * 
 	 * @param Q Array To Be Used As Queue
 	 */
 	public Queue (T[] Q) {

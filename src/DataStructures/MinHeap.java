@@ -9,8 +9,10 @@ import Exceptions.EmptyHeapException;
 public class MinHeap <T extends Comparable<T>> {
 
 
+	/** ArrayList Used To Contain The Heap's Elements */
 	private ArrayList<T> heapArrList;
 	
+	/** Heap'Elements Numner */
 	private int heapSize;
 	
 	

@@ -5,6 +5,8 @@ import java.lang.reflect.Array;
 
 public class MergeSort <T extends Comparable<T>> {
 	
+	
+	/** Array To Be Sorted (Holds The Final Result) */
 	private T[] arraySort;
 	
 		
