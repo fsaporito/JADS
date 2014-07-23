@@ -237,6 +237,126 @@ public class Graph<T> {
 
 	
 	
+	/**
+	 * Finds All The Archs Between Two Nodes
+	 * 
+	 * @param node1 First Node
+	 * @param node2 Second Node
+	 * @return The Arraylist Containing All The Arch, Null If No Arch Between The Two Nodes
+	 */
+	public ArrayList<Arch<T>> archsBetweenNodes (Node<T> node1, Node<T> node2) {
+		
+		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
+		
+		if (node1 != null && node2 != null) { // The Nodes Mustn't Be Null
+			
+			if ( (this.nodes.contains(node1)) && (this.nodes.contains(node2)) ) { // Nodes Must Be Contained In The Node List
+				
+				for (int i = 0; i < this.archs.size(); i++) { // Check For Every Arch
+					
+					if (node1.equals(this.archs.get(i).getA())) { // Node1 Is The First Node In The Arch
+								
+						if (node2.equals(this.archs.get(i).getB())) { // Node2 Is The Second Node In The Arch
+									
+							archsList.add(this.archs.get(i));
+									
+						}
+								
+					}					
+							
+				} 
+				
+			} else {
+				
+				archsList = null;
+				
+			}				
+			
+		} else {
+			
+			archsList = null;
+			
+		}
+		
+		if (archsList != null) {
+			
+			if (archsList.size() == 0) {
+				
+				archsList = null;
+				
+			}	
+			
+		}
+		
+		return archsList;
+		
+	}
+	
+	
+	
+	/**
+	 * Method To Find If The Two Node Are Neighbor
+	 * (Exists At Least An Arch BeetWen Them)
+	 * 
+	 * @param node1 First Node
+	 * @param node2 Second Node
+	 * @return True If The Nodes Are Neighborhood, False Otherwise
+	 * 
+	 */
+	public boolean neighbor (Node<T> node1, Node<T> node2) {
+		
+		boolean result = false;
+		
+		if (this.archsBetweenNodes(node1, node2) != null) {
+			
+			result = true;
+			
+		}
+				
+		return result;
+		
+	}
+
+	
+	
+	/**
+	 * Method To Find All Of The Neighbors Of A Node In The Graph
+	 * 
+	 * @param node Node Of Whom Is To Be Found The Neighborhood
+	 * @return Arraylist Containing All The Neighors, Null If None Or If The node Isn't Present In The Graph
+	 */
+	public ArrayList<Node<T>> neighborhood (Node<T> node) {
+		
+		ArrayList<Node<T>> neighborhood = new ArrayList<Node<T>>(); // Return Value
+		
+		if (node != null && this.nodes.contains(node)) { // node Mustn't Be Null And Contained In The Node List
+			
+			for (int i = 0; i < this.nodes.size(); i++) { // Look At Every Node
+				
+				if (this.neighbor(node, this.nodes.get(i))) { // The Nodes In The Pair Are Neighbor
+							
+					if (!neighborhood.contains(this.nodes.get(i))) { // No Duplicate Nodes
+								
+						neighborhood.add(this.nodes.get(i)); // Add The Node To The Neighborhood
+								
+					}					
+					
+				}
+				
+			}
+			
+		} else {
+			
+			neighborhood = null;
+			
+		}
+		
+		return neighborhood;
+		
+		
+	}
+	
+	
 	/** 
 	 * @see java.lang.Object#toString()
 	 */
