@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import Exceptions.GraphNotReadyException;
 
 
+
 public class Graph<T> {
 	
+		
 	/** Nodes List*/
 	protected ArrayList<Node<T>> nodes;
 	
@@ -15,6 +17,7 @@ public class Graph<T> {
 	
 	/** Graph's Name*/
 	protected String name;
+	
 	
 	
 	/**
@@ -32,7 +35,7 @@ public class Graph<T> {
 		
 	}
 	
-	
+		
 	
 	/**
 	 * Constructor That Creates The Graph
@@ -40,16 +43,22 @@ public class Graph<T> {
 	 * @param Nodes Nodes List
 	 * @param Archs Archs List
 	 * @param name Graph Name
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
 	 */
-	public Graph (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, String name) {
+	public Graph (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, String name) throws GraphNotReadyException {
 		
 		this.nodes = Nodes;
 		
+		this.checkNodeDuplicates(this.nodes);
+		
 		this.archs = Archs;
+		
+		this.checkArchDuplicates(this.archs);
 		
 		this.name = name;
 		
 	}
+	
 	
 	
 	/**
@@ -69,6 +78,7 @@ public class Graph<T> {
 		}	
 			
 	}
+	
 	
 	
 	/**
@@ -92,6 +102,94 @@ public class Graph<T> {
 	
 	
 	/**
+	 * Check If The Node List Has Duplicates
+	 * 
+	 * @param Nodes Nodes List
+	 * @throws GraphNotReadyException Duplicate Node In The Nodes List
+	 */
+	protected void checkNodeDuplicates (ArrayList<Node<T>> Nodes) throws GraphNotReadyException {
+		
+		if (Nodes != null) {
+			
+			Node<T> tmpNode;
+			
+			int duplicateNodeCounter = 0;
+		
+			for (int i = 0; i < Nodes.size(); i++) {
+			
+				tmpNode = Nodes.get(i);
+				
+				for (int j = 0; j < Nodes.size(); j++) {
+					
+					if (tmpNode.equals(Nodes.get(j))) {
+						
+						duplicateNodeCounter++;
+						
+					}
+					
+				}
+				
+				if (duplicateNodeCounter != 1) {
+					
+					throw new GraphNotReadyException ("Node " + tmpNode.toString() 
+													+ " has " + duplicateNodeCounter 
+													+ "entries in the nodeList!!!");
+					
+				}
+			
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * Check If The Archs List Has Duplicates
+	 * 
+	 * @param Archs Archs List To Check
+	 * @throws GraphNotReadyException Duplicate Arch In The Archs List
+	 */
+	protected void checkArchDuplicates (ArrayList<Arch<T>> Archs) throws GraphNotReadyException {
+		
+		if (Archs != null) {
+			
+			Arch<T> tmpArch;
+			
+			int duplicateArchCounter = 0;
+		
+			for (int i = 0; i < Archs.size(); i++) {
+			
+				tmpArch = Archs.get(i);
+				
+				for (int j = 0; j < Archs.size(); j++) {
+					
+					if (tmpArch.equals(Archs.get(j))) {
+						
+						duplicateArchCounter++;
+						
+					}
+					
+				}
+				
+				if (duplicateArchCounter != 1) {
+					
+					throw new GraphNotReadyException ("Arch " + tmpArch.toString() 
+													+ " has " + duplicateArchCounter 
+													+ "entries in the archList!!!");
+					
+				}
+			
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	/**
 	 * Check If The Graph Correctly Initialised
 	 * 
 	 * @param checkZero Flag Used To Check If The Graph Is NonEmpty
@@ -103,11 +201,19 @@ public class Graph<T> {
 			
 			throw new GraphNotReadyException ("Nodes Null");
 			
+		} else {
+			
+			this.checkNodeDuplicates(this.nodes);
+			
 		}
 		
 		if (this.archs == null) {
 			
 			throw new GraphNotReadyException ("Archs Null");
+			
+		} else {
+			
+			this.checkArchDuplicates(this.archs);
 			
 		}
 		
@@ -129,7 +235,8 @@ public class Graph<T> {
 		
 	}
 
-
+	
+	
 	/** 
 	 * @see java.lang.Object#toString()
 	 */
@@ -152,8 +259,6 @@ public class Graph<T> {
 		
 	}
 
-	
-	
-	
+
 
 }

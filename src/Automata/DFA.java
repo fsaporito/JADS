@@ -6,6 +6,7 @@ import DataStructures.Graph;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
 
+
 import java.util.ArrayList;
 
 
@@ -44,8 +45,10 @@ public class DFA<T> extends Graph<T> {
 	 * @param Start Start State
 	 * @param FinalNodes FinalNodes List
 	 * @param Name DFA's Name
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws DFANotReadyException DFA Not Correctly Initialised
 	 */
-	public DFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) {
+	public DFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, DFANotReadyException {
 		
 		super (Nodes, Archs, Name);
 		
@@ -53,16 +56,18 @@ public class DFA<T> extends Graph<T> {
 		
 		this.finalNodes = FinalNodes;
 		
+		this.checkFinalNodeDuplicates();
+		
 	}
 	
-	
-	
-	
+
+
 	/** 
 	 * Method ToAdd An Arch 
 	 * (Must Be With fixedLabel)
 	 * 
 	 * @param Arch Arch To Be Added To The DFA
+	 * @throws GraphNotReadyException The Graph Is Not Correctly Initialised
 	 */
 	@Override
 	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
@@ -113,13 +118,21 @@ public class DFA<T> extends Graph<T> {
 	 * @throws DFANotReadyException DFA Not Correctly Initialised
 	 * @throws GraphNotReadyException Graph Not Correctly Initialised
 	 */
-	public void addFinalNode (Node<T> Node) throws DFANotReadyException, GraphNotReadyException {
+	public void addFinalNode (Node<T> Node) throws DFANotReadyException {
 		
 		this.checkDFAReady(false, true, false);
 		
 		if (!this.nodes.contains(Node)) {
 			
-			this.addNode(Node);
+			try {
+				
+				this.addNode(Node);
+			
+			} catch (GraphNotReadyException e) {
+				
+				throw new DFANotReadyException (e.getMessage());
+				
+			}
 			
 		}
 		
@@ -155,6 +168,27 @@ public class DFA<T> extends Graph<T> {
 	
 	
 	/**
+	 * Check If The Final Node List Has Duplicates
+	 * 
+	 * @throws DFANotReadyException
+	 */
+	protected void checkFinalNodeDuplicates() throws DFANotReadyException {
+		
+		try {
+			
+			this.checkNodeDuplicates(this.finalNodes);
+			
+		} catch (GraphNotReadyException e) {
+			
+			throw new DFANotReadyException ("Duplicate entries in the finalNodeList!!!");
+		
+		}
+		
+	}
+	
+	
+	
+	/**
 	 * Check If The DFA Is Correctly Initialised
 	 * 
 	 * @param checkStart Check The Start State
@@ -162,7 +196,7 @@ public class DFA<T> extends Graph<T> {
 	 * @param checkEmptyFinalNodes Check If The FinalState List Is Empty
 	 * @throws DFANotReadyException DFA Not Correctly Initialised
 	 */
-	private void checkDFAReady (boolean checkStart, boolean checkFinal, boolean checkEmptyFinalNodes) throws DFANotReadyException {
+	protected void checkDFAReady (boolean checkStart, boolean checkFinal, boolean checkEmptyFinalNodes) throws DFANotReadyException {
 		
 		try { // Check If The Graph Is Ready
 			
@@ -170,7 +204,7 @@ public class DFA<T> extends Graph<T> {
 		
 		} catch (GraphNotReadyException e) {
 			
-			e.printStackTrace();
+			throw new DFANotReadyException (e.getMessage());
 	
 		}
 		
