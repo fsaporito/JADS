@@ -299,6 +299,92 @@ public class Graph<T> {
 	
 	
 	/**
+	 * Method To Find All The Archs Starting From node
+	 * 
+	 * @param node Starting Node
+	 * @return The Archs List, Null If Empty
+	 */
+	public ArrayList<Arch<T>> archsFromNode (Node<T> node) {
+		
+		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
+		
+		if (node != null) { // The Node Mustn't Be Null
+			
+			if (this.nodes.contains(node)) { // Node Must Be Contained In The Node List
+				
+				for (int i = 0; i < this.archs.size(); i++) {
+					
+					// Takes Only The Archs With node As Initial Node
+					if (this.archs.get(i).getA().equals(node)) {
+						
+						archsList.add(this.archs.get(i));
+						
+					}
+					
+				}
+				
+			} else {
+				
+				archsList = null;
+				
+			}
+			
+		} else {
+			
+			archsList = null;
+			
+		}
+		
+		return archsList;
+		
+	}
+	
+	
+	
+	/**
+	 * Method To Find All The Archs Ending At node
+	 * 
+	 * @param node End Node Node
+	 * @return The Archs List, Null If Empty
+	 */
+	public ArrayList<Arch<T>> archsToNode (Node<T> node) {
+		
+		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
+		
+		if (node != null) { // The Node Mustn't Be Null
+			
+			if (this.nodes.contains(node)) { // Node Must Be Contained In The Node List
+				
+				for (int i = 0; i < this.archs.size(); i++) {
+					
+					// Takes Only The Archs With node As Ending Node
+					if (this.archs.get(i).getB().equals(node)) {
+						
+						archsList.add(this.archs.get(i));
+						
+					}
+					
+				}
+				
+			} else {
+				
+				archsList = null;
+				
+			}
+			
+		} else {
+			
+			archsList = null;
+			
+		}
+		
+		return archsList;
+		
+	}
+	
+	
+	
+	/**
 	 * Method To Find If The Two Node Are Neighbor
 	 * (Exists At Least An Arch BeetWen Them)
 	 * 

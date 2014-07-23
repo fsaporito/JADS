@@ -258,23 +258,20 @@ public class DFA<T> extends Graph<T> {
 		
 		boolean foundArch = false; // Arch Found Flag
 		
-		// Look Through All The Archs	
-		for (int j = 0; (j < this.archs.size() && !foundArch); j++) {
+		// Takes Only The Archs With currentState As Initial Node
+		ArrayList<Arch<T>> archsList = this.archsFromNode(currentState);
+		 
+		for (int j = 0; (j < archsList.size() && !foundArch); j++) {
 						
 			foundArch = false;
-					
-			// Takes Only The Archs With currentState As Initial Node
-			if (this.archs.get(j).getA().equals(currentState)) {
 						
-				// Check If The Arch Has a As Label
-				if (this.archs.get(j).getLabel().equals(a)) {
+			// Check If The Arch Has a As Label
+			if (archsList.get(j).getLabel().equals(a)) {
 					
-					finalNode = this.archs.get(j).getB();
+				finalNode = archsList.get(j).getB();
 								
-					foundArch = true;
+				foundArch = true;
 							
-				}
-						
 			}
 			
 		}
@@ -371,13 +368,35 @@ public class DFA<T> extends Graph<T> {
 		
 		String toString = "DFA";
 		
-		toString += "\n\t Name: ";
+		toString += "\n\tName: " + this.name;
 		
-		return   toString + this.name +
-				"\n\t nodes:" + this.nodes.toString() + 
-				"\n\t archs: " + archs.toString() + 
-				"\n\t start: " + start.toString() + 
-				"\n\t finalNodes: " + finalNodes.toString();
+		toString += "\n\n\tNodes:";
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.nodes.get(i);
+			
+		}
+		
+		toString += "\n\n\tArchs:";
+		
+		for (int i = 0; i < this.archs.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.archs.get(i);
+			
+		}
+		
+		toString += "\n\n\t Start Node: " + start.toString();
+		
+		toString += "\n\n\tFinal Nodes:";
+		
+		for (int i = 0; i < this.finalNodes.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.finalNodes.get(i);
+			
+		}
+		
+		return toString;
 	}
 
 	

@@ -79,13 +79,15 @@ public class TestDFA {
 		
 		try {			
 		
-			System.out.println ("0: " + Automa.transitionFunctionExtended("0"));
+			System.out.println ("\n\nExtended Transiction Function:");
 			
-			System.out.println ("10: " + Automa.transitionFunctionExtended("10"));
+			System.out.println (" - 0 (True): " + Automa.transitionFunctionExtended("0"));
 			
-			System.out.println ("111010: " + Automa.transitionFunctionExtended("111010"));
+			System.out.println (" - 10 (True): " + Automa.transitionFunctionExtended("10"));
 			
-			System.out.println ("101010: " + Automa.transitionFunctionExtended("101010"));
+			System.out.println (" - 111010 (True): " + Automa.transitionFunctionExtended("111010"));
+			
+			System.out.println (" - 101010 (True): " + Automa.transitionFunctionExtended("101010"));
 		
 		} catch (DFANotReadyException e) {
 
