@@ -187,8 +187,9 @@ public class Arch<T> {
 	@Override
 	public String toString() {
 		
-		return "\n\t - Arch" + "\n\t\t Name(Fixed = " + this.fixedLabel + "): " 
-				+ this.label + "\n\t\t A: " + this.A.toString() + "\n\t\t B: " + this.B.toString();
+		return "Arch:" + " Label(Fixed = " + this.fixedLabel + "): " 
+				+ this.label + "  A: " + this.A.getValue().toString() 
+				+ "  B: " + this.B.getValue().toString();
 	
 	}
 	

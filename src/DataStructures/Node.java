@@ -128,8 +128,21 @@ public class Node<T> {
 	@Override
 	public String toString() {
 		
-		return "Node [value(Fixed=" + this.fixedValue + ")=" + value 
-				+ ", hashCode()=" + hashCode() + "]";
+		String toString = "Node " + this.value;
+		
+		if (this.fixedValue) {
+			
+			toString += " (Fixed Value)";
+			
+		} else {
+			
+			toString += " (Non Fixed Value)";
+			
+		}
+		
+		toString += " - hashCode()=" + hashCode();
+		
+		return toString;
 	
 	}
 

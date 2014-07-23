@@ -41,6 +41,8 @@ public class TestGraph {
 //			Graph Test
 // ################################################################
 			
+		System.out.println ("\n");
+		
 		Graph<String> G1 = new Graph<String> ("G1");
 		
 		try {
@@ -61,37 +63,7 @@ public class TestGraph {
 			e.printStackTrace();
 			
 		}
-		
-		
-		
-// ################################################################
-//		Neighbor Test
-//################################################################		
-		
-		System.out.println ("\nNeighbors: ");
-		
-		System.out.println (" - Q0");
-		for (int i = 0; i < G1.neighborhood(Q0).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q0).get(i).toString());
-			
-		}
-		
-		System.out.println (" - Q1");
-		for (int i = 0; i < G1.neighborhood(Q1).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q1).get(i).toString());
-			
-		}
-		
-		System.out.println (" - Q2");
-		for (int i = 0; i < G1.neighborhood(Q2).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q2).get(i).toString());
-			
-		}
-			
-			
+	
 	
 	}
 

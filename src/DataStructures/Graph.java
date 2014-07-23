@@ -377,9 +377,79 @@ public class Graph<T> {
 	
 		}
 		
-		return "Graph"  + "\n\t Name: " + this.name +
-				"\n\t nodes:" + this.nodes.toString() + 
-				"\n\t archs:" + archs.toString();
+		String toString = "Graph";
+		
+		toString += "\n\tName: " + this.name;
+		
+		toString += "\n\n\tNodes:";
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.nodes.get(i);
+			
+		}
+		
+		toString += "\n\n\tArchs:";
+		
+		for (int i = 0; i < this.archs.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.archs.get(i);
+			
+		}
+		
+		toString += "\n\n\tNeighbors: ";
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			toString +=  "\n\t\t - " + this.nodes.get(i).getValue();
+			
+			ArrayList<Node<T>> n = new ArrayList<Node<T>> ();
+			
+			n = this.neighborhood(this.nodes.get(i));			
+			
+			if (n.size() > 0) {
+				
+				toString += ": " + n.size() + " Neighbors :)";
+				
+				for (int j = 0; j < n.size(); j++) {
+					
+					toString += "\n\t\t\t" + n.get(j).toString();
+					
+				}
+				
+			} else {
+				
+				toString += ": None :(";
+				
+			}
+			
+			
+			
+			
+		}
+		
+		/*System.out.println (" - Q0");
+		for (int i = 0; i < G1.neighborhood(Q0).size(); i++) {
+			
+			System.out.println ("\t" + G1.neighborhood(Q0).get(i).toString());
+			
+		}
+		
+		System.out.println (" - Q1");
+		for (int i = 0; i < G1.neighborhood(Q1).size(); i++) {
+			
+			System.out.println ("\t" + G1.neighborhood(Q1).get(i).toString());
+			
+		}
+		
+		System.out.println (" - Q2");
+		for (int i = 0; i < G1.neighborhood(Q2).size(); i++) {
+			
+			System.out.println ("\t" + G1.neighborhood(Q2).get(i).toString());
+			
+		}*/
+		
+		return toString;
 		
 	}
 
