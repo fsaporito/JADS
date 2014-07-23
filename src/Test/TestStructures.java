@@ -3,8 +3,10 @@ package Test;
 
 import java.util.ArrayList;
 
+import DataStructures.Arch;
 import DataStructures.MaxHeap;
 import DataStructures.MinHeap;
+import DataStructures.Node;
 import DataStructures.Queue;
 import DataStructures.Stack;
 import Exceptions.EmptyArrayException;
@@ -38,6 +40,7 @@ public class TestStructures {
 		
 		ArrayList<Integer> ArrList = rand.getRandIntArrList();
 		
+
 
 		
 // ################################################################

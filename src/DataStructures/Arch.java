@@ -50,8 +50,6 @@ public class Arch<T> {
 		
 		this.fixedLabel = fixedLabel;
 		
-		System.out.println (this.toString());
-		
 	}
 
 	

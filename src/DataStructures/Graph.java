@@ -117,6 +117,8 @@ public class Graph<T> {
 		
 			for (int i = 0; i < Nodes.size(); i++) {
 			
+				duplicateNodeCounter = 0;
+				
 				tmpNode = Nodes.get(i);
 				
 				for (int j = 0; j < Nodes.size(); j++) {
@@ -129,7 +131,7 @@ public class Graph<T> {
 					
 				}
 				
-				if (duplicateNodeCounter != 1) {
+				if (duplicateNodeCounter > 1) {
 					
 					throw new GraphNotReadyException ("Node " + tmpNode.toString() 
 													+ " has " + duplicateNodeCounter 
@@ -160,7 +162,9 @@ public class Graph<T> {
 			int duplicateArchCounter = 0;
 		
 			for (int i = 0; i < Archs.size(); i++) {
-			
+				
+				duplicateArchCounter = 0;
+				
 				tmpArch = Archs.get(i);
 				
 				for (int j = 0; j < Archs.size(); j++) {

@@ -35,8 +35,6 @@ public class Node<T> {
 		
 		this.fixedValue = fixedValue;
 		
-		System.out.println (this.toString());
-		
 	}
 	
 
