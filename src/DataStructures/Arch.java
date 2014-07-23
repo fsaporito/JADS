@@ -187,9 +187,9 @@ public class Arch<T> {
 	@Override
 	public String toString() {
 		
-		return "Arch:" + " Label(Fixed = " + this.fixedLabel + "): " 
-				+ this.label + "  A: " + this.A.getValue().toString() 
-				+ "  B: " + this.B.getValue().toString();
+		return "Arch:" + "  (" + this.A.getValue().toString() 
+				+ "  , " + this.B.getValue().toString() + " , " + this.label + ")"
+				+ "  -> FixedLabel = " + this.fixedLabel;
 	
 	}
 	

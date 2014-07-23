@@ -11,6 +11,16 @@ public class TestDFA {
 
 	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
 		
+		
+		/*
+		 * 	  |	   0	|   1	  
+		 * q0 |	  q1	|   q0 
+		 * q1 |	  q1	|   q0
+		 * q2 |   -     | 	-  
+		 * 
+		 */
+		
+		
 		// RegularExpression
 		String reg = "(1*00*)^(+)";
 		

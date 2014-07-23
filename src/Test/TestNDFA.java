@@ -11,6 +11,15 @@ public class TestNDFA {
 
 	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
 		
+		
+		/*
+		 * 	  |	   a	|    b	  |	c
+		 * q0 |	  q1	| q1, q2  |	-
+		 * q1 |	q0, q2	| q0, q2  |	q1
+		 * q2 |   -     | q0, q1  | -	 
+		 * 
+		 */
+		
 		// RegularExpression
 		String reg = "(1*00*)^(+)";
 		
@@ -25,13 +34,19 @@ public class TestNDFA {
 	
 		
 		// Archs Creation
-		Arch<String> A01 = new Arch<String> (Q0, Q1, "0");
-	
-		Arch<String> A00 = new Arch<String> (Q0, Q0, "1");
+		Arch<String> A01a = new Arch<String> (Q0, Q1, "a");
+		Arch<String> A01b = new Arch<String> (Q0, Q1, "b");
+		Arch<String> A02b = new Arch<String> (Q0, Q2, "b");		
 		
-		Arch<String> A10 = new Arch<String> (Q1, Q0, "1");	
+		Arch<String> A10a = new Arch<String> (Q1, Q0, "a");		
+		Arch<String> A10b = new Arch<String> (Q1, Q0, "b");
+		Arch<String> A11c = new Arch<String> (Q1, Q1, "c");
+		Arch<String> A12a = new Arch<String> (Q1, Q2, "a");
+		Arch<String> A12b = new Arch<String> (Q1, Q1, "b");	
+			
 		
-		Arch<String> A11 = new Arch<String> (Q1, Q1, "0");	
+		Arch<String> A20b = new Arch<String> (Q2, Q0, "b");	
+		Arch<String> A21b = new Arch<String> (Q2, Q1, "b");
 	
 	
 		// AUtoma Creation
@@ -53,13 +68,18 @@ public class TestNDFA {
 			
 			
 			// Adding Archs
-			Automa.addArch(A00);
+			Automa.addArch(A01a);			
+			Automa.addArch(A01b);			
+			Automa.addArch(A02b);
 			
-			Automa.addArch(A01);
+			Automa.addArch(A10a);		
+			Automa.addArch(A10b);
+			Automa.addArch(A11c);
+			Automa.addArch(A12a);
+			Automa.addArch(A12b);	
 			
-			Automa.addArch(A10);
-			
-			Automa.addArch(A11);
+			Automa.addArch(A20b);
+			Automa.addArch(A21b);
 			
 			
 			// Adding Start Node
@@ -85,27 +105,29 @@ public class TestNDFA {
 			
 			System.out.println ("REGULAR EXPRESSION = " + reg);
 			
-			System.out.println (" - 0 (True): " + Automa.transitionFunctionExtended("0"));
+			System.out.println (" - a (True): " + Automa.transitionFunctionExtended("a"));
 			
-			System.out.println (" - 1 (False): " + Automa.transitionFunctionExtended("1"));
+			System.out.println (" - b (True): " + Automa.transitionFunctionExtended("b"));
 			
-			System.out.println (" - 10 (True): " + Automa.transitionFunctionExtended("10"));
+			System.out.println (" - c (False): " + Automa.transitionFunctionExtended("c"));
 			
-			System.out.println (" - 11 (False): " + Automa.transitionFunctionExtended("11"));
+			System.out.println (" - abc (True): " + Automa.transitionFunctionExtended("abc"));
 			
-			System.out.println (" - 100 (True): " + Automa.transitionFunctionExtended("100"));
+			System.out.println (" - bac (False): " + Automa.transitionFunctionExtended("bac"));
 			
-			System.out.println (" - 101 (False): " + Automa.transitionFunctionExtended("101"));
+			System.out.println (" - babc (True): " + Automa.transitionFunctionExtended("babc"));
 			
-			System.out.println (" - 111010 (True): " + Automa.transitionFunctionExtended("111010"));
+			System.out.println (" - aaaa (True): " + Automa.transitionFunctionExtended("aaaa"));
 			
-			System.out.println (" - 101010 (True): " + Automa.transitionFunctionExtended("101010"));
+			System.out.println (" - aabb (True): " + Automa.transitionFunctionExtended("aabb"));
 			
-			System.out.println (" - 100010001000010 (True): " + Automa.transitionFunctionExtended("100010001000010"));
+			System.out.println (" - baba (True): " + Automa.transitionFunctionExtended("baba"));
 			
-			System.out.println (" - 1010100000000000000100 (True): " + Automa.transitionFunctionExtended("1010100000000000000100"));
+			System.out.println (" - aaaabbb (True): " + Automa.transitionFunctionExtended("aaaaaabbb"));
 			
-			System.out.println (" - 1010100000000000000101 (False): " + Automa.transitionFunctionExtended("1010100000000000000101"));
+			System.out.println (" - aaaabbcca (False): " + Automa.transitionFunctionExtended("aaaaaabbcca"));
+			
+			System.out.println (" - aaaabbbcc (True): " + Automa.transitionFunctionExtended("aaaaababbcc"));
 		
 		} catch (DFANotReadyException e) {
 
