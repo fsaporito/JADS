@@ -14,10 +14,10 @@ public class DFA<T> extends Graph<T> {
 	
 	
 	/** Start Node */
-	private Node<T> start;
+	protected Node<T> start;
 	
 	/** FinalNodes List (Accepting States)*/
-	private ArrayList<Node<T>> finalNodes;
+	protected ArrayList<Node<T>> finalNodes;
 	
 	
 	
@@ -250,7 +250,7 @@ public class DFA<T> extends Graph<T> {
 	 * @return The Arriving Node If There Is An Arch Labelled a From currentState, Null Otherwise
 	 * @throws DFANotReadyException DFA Not Correctly Initialised
 	 */
-	public Node<T> transitionFunction (String a, Node<T> currentState) throws DFANotReadyException {
+	private Node<T> transitionFunction (String a, Node<T> currentState) throws DFANotReadyException {
 		
 		this.checkDFAReady(true, true, true); // Check If The DFA Is Ready
 		 

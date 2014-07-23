@@ -2,12 +2,12 @@ package Test;
 
 import DataStructures.Node;
 import DataStructures.Arch;
-import Automata.DFA;
+import Automata.NDFA;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
 
 
-public class TestDFA {
+public class TestNDFA {
 
 	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
 		
@@ -35,7 +35,7 @@ public class TestDFA {
 	
 	
 		// AUtoma Creation
-		DFA<String> Automa = new DFA<String> ("DFA");
+		NDFA<String> Automa = new NDFA<String> ("NDFA");
 				
 		
 		
