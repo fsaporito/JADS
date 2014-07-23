@@ -267,7 +267,7 @@ public class DFA<T> extends Graph<T> {
 						
 			// Check If The Arch Has a As Label
 			if (archsList.get(j).getLabel().equals(a)) {
-					
+									
 				finalNode = archsList.get(j).getB();
 								
 				foundArch = true;
@@ -299,10 +299,10 @@ public class DFA<T> extends Graph<T> {
 		if (word != null) { // Word Must Be Different From Null
 			
 			Node<T> currentState = this.start; // Current State In The Computation
+		
+			Node<T> nextState = new Node<T>(null); // Next State In The Computation
 			
-			Node<T> nextState; // Next State In The Computation
-			
-			for (int i = 0; (i < word.length() && accepted); i++) { // Scan All The Symbols Of The Word
+			for (int i = 0; (i < word.length() + 1 && accepted); i++) { // Scan All The Symbols Of The Word
 				
 				if (i != (word.length() )) { // Not The Last Symbol
 			
@@ -313,6 +313,8 @@ public class DFA<T> extends Graph<T> {
 					if (nextState != null) { // There Is An Arch, Go On With The Computation
 						
 						accepted = true;
+						
+						currentState = nextState;
 					
 					}
 					

@@ -11,6 +11,8 @@ public class TestDFA {
 
 	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
 		
+		// RegularExpression
+		String reg = "(1*00*)^(+)";
 		
 		// Nodes Creation
 		Node<String> Q0 = new Node<String> ("q0");	
@@ -81,13 +83,27 @@ public class TestDFA {
 		
 			System.out.println ("\n\nExtended Transiction Function:");
 			
+			System.out.println ("REGULAR EXPRESSION = " + reg);
+			
 			System.out.println (" - 0 (True): " + Automa.transitionFunctionExtended("0"));
 			
+			System.out.println (" - 1 (False): " + Automa.transitionFunctionExtended("1"));
+			
 			System.out.println (" - 10 (True): " + Automa.transitionFunctionExtended("10"));
+			
+			System.out.println (" - 100 (True): " + Automa.transitionFunctionExtended("100"));
+			
+			System.out.println (" - 101 (False): " + Automa.transitionFunctionExtended("101"));
 			
 			System.out.println (" - 111010 (True): " + Automa.transitionFunctionExtended("111010"));
 			
 			System.out.println (" - 101010 (True): " + Automa.transitionFunctionExtended("101010"));
+			
+			System.out.println (" - 100010001000010 (True): " + Automa.transitionFunctionExtended("100010001000010"));
+			
+			System.out.println (" - 1010100000000000000100 (True): " + Automa.transitionFunctionExtended("1010100000000000000100"));
+			
+			System.out.println (" - 1010100000000000000101 (False): " + Automa.transitionFunctionExtended("1010100000000000000101"));
 		
 		} catch (DFANotReadyException e) {
 
