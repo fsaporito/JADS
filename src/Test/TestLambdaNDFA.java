@@ -1,19 +1,17 @@
 package Test;
 
 
-import java.util.ArrayList;
-
 import DataStructures.Node;
 import DataStructures.Arch;
 import Automata.LambdaNDFA;
-import Exceptions.DFANotReadyException;
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 import Exceptions.WrongArchException;
 
 
 public class TestLambdaNDFA {
 
-	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException, WrongArchException {
+	public static void main (String[] args) throws GraphNotReadyException, AutomatonNotReadyException, WrongArchException {
 		
 		
 		/*
@@ -132,7 +130,7 @@ public class TestLambdaNDFA {
 			
 			e1.printStackTrace();
 			
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 			
@@ -178,7 +176,7 @@ public class TestLambdaNDFA {
 			
 			System.out.println (" - aaaabbbcc (True): " + Automa.transitionFunctionExtended("aaaaababbcc"));*/
 		
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 		

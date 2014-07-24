@@ -3,14 +3,14 @@ package Test;
 import DataStructures.Node;
 import DataStructures.Arch;
 import Automata.DFA;
-import Exceptions.DFANotReadyException;
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 import Exceptions.WrongArchException;
 
 
 public class TestDFA {
 
-	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException, WrongArchException {
+	public static void main (String[] args) throws GraphNotReadyException, AutomatonNotReadyException, WrongArchException {
 		
 		
 		/*
@@ -37,6 +37,7 @@ public class TestDFA {
 		
 		// Archs Creation
 		Arch<String> A01 = new Arch<String> (Q0, Q1, "0");
+		System.out.println ("A01: " + A01.toString());
 	
 		Arch<String> A00 = new Arch<String> (Q0, Q0, "1");
 		
@@ -80,7 +81,7 @@ public class TestDFA {
 			
 			e1.printStackTrace();
 			
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 			
@@ -88,6 +89,7 @@ public class TestDFA {
 		
 	
 		System.out.println (Automa.toString());
+		
 		
 		
 		try {			
@@ -118,7 +120,7 @@ public class TestDFA {
 			
 			System.out.println (" - 1010100000000000000101 (False): " + Automa.transitionFunctionExtended("1010100000000000000101"));
 					
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 		

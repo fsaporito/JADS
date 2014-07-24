@@ -2,23 +2,14 @@ package Automata;
 
 import DataStructures.Node;
 import DataStructures.Arch;
-import DataStructures.Graph;
-import Exceptions.DFANotReadyException;
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
-import Exceptions.WrongArchException;
 
 
 import java.util.ArrayList;
 
 
-public class DFA<T> extends Graph<T> {
-	
-	
-	/** Start Node */
-	protected Node<T> start;
-	
-	/** FinalNodes List (Accepting States)*/
-	protected ArrayList<Node<T>> finalNodes;
+public class DFA<T> extends NDFA<T> {
 	
 	
 	
@@ -47,245 +38,60 @@ public class DFA<T> extends Graph<T> {
 	 * @param FinalNodes FinalNodes List
 	 * @param Name DFA's Name
 	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	public DFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, DFANotReadyException {
+	public DFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, AutomatonNotReadyException {
 		
-		super (Nodes, Archs, Name);
-		
-		this.start = Start;
-		
-		this.finalNodes = FinalNodes;
-		
-		try {
-			
-			this.checkArchs();
-			
-		} catch (WrongArchException e) {
-			
-			throw new DFANotReadyException (e.getMessage());
-		
-		}
-		
-		this.checkFinalNodeDuplicates();
+		super(Nodes, Archs, Start, FinalNodes, Name);
+				
+		this.checkArchsList();		
 		
 	}
 	
-
-
-
-
-	/** 
-	 * Method ToAdd An Arch 
-	 * (Must Be With fixedLabel)
-	 * 
-	 * @param Arch Arch To Be Added To The DFA
-	 * @throws GraphNotReadyException The Graph Is Not Correctly Initialised
-	 */
-	@Override
-	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
-		
-		this.checkGraphReady (false);
-		
-		if (!Arch.getLabel().equals("")) { // No Lambda ("" -> Empty Symbol) As Label
-			
-			if (Arch.getFixed()) { // Label Must Be Fixed
-	
-				if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
-			
-					boolean labelFound = false; // Flag
-			
-					// For Loop To Look If The Label Is Already Present In Another
-					// Arch With The Same Starting Point (Node A)
-					for (int i = 0; (i < this.archs.size() && !labelFound); i++) {
-				
-						if (this.archs.get(i).getA().equals(Arch.getA())) {
-				
-							if (this.archs.get(i).getLabel().equals(Arch.getLabel())) {
-					
-								labelFound = true;
-					
-							}
-						
-						}
-				
-					}
-			
-					if (!labelFound) { // Label Not Found, Proceed
-				
-						this.archs.add(Arch);
-					
-					}
-				
-				}
-			
-			}	
-		
-		}
-		
-	}
-	
-	
-	
-	/**
-	 * Method To Add A Final Node To The DFA
-	 * If Not Present In The Nodes List, Adds It
-	 * 
-	 * @param Node Final Node
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
-	 * @throws GraphNotReadyException Graph Not Correctly Initialised
-	 */
-	public void addFinalNode (Node<T> Node) throws DFANotReadyException {
-		
-		this.checkDFAReady(false, true, false);
-		
-		if (!this.nodes.contains(Node)) {
-			
-			try {
-				
-				this.addNode(Node);
-			
-			} catch (GraphNotReadyException e) {
-				
-				throw new DFANotReadyException (e.getMessage());
-				
-			}
-			
-		}
-		
-		if (!this.finalNodes.contains(Node)) {
-				
-			this.finalNodes.add(Node);
-			
-		}
-		
-	}
-	
-	
-	
-	/**
-	 * Method To Add A Start State To The DFA
-	 * If Not Present In The Nodes List, Adds It
-	 * 
-	 * @param Start Start Node
-	 * @throws GraphNotReadyException Graph Not Correctly Initialised
-	 */
-	public void setStart (Node<T> Start) throws GraphNotReadyException {
-		
-		if (!this.nodes.contains(Start)) {
-			
-			this.addNode(Start);
-			
-		}
-
-		this.start = Start;
-		
-	}
 	
 	
 	/**
 	 * Checks If The Archs Are Correct:
-	 * No Lamda Transition
-	 * No DUplicate Label For The Same Node (DETERMINISTIC AUTOMA)
+	 * 1) Starting And Ending Nodes Are In nodeList
+	 * 2) No Lambda Transition 
+	 * 3) No DUplicate Label For The Same Node (DETERMINISTIC AUTOMATON)
 	 * 
-	 * @throws WrongArchException Wrong Archs
-	 * @throws GraphNotReadyException 
-	 */
-	private void checkArchs() throws WrongArchException, GraphNotReadyException {
-		
-		ArrayList<Arch<T>> archList = new ArrayList<Arch<T>>(); // New ArrayList
-		
-		archList = this.archsWithLabel(""); // Look For Arch With Lambda Transition
-		
-		if (archList != null && archList.size() > 0) { // No Lambda Transition Admitted
-			
-			throw new WrongArchException ("In A DFA There Can't Be Lambda Transition!!!");
-			
-		}
-		
-		for (int i = 0; i < this.archs.size(); i++) {
-			
-			
-			
-		}
-		
-	}
-	
-	
-	/**
-	 * Check If The Final Node List Has Duplicates
+	 * @param arch Arch To Check
+	 * @throws GraphNotReadyException Graph No Correctly Initialised 
 	 * 
-	 * @throws DFANotReadyException
 	 */
-	protected void checkFinalNodeDuplicates() throws DFANotReadyException {
+	@Override
+	protected boolean checkArch (Arch<T> arch) throws GraphNotReadyException {
 		
-		try {
-			
-			this.checkNodeDuplicates(this.finalNodes);
-			
-		} catch (GraphNotReadyException e) {
-			
-			throw new DFANotReadyException ("Duplicate entries in the finalNodeList!!!");
+		System.out.println ("checkArch DFA: " + arch.toString());
 		
-		}
+		boolean returnValue = true; // Return Value
 		
-	}
-	
-	
-	
-	/**
-	 * Check If The DFA Is Correctly Initialised
-	 * 
-	 * @param checkStart Check The Start State
-	 * @param checkFinal Check If There Is A FinalState List
-	 * @param checkEmptyFinalNodes Check If The FinalState List Is Empty
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
-	 */
-	protected void checkDFAReady (boolean checkStart, boolean checkFinal, boolean checkEmptyFinalNodes) throws DFANotReadyException {
+		if (super.checkArch (arch)) { // Look Point 1 & 2
 		
-		try { // Check If The Graph Is Ready
-			
-			this.checkGraphReady (false);
-		
-		} catch (GraphNotReadyException e) {
-			
-			throw new DFANotReadyException (e.getMessage());
-	
-		}
-		
-		if (checkStart) { // Check If There Is A Start State
-		
-			if (this.start == null) {
-	
-				throw new DFANotReadyException ("No Start Node In The Graph");
-	
-			}
-			
-		}
-		
-		if (checkFinal) { // Check If There Is A FInalNodes List
-
-			if (this.finalNodes == null) {
-	
-				throw new DFANotReadyException ("Final Nodes Null");
-	
-			}
-		
-			if (checkEmptyFinalNodes) { // CHeck If The FinalNodes List Is Empty
-			
-				if (this.finalNodes.size() == 0) {
-			
-					throw new DFANotReadyException ("No Final Nodes In The Graph");
-	
+			for (int i = 0; (i < this.archs.size() && returnValue); i++) { // Loop On Every Arch
+				
+				if (arch.getLabel().equals(this.archs.get(i))) { // Double Label
+					
+					returnValue = false; // Wrong Arch
+					
 				}
 				
-			}
+			}		
+		
+		}  else {
+			
+			returnValue = false;
 			
 		}
 		
+		System.out.println ("		Returns: " + returnValue);
+		
+		return returnValue;
+		
 	}
-
-
+	
+	
 	
 	/**
 	 * Transiction Function 
@@ -293,11 +99,11 @@ public class DFA<T> extends Graph<T> {
 	 * @param a Symbol To Check
 	 * @param currentState DFA Current State
 	 * @return The Arriving Node If There Is An Arch Labelled a From currentState, Null Otherwise
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	private Node<T> transitionFunction (String a, Node<T> currentState) throws DFANotReadyException {
+	private Node<T> transitionFunction (String a, Node<T> currentState) throws AutomatonNotReadyException {
 		
-		this.checkDFAReady(true, true, true); // Check If The DFA Is Ready
+		this.checkAutomatonReady(true, true, true); // Check If The DFA Is Ready
 		 
 		Node<T> finalNode = null; // Return Value
 		
@@ -333,11 +139,12 @@ public class DFA<T> extends Graph<T> {
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	public boolean transitionFunctionExtended (String word) throws DFANotReadyException {
+	@Override
+	public boolean transitionFunctionExtended (String word) throws AutomatonNotReadyException {
 		
-		this.checkDFAReady(true, true, true); // Check If The DFA Is Ready
+		this.checkAutomatonReady(true, true, true); // Check If The DFA Is Ready
 		 
 		boolean accepted = true; // Return Value
 		
@@ -405,9 +212,9 @@ public class DFA<T> extends Graph<T> {
 		
 		try {
 			
-			this.checkDFAReady (true, true, true);
+			this.checkAutomatonReady (true, true, true);
 		
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 			
 			e.printStackTrace();
 		

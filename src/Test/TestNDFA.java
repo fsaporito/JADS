@@ -3,14 +3,14 @@ package Test;
 import DataStructures.Node;
 import DataStructures.Arch;
 import Automata.NDFA;
-import Exceptions.DFANotReadyException;
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 import Exceptions.WrongArchException;
 
 
 public class TestNDFA {
 
-	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException, WrongArchException {
+	public static void main (String[] args) throws GraphNotReadyException, AutomatonNotReadyException, WrongArchException {
 		
 		
 		/*
@@ -90,7 +90,7 @@ public class TestNDFA {
 			
 			e1.printStackTrace();
 			
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 			
@@ -118,7 +118,7 @@ public class TestNDFA {
 			
 			System.out.println (" - babc (True): " + Automa.transitionFunctionExtended("babc"));
 			
-			System.out.println (" - aaaa (True): " + Automa.transitionFunctionExtended("aaaa"));
+			System.out.println (" - aaa (True): " + Automa.transitionFunctionExtended("aaa"));
 			
 			System.out.println (" - aabb (True): " + Automa.transitionFunctionExtended("aabb"));
 			
@@ -130,7 +130,7 @@ public class TestNDFA {
 			
 			System.out.println (" - aaaabbbcc (True): " + Automa.transitionFunctionExtended("aaaaababbcc"));
 		
-		} catch (DFANotReadyException e) {
+		} catch (AutomatonNotReadyException e) {
 
 			e.printStackTrace();
 		

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import DataStructures.Arch;
 import DataStructures.Node;
-import Exceptions.DFANotReadyException;
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
-import Exceptions.WrongArchException;
 
-public class NDFA<T> extends DFA<T> {
+
+public class NDFA<T> extends LambdaNDFA<T> {
 
 	
 	/**
@@ -32,73 +32,58 @@ public class NDFA<T> extends DFA<T> {
 	 * @param FinalNodes FinalNodes List
 	 * @param Name NDFA's Name
 	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	public NDFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, DFANotReadyException {
+	public NDFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, AutomatonNotReadyException {
 		
 		super(Nodes, Archs, Start, FinalNodes, Name);
 		
-		try {
-			
-			this.checkArchs();
-			
-		} catch (WrongArchException e) {
-			
-			throw new DFANotReadyException (e.getMessage());
-		
-		}
+		this.checkArchsList();
 		
 	}
 
-	
-	/** 
-	 * Method To Add An Arch 
-	 * (Must Be With fixedLabel)
-	 * 
-	 * @param Arch Arch To Be Added To The NDFA
-	 * @throws GraphNotReadyException The Graph Is Not Correctly Initialised
-	 */
-	@Override
-	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
-		
-		this.checkGraphReady (false);
-
-		if (!Arch.getLabel().equals("")) { // No Lambda ("" -> Empty Symbol) As Label
-		
-			if (Arch.getFixed()) { // Label Must Be Fixed
-	
-				if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
-			
-					this.archs.add(Arch);
-					
-				}
-			
-			}
-			
-		}	
-		
-	}
-	
 	
 	/**
-	 * Checks If The Archs Are Correct:
+	 * Checks If The Arch Are Correct:
+	 * 1) Starting And Ending Nodes Are In nodeList
+	 * 2) No Lambda Transition 
 	 * 
-	 * @throws WrongArchException Wrong Archs
-	 * @throws GraphNotReadyException 
+	 * @param arch Arch To Check
+	 * @throws GraphNotReadyException @throws GraphNotReadyException Graph No Correctly Initialised	 * 
 	 */
-	private void checkArchs() throws WrongArchException, GraphNotReadyException {
+	@Override
+	protected boolean checkArch (Arch<T> arch) throws GraphNotReadyException {
 		
-		ArrayList<Arch<T>> archList = new ArrayList<Arch<T>>(); // New ArrayList
+		System.out.println ("checkArch NDFA: " + arch.toString());
 		
-		archList = this.archsWithLabel(""); // Look For Arch With Lambda Transition
+		boolean returnValue = true;
 		
-		if (archList != null && archList.size() > 0) { // No Lambda Transition Admitted
+		if (super.checkArch (arch)) { // Look Point 1
+		
+			ArrayList<Arch<T>> archList = new ArrayList<Arch<T>>(); // New ArrayList
+		
+			archList = this.archsWithLabel(""); // Look For Arch With Lambda Transition
 			
-			throw new WrongArchException ("In A DFA There Can't Be Lambda Transition!!!");
+			if (archList != null && archList.size() > 0) { // No Lambda Transition Admitted
+				
+				returnValue = false;
+				
+			}
+			
+		} else {
+			
+			returnValue = false;
 			
 		}
 		
+		System.out.println ("		Returns: " + returnValue);
+		
+		return returnValue;	
+		
+		
 	}
+	
+	
 	
 	/**
 	 * Transiction Function 
@@ -106,11 +91,11 @@ public class NDFA<T> extends DFA<T> {
 	 * @param a Symbol To Check
 	 * @param currentState DFA Current State
 	 * @return The Arriving Node If There Is An Arch Labelled a From currentState, Null Otherwise
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	private ArrayList<Node<T>> transitionFunction (String a, Node<T> currentState) throws DFANotReadyException {
+	private ArrayList<Node<T>> transitionFunction (String a, Node<T> currentState) throws AutomatonNotReadyException {
 		
-		this.checkDFAReady(true, true, true); // Check If The DFA Is Ready
+		this.checkAutomatonReady(true, true, true); // Check If The DFA Is Ready
 		 
 		ArrayList<Node<T>> finalNodes = new ArrayList<Node<T>>(); // Return Value
 		
@@ -146,12 +131,12 @@ public class NDFA<T> extends DFA<T> {
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
 	@Override	
-	public boolean transitionFunctionExtended (String word) throws DFANotReadyException {
+	public boolean transitionFunctionExtended (String word) throws AutomatonNotReadyException {
 		
-		this.checkDFAReady(true, true, true); // Check If The DFA Is Ready
+		this.checkAutomatonReady(true, true, true); // Check If The DFA Is Ready
 		 
 		boolean accepted = false;
 		
@@ -167,6 +152,7 @@ public class NDFA<T> extends DFA<T> {
 	}
 	
 	
+	
 	/**
 	 * Recursive Transiction Function To Check If The Passed String Is Accepted
 	 * By Calling Itself On Every State Generate By The TransictionFunction, 
@@ -174,9 +160,9 @@ public class NDFA<T> extends DFA<T> {
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws DFANotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
 	 */
-	private boolean recursiveTransictionFunctionExtended (String word, Node<T> currentState) throws DFANotReadyException {
+	private boolean recursiveTransictionFunctionExtended (String word, Node<T> currentState) throws AutomatonNotReadyException {
 		
 		boolean accepted = false; // Return Value
 		
@@ -236,6 +222,59 @@ public class NDFA<T> extends DFA<T> {
 		return accepted;		
 		
 	}
+	
+	
+	
+	/** 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		
+		try {
+			
+			this.checkAutomatonReady (true, true, true);
+		
+		} catch (AutomatonNotReadyException e) {
+			
+			e.printStackTrace();
+		
+		}
+		
+		String toString = "DFA";
+		
+		toString += "\n\tName: " + this.name;
+		
+		toString += "\n\n\tNodes:";
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.nodes.get(i);
+			
+		}
+		
+		toString += "\n\n\tArchs:";
+		
+		for (int i = 0; i < this.archs.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.archs.get(i);
+			
+		}
+		
+		toString += "\n\n\t Start Node: " + start.toString();
+		
+		toString += "\n\n\tFinal Nodes:";
+		
+		for (int i = 0; i < this.finalNodes.size(); i++) {
+			
+			toString +=  "\n\t\t" + this.finalNodes.get(i).getValue();
+			
+		}
+		
+		return toString;
+		
+	}
+
 	
 	
 }

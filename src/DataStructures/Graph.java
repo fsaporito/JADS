@@ -2,6 +2,7 @@ package DataStructures;
 
 import java.util.ArrayList;
 
+import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
 
@@ -53,9 +54,9 @@ public class Graph<T> {
 		
 		this.archs = Archs;
 		
-		this.checkArchDuplicates(this.archs);
-		
 		this.name = name;
+		
+		this.checkGraphReady(false);
 		
 	}
 	
@@ -93,7 +94,11 @@ public class Graph<T> {
 
 		if (!this.archs.contains(Arch)) {
 			
-			this.archs.add(Arch);
+			if (this.checkArch(Arch)) {
+				
+				this.archs.add(Arch);
+				
+			}
 		
 		}	
 			
@@ -148,28 +153,102 @@ public class Graph<T> {
 	
 	
 	/**
+	 * Checks If The Arch Is Correct:
+	 * 1) Starting And Ending Nodes Are In nodeList 
+	 * 
+	 * @param arch Arch To Check
+	 * @throws GraphNotReadyException Graph No Correctly Initialised
+	 * 
+	 */
+	protected boolean checkArch (Arch<T> arch) throws GraphNotReadyException {
+		
+		System.out.println ("checkArch Graph: " + arch.toString());
+		
+		this.checkGraphReady(false);
+		
+		boolean returnValue = false;
+		
+		if (arch != null) { // Arch Must'n Be Null
+			
+			if (arch.getA() != null) { // Start Node Must'n Be Null
+				
+				if (this.nodes.contains(arch.getA())) { // Start Node Must Be In The Automaton
+				
+					if (arch.getB() != null) { // Ending Node Must'n Be Null
+					
+						if (this.nodes.contains(arch.getB())) { // Ending Node Must Be In The Automaton
+						
+							if (arch.getLabel() != null) { // Label Must'n Be Null
+							
+								returnValue = true;
+								
+							}
+							
+						}						
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		System.out.println ("		Returns: " + returnValue);
+		
+		return returnValue;
+		
+	}
+	
+	
+	
+	/**
+	 * Checks If The Every Arch Is Correct
+	 * By Calling checkArch On Every Single Arch
+	 * And checkArchDuplicates To See If There Are Doubles
+	 *  
+	 * @throws AutomatonNotReadyException Wrong Archs
+	 */
+	protected void checkArchsList () throws GraphNotReadyException {
+		
+		for (int i = 0; i < this.archs.size(); i++) {
+			
+			if (!this.checkArch(this.archs.get(i))) {
+				
+				throw new GraphNotReadyException ("Wrong Archs!!!");
+				
+			}
+			
+		}
+		
+		this.checkArchDuplicates();
+		
+	}
+	
+	
+	
+	/**
 	 * Check If The Archs List Has Duplicates
 	 * 
-	 * @param Archs Archs List To Check
 	 * @throws GraphNotReadyException Duplicate Arch In The Archs List
 	 */
-	protected void checkArchDuplicates (ArrayList<Arch<T>> Archs) throws GraphNotReadyException {
+	protected void checkArchDuplicates () throws GraphNotReadyException {
 		
-		if (Archs != null) {
+		if (this.archs != null) {
 			
 			Arch<T> tmpArch;
 			
 			int duplicateArchCounter = 0;
 		
-			for (int i = 0; i < Archs.size(); i++) {
+			for (int i = 0; i < this.archs.size(); i++) {
 				
 				duplicateArchCounter = 0;
 				
-				tmpArch = Archs.get(i);
+				tmpArch = this.archs.get(i);
 				
-				for (int j = 0; j < Archs.size(); j++) {
+				for (int j = 0; j < this.archs.size(); j++) {
 					
-					if (tmpArch.equals(Archs.get(j))) {
+					if (tmpArch.equals(this.archs.get(j))) {
 						
 						duplicateArchCounter++;
 						
@@ -216,10 +295,6 @@ public class Graph<T> {
 			
 			throw new GraphNotReadyException ("Archs Null");
 			
-		} else {
-			
-			this.checkArchDuplicates(this.archs);
-			
 		}
 		
 		if (checkZero) {
@@ -233,6 +308,10 @@ public class Graph<T> {
 			if ( this.archs.size() == 0) {
 				
 				throw new GraphNotReadyException ("No Archs In The Graph");
+				
+			} else {
+				
+				this.checkArchsList();
 				
 			}
 			
@@ -494,6 +573,7 @@ public class Graph<T> {
 		
 		
 	}
+	
 	
 	
 	/** 
