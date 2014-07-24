@@ -5,6 +5,7 @@ import DataStructures.Arch;
 import DataStructures.Graph;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
+import Exceptions.WrongArchException;
 
 
 import java.util.ArrayList;
@@ -56,10 +57,22 @@ public class DFA<T> extends Graph<T> {
 		
 		this.finalNodes = FinalNodes;
 		
+		try {
+			
+			this.checkArchs();
+			
+		} catch (WrongArchException e) {
+			
+			throw new DFANotReadyException (e.getMessage());
+		
+		}
+		
 		this.checkFinalNodeDuplicates();
 		
 	}
 	
+
+
 
 
 	/** 
@@ -73,38 +86,42 @@ public class DFA<T> extends Graph<T> {
 	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
 		
 		this.checkGraphReady (false);
-
-		if (Arch.getFixed()) { // Label Must Be Fixed
+		
+		if (!Arch.getLabel().equals("")) { // No Lambda ("" -> Empty Symbol) As Label
+			
+			if (Arch.getFixed()) { // Label Must Be Fixed
 	
-			if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
+				if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
 			
-				boolean labelFound = false; // Flag
+					boolean labelFound = false; // Flag
 			
-				// For Loop To Look If The Label Is Already Present In Another
-				// Arch With The Same Starting Point (Node A)
-				for (int i = 0; (i < this.archs.size() && !labelFound); i++) {
+					// For Loop To Look If The Label Is Already Present In Another
+					// Arch With The Same Starting Point (Node A)
+					for (int i = 0; (i < this.archs.size() && !labelFound); i++) {
 				
-					if (this.archs.get(i).getA().equals(Arch.getA())) {
+						if (this.archs.get(i).getA().equals(Arch.getA())) {
 				
-						if (this.archs.get(i).getLabel().equals(Arch.getLabel())) {
+							if (this.archs.get(i).getLabel().equals(Arch.getLabel())) {
 					
-							labelFound = true;
+								labelFound = true;
 					
-						}
+							}
 						
+						}
+				
+					}
+			
+					if (!labelFound) { // Label Not Found, Proceed
+				
+						this.archs.add(Arch);
+					
 					}
 				
 				}
 			
-				if (!labelFound) { // Label Not Found, Proceed
-				
-					this.archs.add(Arch);
+			}	
 		
-				}
-				
-			}
-			
-		}	
+		}
 		
 	}
 	
@@ -165,6 +182,34 @@ public class DFA<T> extends Graph<T> {
 		
 	}
 	
+	
+	/**
+	 * Checks If The Archs Are Correct:
+	 * No Lamda Transition
+	 * No DUplicate Label For The Same Node (DETERMINISTIC AUTOMA)
+	 * 
+	 * @throws WrongArchException Wrong Archs
+	 * @throws GraphNotReadyException 
+	 */
+	private void checkArchs() throws WrongArchException, GraphNotReadyException {
+		
+		ArrayList<Arch<T>> archList = new ArrayList<Arch<T>>(); // New ArrayList
+		
+		archList = this.archsWithLabel(""); // Look For Arch With Lambda Transition
+		
+		if (archList != null && archList.size() > 0) { // No Lambda Transition Admitted
+			
+			throw new WrongArchException ("In A DFA There Can't Be Lambda Transition!!!");
+			
+		}
+		
+		for (int i = 0; i < this.archs.size(); i++) {
+			
+			
+			
+		}
+		
+	}
 	
 	
 	/**
@@ -394,11 +439,12 @@ public class DFA<T> extends Graph<T> {
 		
 		for (int i = 0; i < this.finalNodes.size(); i++) {
 			
-			toString +=  "\n\t\t" + this.finalNodes.get(i);
+			toString +=  "\n\t\t" + this.finalNodes.get(i).getValue();
 			
 		}
 		
 		return toString;
+		
 	}
 
 	

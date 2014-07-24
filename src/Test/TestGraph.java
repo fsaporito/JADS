@@ -4,10 +4,11 @@ import DataStructures.Arch;
 import DataStructures.Graph;
 import DataStructures.Node;
 import Exceptions.GraphNotReadyException;
+import Exceptions.WrongArchException;
 
 public class TestGraph {
 
-	public static void main (String[] args) {
+	public static void main (String[] args) throws WrongArchException {
 			
 		// Nodes Creation
 		System.out.println ("\nNodes Creation: ");

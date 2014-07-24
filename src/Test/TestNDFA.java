@@ -5,11 +5,12 @@ import DataStructures.Arch;
 import Automata.NDFA;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
+import Exceptions.WrongArchException;
 
 
 public class TestNDFA {
 
-	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
+	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException, WrongArchException {
 		
 		
 		/*
@@ -36,7 +37,7 @@ public class TestNDFA {
 		// Archs Creation
 		Arch<String> A01a = new Arch<String> (Q0, Q1, "a");
 		Arch<String> A01b = new Arch<String> (Q0, Q1, "b");
-		Arch<String> A02b = new Arch<String> (Q0, Q2, "b");		
+		Arch<String> A02b = new Arch<String> (Q0, Q2, "b");	
 		
 		Arch<String> A10a = new Arch<String> (Q1, Q0, "a");		
 		Arch<String> A10b = new Arch<String> (Q1, Q0, "b");

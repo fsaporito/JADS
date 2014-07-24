@@ -5,11 +5,12 @@ import DataStructures.Arch;
 import Automata.DFA;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
+import Exceptions.WrongArchException;
 
 
 public class TestDFA {
 
-	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException {
+	public static void main (String[] args) throws GraphNotReadyException, DFANotReadyException, WrongArchException {
 		
 		
 		/*
@@ -116,7 +117,7 @@ public class TestDFA {
 			System.out.println (" - 1010100000000000000100 (True): " + Automa.transitionFunctionExtended("1010100000000000000100"));
 			
 			System.out.println (" - 1010100000000000000101 (False): " + Automa.transitionFunctionExtended("1010100000000000000101"));
-		
+					
 		} catch (DFANotReadyException e) {
 
 			e.printStackTrace();

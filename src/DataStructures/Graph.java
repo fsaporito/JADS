@@ -193,6 +193,7 @@ public class Graph<T> {
 	
 	
 	
+	
 	/**
 	 * Check If The Graph Correctly Initialised
 	 * 
@@ -239,6 +240,54 @@ public class Graph<T> {
 		
 	}
 
+	
+	
+	/**
+	 * Finds All The Archs With Label label
+	 * 
+	 * @param label Label To Look For
+	 * @return The Arraylist Containing All The Arch Wich Match The Lablel, Null If No Arch Found
+	 * @throws GraphNotReadyException 
+	 */
+	public ArrayList<Arch<T>> archsWithLabel (String label) throws GraphNotReadyException {
+		
+		
+		this.checkGraphReady(false);
+		
+		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
+				
+		if (label != null) { // Label Mustn't Be Null
+			
+			for (int i = 0; i < this.archs.size(); i++) { // Check For Every Arch
+					
+				if (label.equals(this.archs.get(i).getLabel())) { // Same Label
+								
+					archsList.add(this.archs.get(i)); // Add Found Arch To ArrayList
+								
+				}					
+							
+			} 
+				
+		} else { // Label Null Not Accepted
+				
+			archsList = null;
+				
+		}				
+		
+		if (archsList != null) {
+			
+			if (archsList.size() == 0) { // No Archs, Return Null
+				
+				archsList = null;
+				
+			}	
+			
+		}
+		
+		return archsList;
+		
+	}
+	
 	
 	
 	/**

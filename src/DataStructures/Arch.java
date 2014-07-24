@@ -1,5 +1,7 @@
 package DataStructures;
 
+import Exceptions.WrongArchException;
+
 public class Arch<T> {
 
 	/** First Node */
@@ -23,8 +25,9 @@ public class Arch<T> {
 	 * @param A First Node
 	 * @param B Second Node
 	 * @param label Arch's Label
+	 * @throws WrongArchException 
 	 */
-	public Arch (Node<T> A, Node<T> B, String label) {
+	public Arch (Node<T> A, Node<T> B, String label) throws WrongArchException {
 		
 		this(A, B, label, true);
 		
@@ -39,8 +42,11 @@ public class Arch<T> {
 	 * @param B Second Node
 	 * @param label Arch's Label
 	 * @param fixedLabel Tells If The Label Is Fixed Or Not
+	 * @throws WrongArchException Wrong Parameter (Null)
 	 */
-	public Arch (Node<T> A, Node<T> B, String label, boolean fixedLabel) {
+	public Arch (Node<T> A, Node<T> B, String label, boolean fixedLabel) throws WrongArchException {
+		
+		this.archChecker(A, B, label);
 		
 		this.A = A;
 		
@@ -53,6 +59,36 @@ public class Arch<T> {
 	}
 
 	
+	/**
+	 * Check If Every Construcor's Parameter Is
+	 * Not Null
+	 * 
+	 * @param A First Node
+	 * @param B Second Node
+	 * @param label Arch's Label
+	 * @throws WrongArchException Wrong Parameter (Null)
+	 */
+	private void archChecker (Node<T> A, Node<T> B, String label) throws WrongArchException {
+		
+		if (A == null) {
+			
+			throw new WrongArchException ("First Node Is NULL!!!");
+			
+		}
+		
+		if (B == null) {
+			
+			throw new WrongArchException ("Second Node Is NULL!!!");
+			
+		}
+
+		if (label == null) {
+	
+			throw new WrongArchException ("Label Is NULL!!!");
+	
+		}
+		
+	}
 
 	/**
 	 * Returns The Arch's Label
@@ -77,8 +113,12 @@ public class Arch<T> {
 		
 		if (this.fixedLabel) {
 			
-			this.label = label;
+			if (label != null) {
+			
+				this.label = label;
 		
+			}	
+				
 		}	
 			
 	}

@@ -6,6 +6,7 @@ import DataStructures.Arch;
 import DataStructures.Node;
 import Exceptions.DFANotReadyException;
 import Exceptions.GraphNotReadyException;
+import Exceptions.WrongArchException;
 
 public class NDFA<T> extends DFA<T> {
 
@@ -37,6 +38,16 @@ public class NDFA<T> extends DFA<T> {
 		
 		super(Nodes, Archs, Start, FinalNodes, Name);
 		
+		try {
+			
+			this.checkArchs();
+			
+		} catch (WrongArchException e) {
+			
+			throw new DFANotReadyException (e.getMessage());
+		
+		}
+		
 	}
 
 	
@@ -52,11 +63,15 @@ public class NDFA<T> extends DFA<T> {
 		
 		this.checkGraphReady (false);
 
-		if (Arch.getFixed()) { // Label Must Be Fixed
+		if (!Arch.getLabel().equals("")) { // No Lambda ("" -> Empty Symbol) As Label
+		
+			if (Arch.getFixed()) { // Label Must Be Fixed
 	
-			if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
+				if (!this.archs.contains(Arch)) { // Arch Can't Be Already Present
 			
 					this.archs.add(Arch);
+					
+				}
 			
 			}
 			
@@ -64,6 +79,26 @@ public class NDFA<T> extends DFA<T> {
 		
 	}
 	
+	
+	/**
+	 * Checks If The Archs Are Correct:
+	 * 
+	 * @throws WrongArchException Wrong Archs
+	 * @throws GraphNotReadyException 
+	 */
+	private void checkArchs() throws WrongArchException, GraphNotReadyException {
+		
+		ArrayList<Arch<T>> archList = new ArrayList<Arch<T>>(); // New ArrayList
+		
+		archList = this.archsWithLabel(""); // Look For Arch With Lambda Transition
+		
+		if (archList != null && archList.size() > 0) { // No Lambda Transition Admitted
+			
+			throw new WrongArchException ("In A DFA There Can't Be Lambda Transition!!!");
+			
+		}
+		
+	}
 	
 	/**
 	 * Transiction Function 
