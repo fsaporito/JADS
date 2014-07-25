@@ -576,6 +576,47 @@ public class Graph<T> {
 	
 	
 	
+	/**
+	 * Check If The Graph Is Connected
+	 * 
+	 * @return True If The Graph Is Connected, False Otherwise
+	 * @throws GraphNotReadyException Graph Not Correctly Initialised
+	 */
+	public boolean isConnected () throws GraphNotReadyException {
+		
+		boolean returnValue = true; // Return Value
+		
+		this.checkGraphReady(true); // Check If The Graph Is Ready
+		
+		Node<T> nodeTMP; // Temporary Node
+		
+		for (int i = 0; (i < this.nodes.size() && returnValue); i++) { // Loop Over All Nodes
+			
+			nodeTMP = this.nodes.get(i); // Temporary Node Assignament
+			
+			for (int j = 0; (i < this.nodes.size() && returnValue); j++) { // Loop Over All The Others Nodes
+				
+				if (!nodeTMP.equals(this.nodes.get(j))) { // Don't Analise The Temporary Node
+					
+					if (!this.neighbor(nodeTMP, this.nodes.get(j))) { // Check If Neighbor With The Generic Node
+						
+						returnValue = false; // No Neighbor, The Graph Isn't Connected
+						
+					}
+					
+				}
+				
+			}
+			
+						
+		}
+		
+		return returnValue;
+		
+		
+	}
+	
+	
 	/** 
 	 * @see java.lang.Object#toString()
 	 */
