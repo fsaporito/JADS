@@ -653,6 +653,18 @@ public class Graph<T> {
 			
 		}
 		
+		toString += "\n\n\tisConnected: ";
+		
+		try {
+			
+			toString += this.isConnected();
+			
+		} catch (GraphNotReadyException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
 		toString += "\n\n\tNeighbors: ";
 		
 		for (int i = 0; i < this.nodes.size(); i++) {
@@ -683,27 +695,6 @@ public class Graph<T> {
 			
 			
 		}
-		
-		/*System.out.println (" - Q0");
-		for (int i = 0; i < G1.neighborhood(Q0).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q0).get(i).toString());
-			
-		}
-		
-		System.out.println (" - Q1");
-		for (int i = 0; i < G1.neighborhood(Q1).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q1).get(i).toString());
-			
-		}
-		
-		System.out.println (" - Q2");
-		for (int i = 0; i < G1.neighborhood(Q2).size(); i++) {
-			
-			System.out.println ("\t" + G1.neighborhood(Q2).get(i).toString());
-			
-		}*/
 		
 		return toString;
 		
