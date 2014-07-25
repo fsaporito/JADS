@@ -19,6 +19,9 @@ Arch - Ok
 Node - Ok
 
 Graph - Ok
+      - Neighbor OK
+      - Neighborhood OK
+      - Connected Graph OK
 
 MinHeap - Ok
 
@@ -37,11 +40,11 @@ Tree - OK
 
 ***Automata:
 
-DFA - Ok
+DFA - OK
 
-NDFA
+NDFA - OK
 
-lambda-NDFA
+lambda-NDFA - OK
 
 PDA Not Deterministic
 
