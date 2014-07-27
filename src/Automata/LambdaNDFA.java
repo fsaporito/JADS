@@ -3,12 +3,12 @@ package Automata;
 import java.util.ArrayList;
 
 import DataStructures.Arch;
-import DataStructures.Graph;
+import DataStructures.GraphOriented;
 import DataStructures.Node;
 import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
-public class LambdaNDFA<T> extends Graph<T> {
+public class LambdaNDFA<T> extends GraphOriented<T> {
 	
 	// Invert Hierarchy Order:  Actually DFA >> NDFA >> lambdaNFA
 	// Implements checkArchs To Verify 1

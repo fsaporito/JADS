@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
+public abstract class Graph<T> {
 
-
-public class Graph<T> {
-	
-		
 	/** Nodes List*/
 	protected ArrayList<Node<T>> nodes;
 	
@@ -26,7 +23,7 @@ public class Graph<T> {
 	 * 
 	 * @param name Graph Name
 	 */
-	public Graph (String name) {
+	public Graph(String name) {
 		
 		this.nodes = new ArrayList<Node<T>> ();
 		
@@ -34,9 +31,10 @@ public class Graph<T> {
 		
 		this.name = name;
 		
-	}
-	
 		
+	}
+
+	
 	
 	/**
 	 * Constructor That Creates The Graph
@@ -79,7 +77,7 @@ public class Graph<T> {
 		}	
 			
 	}
-	
+
 	
 	
 	/**
@@ -88,22 +86,8 @@ public class Graph<T> {
 	 * @param Arch Arch To Add
 	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
 	 */
-	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
+	public abstract void addArch (Arch<T> Arch) throws GraphNotReadyException;
 		
-		this.checkGraphReady (false);
-
-		if (!this.archs.contains(Arch)) {
-			
-			if (this.checkArch(Arch)) {
-				
-				this.archs.add(Arch);
-				
-			}
-		
-		}	
-			
-	}
-	
 	
 	
 	/**
@@ -149,56 +133,17 @@ public class Graph<T> {
 		}
 		
 	}
-	
+
 	
 	
 	/**
-	 * Checks If The Arch Is Correct:
-	 * 1) Starting And Ending Nodes Are In nodeList 
+	 * Checks If The Arch Is Correct
 	 * 
 	 * @param arch Arch To Check
 	 * @throws GraphNotReadyException Graph No Correctly Initialised
 	 * 
 	 */
-	protected boolean checkArch (Arch<T> arch) throws GraphNotReadyException {
-		
-		System.out.println ("checkArch Graph: " + arch.toString());
-		
-		this.checkGraphReady(false);
-		
-		boolean returnValue = false;
-		
-		if (arch != null) { // Arch Must'n Be Null
-			
-			if (arch.getA() != null) { // Start Node Must'n Be Null
-				
-				if (this.nodes.contains(arch.getA())) { // Start Node Must Be In The Automaton
-				
-					if (arch.getB() != null) { // Ending Node Must'n Be Null
-					
-						if (this.nodes.contains(arch.getB())) { // Ending Node Must Be In The Automaton
-						
-							if (arch.getLabel() != null) { // Label Must'n Be Null
-							
-								returnValue = true;
-								
-							}
-							
-						}						
-						
-					}
-					
-				}
-				
-			}
-			
-		}
-		
-		System.out.println ("		Returns: " + returnValue);
-		
-		return returnValue;
-		
-	}
+	protected abstract boolean checkArch (Arch<T> arch) throws GraphNotReadyException;
 	
 	
 	
@@ -224,7 +169,7 @@ public class Graph<T> {
 		this.checkArchDuplicates();
 		
 	}
-	
+
 	
 	
 	/**
@@ -269,7 +214,6 @@ public class Graph<T> {
 		}
 		
 	}
-	
 	
 	
 	
@@ -318,7 +262,7 @@ public class Graph<T> {
 		}
 		
 	}
-
+	
 	
 	
 	/**
@@ -328,44 +272,7 @@ public class Graph<T> {
 	 * @return The Arraylist Containing All The Arch Wich Match The Lablel, Null If No Arch Found
 	 * @throws GraphNotReadyException 
 	 */
-	public ArrayList<Arch<T>> archsWithLabel (String label) throws GraphNotReadyException {
-		
-		
-		this.checkGraphReady(false);
-		
-		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
-				
-		if (label != null) { // Label Mustn't Be Null
-			
-			for (int i = 0; i < this.archs.size(); i++) { // Check For Every Arch
-					
-				if (label.equals(this.archs.get(i).getLabel())) { // Same Label
-								
-					archsList.add(this.archs.get(i)); // Add Found Arch To ArrayList
-								
-				}					
-							
-			} 
-				
-		} else { // Label Null Not Accepted
-				
-			archsList = null;
-				
-		}				
-		
-		if (archsList != null) {
-			
-			if (archsList.size() == 0) { // No Archs, Return Null
-				
-				archsList = null;
-				
-			}	
-			
-		}
-		
-		return archsList;
-		
-	}
+	public abstract ArrayList<Arch<T>> archsWithLabel (String label) throws GraphNotReadyException;
 	
 	
 	
@@ -376,53 +283,7 @@ public class Graph<T> {
 	 * @param node2 Second Node
 	 * @return The Arraylist Containing All The Arch, Null If No Arch Between The Two Nodes
 	 */
-	public ArrayList<Arch<T>> archsBetweenNodes (Node<T> node1, Node<T> node2) {
-		
-		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
-		
-		if (node1 != null && node2 != null) { // The Nodes Mustn't Be Null
-			
-			if ( (this.nodes.contains(node1)) && (this.nodes.contains(node2)) ) { // Nodes Must Be Contained In The Node List
-				
-				for (int i = 0; i < this.archs.size(); i++) { // Check For Every Arch
-					
-					if (node1.equals(this.archs.get(i).getA())) { // Node1 Is The First Node In The Arch
-								
-						if (node2.equals(this.archs.get(i).getB())) { // Node2 Is The Second Node In The Arch
-									
-							archsList.add(this.archs.get(i));
-									
-						}
-								
-					}					
-							
-				} 
-				
-			} else {
-				
-				archsList = null;
-				
-			}				
-			
-		} else {
-			
-			archsList = null;
-			
-		}
-		
-		if (archsList != null) {
-			
-			if (archsList.size() == 0) {
-				
-				archsList = null;
-				
-			}	
-			
-		}
-		
-		return archsList;
-		
-	}
+	public abstract ArrayList<Arch<T>> archsBetweenNodes (Node<T> node1, Node<T> node2);
 	
 	
 	
@@ -432,40 +293,7 @@ public class Graph<T> {
 	 * @param node Starting Node
 	 * @return The Archs List, Null If Empty
 	 */
-	public ArrayList<Arch<T>> archsFromNode (Node<T> node) {
-		
-		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
-		
-		if (node != null) { // The Node Mustn't Be Null
-			
-			if (this.nodes.contains(node)) { // Node Must Be Contained In The Node List
-				
-				for (int i = 0; i < this.archs.size(); i++) {
-					
-					// Takes Only The Archs With node As Initial Node
-					if (this.archs.get(i).getA().equals(node)) {
-						
-						archsList.add(this.archs.get(i));
-						
-					}
-					
-				}
-				
-			} else {
-				
-				archsList = null;
-				
-			}
-			
-		} else {
-			
-			archsList = null;
-			
-		}
-		
-		return archsList;
-		
-	}
+	public abstract ArrayList<Arch<T>> archsFromNode (Node<T> node);
 	
 	
 	
@@ -475,40 +303,7 @@ public class Graph<T> {
 	 * @param node End Node Node
 	 * @return The Archs List, Null If Empty
 	 */
-	public ArrayList<Arch<T>> archsToNode (Node<T> node) {
-		
-		ArrayList<Arch<T>> archsList = new ArrayList<Arch<T>>(); // Return Value
-		
-		if (node != null) { // The Node Mustn't Be Null
-			
-			if (this.nodes.contains(node)) { // Node Must Be Contained In The Node List
-				
-				for (int i = 0; i < this.archs.size(); i++) {
-					
-					// Takes Only The Archs With node As Ending Node
-					if (this.archs.get(i).getB().equals(node)) {
-						
-						archsList.add(this.archs.get(i));
-						
-					}
-					
-				}
-				
-			} else {
-				
-				archsList = null;
-				
-			}
-			
-		} else {
-			
-			archsList = null;
-			
-		}
-		
-		return archsList;
-		
-	}
+	public abstract ArrayList<Arch<T>> archsToNode (Node<T> node);
 	
 	
 	
@@ -606,8 +401,7 @@ public class Graph<T> {
 					
 				}
 				
-			}
-			
+			}			
 						
 		}
 		
@@ -615,6 +409,7 @@ public class Graph<T> {
 		
 		
 	}
+
 	
 	
 	/** 
@@ -689,17 +484,13 @@ public class Graph<T> {
 				
 				toString += ": None :(";
 				
-			}
-			
-			
-			
+			}			
 			
 		}
 		
 		return toString;
 		
 	}
-
-
-
+	
+	
 }

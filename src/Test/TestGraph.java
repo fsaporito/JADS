@@ -1,7 +1,7 @@
 package Test;
 
 import DataStructures.Arch;
-import DataStructures.Graph;
+import DataStructures.GraphOriented;
 import DataStructures.Node;
 import Exceptions.GraphNotReadyException;
 import Exceptions.WrongArchException;
@@ -44,7 +44,7 @@ public class TestGraph {
 			
 		System.out.println ("\n");
 		
-		Graph<String> G1 = new Graph<String> ("G1");
+		GraphOriented<String> G1 = new GraphOriented<String> ("G1");
 		
 		try {
 			
