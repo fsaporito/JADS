@@ -14,7 +14,7 @@ public class SortArray <T extends Comparable<T>> {
 		
 	
 	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
+	protected T[] arraySort;
 	
 
 	
@@ -77,7 +77,7 @@ public class SortArray <T extends Comparable<T>> {
 	 * @throws OutOfBoundException 
 	 * 
 	 */
-	private void exceptionOutOfBoundThrower (int leftBound, int rightBound) throws OutOfBoundException {
+	protected void exceptionOutOfBoundThrower (int leftBound, int rightBound) throws OutOfBoundException {
 		
 		if (leftBound > rightBound) { // LeftBound > Right Bound
 		
