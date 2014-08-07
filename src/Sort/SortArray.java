@@ -1,6 +1,7 @@
 package Sort;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Exceptions.EmptyArrayException;
@@ -28,6 +29,8 @@ public class SortArray <T extends Comparable<T>> {
 	 */
 	public SortArray (T[] Array) throws EmptyArrayException {
 		
+		System.out.println ("Array");
+		
 		if (Array.length == 0) {
 			
 			throw new EmptyArrayException ("Empty Array");
@@ -48,9 +51,12 @@ public class SortArray <T extends Comparable<T>> {
 	 * @throws EmptyArrayException 
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public SortArray (ArrayList<T> Arr) throws EmptyArrayException {
 		
 		//(T[]) this.Array.toArray((T[])Array.newInstance(this.Arr.get(0).getClass(), this.Arr.size()));
+		
+		System.out.println ("ArrayList");
 		
 		if (Arr.size() == 0) {
 			
@@ -58,7 +64,7 @@ public class SortArray <T extends Comparable<T>> {
 			
 		}
 
-		Arr.toArray(this.arraySort);
+		this.arraySort =(T[]) Arr.toArray((T[])Array.newInstance(Arr.get(0).getClass(), Arr.size()));
 		
 	}
 
@@ -424,6 +430,7 @@ public class SortArray <T extends Comparable<T>> {
 				
 	}
 		
+	
 	/**
 	 * 
 	 * Calls Bubble Sort From Index To Array's End
@@ -706,7 +713,9 @@ public class SortArray <T extends Comparable<T>> {
 				
 	}
 		
+
 	
+
 	
 	
 //#################################################################
@@ -801,6 +810,7 @@ public class SortArray <T extends Comparable<T>> {
  * 
  * mergeSortParallel
  * mergeSortParallelHybrid
+ * mergeSortInPlace
  * quickSort
  * quickSortHybrid
  * quickSortParallel

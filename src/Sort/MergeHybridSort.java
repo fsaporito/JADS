@@ -58,7 +58,7 @@ public class MergeHybridSort <T extends Comparable<T>> extends MergeSort<T> {
 			
 		} else {
 			
-			if ((rightBound - leftBound) <= 10) {
+			if ((rightBound - leftBound) <= 50) {
 				
 				this.insertionSort(leftBound, rightBound);
 				

@@ -1,6 +1,8 @@
 package Test;
 
 
+import java.util.Arrays;
+
 import Exceptions.EmptyArrayException;
 import Exceptions.EmptyHeapException;
 import Exceptions.OutOfBoundException;
@@ -13,18 +15,20 @@ public class TestSort {
 
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException, OutOfBoundException {
 		
-		boolean TEST_ALL_SORT = false;
+		boolean TEST_ALL_SORT = true;
+		
+		boolean JAVA_SORT = true;
 		
 		boolean TEST_INSERTION_SORT = false; 
 		boolean TEST_SELECTION_SORT = false; 
 		boolean TEST_BUBBLE_SORT = false; 
 		boolean TEST_SHELL_SORT = true; 		
 		boolean TEST_MERGE_SORT = true;
-		boolean TEST_MERGE_SORT_HYBRID = true; 
+		boolean TEST_MERGE_SORT_HYBRID = true;
 		boolean TEST_HEAP_SORT = false;
 		
 		int SEED = 1111;
-		int LENGHT = 10000000;
+		int LENGHT = 100000;
 		int RANGE = 100;	
 		
 		long timeStart = 0;
@@ -59,6 +63,26 @@ public class TestSort {
 		
 		System.out.println (" Time: " + (timeEnd-timeStart) + " ns = " + ((timeEnd-timeStart)*(Math.pow(10,-9))) + " s");
 		
+		
+		
+		// Merge Sort Hybrid
+		if (JAVA_SORT || TEST_ALL_SORT) {
+							
+			System.out.println("\n*** Java Sort ");
+						
+			Integer[] ArrJava = Arr.clone();
+						
+			timeStart = System.nanoTime();
+						
+			Arrays.sort(ArrJava);
+						
+			timeEnd = System.nanoTime();				
+						
+			System.out.println ("Time: " + (timeEnd-timeStart) + " ns = " + ((timeEnd-timeStart)*(Math.pow(10,-9))) + " s");			
+					
+			sort = null;
+										
+		}
 				
 			
 		// Insertion Sort
@@ -192,6 +216,8 @@ public class TestSort {
 			sort = null;
 								
 		}
+		
+		
 		
 			
 		// Heap Sort	
