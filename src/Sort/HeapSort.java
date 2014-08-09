@@ -52,7 +52,26 @@ public class HeapSort <T extends Comparable<T>> {
 	 */
 	private void heapSort(int leftBound, int rightBound) throws EmptyHeapException {
 		
-		MinHeap<T> heap = new MinHeap<T>();
+		
+		@SuppressWarnings("unchecked")
+		T[] arrTMP = (T[]) new Comparable[rightBound-leftBound+1];
+		
+		for (int i = leftBound; i <= rightBound; i++) {
+			
+			arrTMP[i-leftBound] = this.arraySort[i];
+			
+		}
+		
+		MinHeap<T> heap = new MinHeap<T>(arrTMP);
+		
+		for (int j = leftBound; j <= rightBound; j++) {
+				
+			this.arraySort[j] = heap.extractMinValue();
+				
+		}
+
+	
+		/*MinHeap<T> heap = new MinHeap<T>();
 			
 		for (int i = leftBound; i <= rightBound; i++) {
 				
@@ -65,6 +84,7 @@ public class HeapSort <T extends Comparable<T>> {
 			this.arraySort[j] = heap.extractMinValue();
 				
 		}
+		*/
 			
 	}
 
