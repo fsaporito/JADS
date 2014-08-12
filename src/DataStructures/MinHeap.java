@@ -11,147 +11,167 @@ public class MinHeap <T extends Comparable<T>> {
 
 	/** ArrayList Used To Contain The Heap's Elements */
 	private ArrayList<T> heapArrList;
+
 	
 	/** Heap'Elements Numner */
 	private int heapSize;
-	
-	
+
+
 	public MinHeap () {
-		
+
 		this.heapSize = -1;
-		
+
 		this.heapArrList = new ArrayList<T>();
-		
+
 	}
-	
-	
-	
+
+
+
 	public MinHeap(ArrayList<T> arrayList) {
+
+		if (arrayList == null) {
+			
+			throw new NullPointerException ("Null ArrayList");
+			
+		}
 		
 		this.heapSize = arrayList.size() -1;
-		
+
 		this.heapArrList = arrayList;
-		
+
 		this.buildHeap();
-		
+
 	}
-	
-	
+
+
 
 	public MinHeap(T[] array) {
 		
-		this.heapArrList = new ArrayList<T>();
-				
-		for (int i = 0; i < array.length; i++) {
+		if (array == null) {
 			
-			this.heapArrList.add(array[i]);
-			
-		}		
-	
-		this.heapSize = this.heapArrList.size() -1;
-		
-		this.buildHeap();
-		
-	}
-	
-	
-	
-	private void buildHeap () {
-		
-		if (this.heapSize > 0) {		
-			
-			for (int i =(int) (heapSize/2); i >= 0; i--) { 
-			
-				this.minHeapify(i);
-					
-			}
+			throw new NullPointerException ("Null Array");
 			
 		}
-		
+
+		this.heapArrList = new ArrayList<T>();
+
+		for (int i = 0; i < array.length; i++) {
+
+			this.heapArrList.add(array[i]);
+
+		}
+
+		this.heapSize = this.heapArrList.size() -1;
+
+		this.buildHeap();
+
 	}
-	
-	
-	
-	private void minHeapify(int i) {
-		
+
+
+
+	private void buildHeap () {
+
+		if (this.heapSize > 0) {
+
+			for (int i =(int) (heapSize/2); i >= 0; i--) {
+
+				this.minHeapify(i);
+
+			}
+
+		}
+
+	}
+
+
+
+	private void minHeapify (int i) {
+
 		if (this.heapSize > 0) { // More Than One Element
-			
+
 			int l = 2*i; // i Left Son
 			int r = 2*i + 1; // i Right Son
-		
+
 			int min = i;
-		
+
+			T minValue = null;
+
+			minValue = this.heapArrList.get(min);
+
 			if (l <= this.heapSize) {
-				
-				if ((this.heapArrList.get(l)).compareTo(this.heapArrList.get(min)) < 0) {
-				
+
+				if ((this.heapArrList.get(l)).compareTo(minValue) < 0) {
+
 					min = l;
-				
+
+					minValue = this.heapArrList.get(min);
+
 				}
-			
+
 			}
-		
+
 			if (r <= this.heapSize) {
-			
+
 				if (this.heapArrList.get(r).compareTo(this.heapArrList.get(min)) < 0) {
-				
+
 					min = r;
-				
+
+					minValue = this.heapArrList.get(min);
+
 				}
-			
+
 			}
-		
+
 			if (min != i) {
-			
-				T swap = this.heapArrList.get(i); 
-				
-				this.heapArrList.set(i, this.heapArrList.get(min));
-			
+
+			T swap = this.heapArrList.get(i);
+
+				this.heapArrList.set(i, minValue);
+
 				this.heapArrList.set(min, swap);
-			
+
 				this.minHeapify(min);
-			
+
 			}
-				
+
 		}
-		
+
 	}
-	
-	
+
+
 	public T extractMinValue () throws EmptyHeapException {
-		
+
 		if (this.heapArrList.size() == 0) {
-			
+
 			throw new EmptyHeapException ("Heap Is Empty");
-			
+
 		}
-		
+
 		T minValue = this.heapArrList.get(0);
-		
+
 		T lastValue = this.heapArrList.get(this.heapSize);
-		
+
 		this.heapArrList.set(0, lastValue);
-		
+
 		this.heapArrList.remove(this.heapSize);
-		
+
 		this.heapSize = this.heapSize - 1;
-		
+
 		this.minHeapify(0);
-		
+
 		return minValue;
-		
+
 	}
-	
-	
+
+
 	public void insert (T value) {
-		
+
 		this.heapArrList.add(value);
-				
+
 		this.heapSize++;
-						
+
 		this.buildHeap();
-		
-		
+
 	}
 
 
@@ -160,24 +180,24 @@ public class MinHeap <T extends Comparable<T>> {
 	 * @return the heapArrList
 	 */
 	public ArrayList<T> clone() {
-		
+
 		return this.heapArrList;
-	
+
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Create An Array With The Elements Of The Min Heap
 	 * @return The Array
 	 */
 	@SuppressWarnings("unchecked")
 	public T[] toArray () {
-		
+
 		T[] arr = (T[]) this.heapArrList.toArray( (T[])Array.newInstance(this.heapArrList.get(0).getClass(), this.heapSize));
-		
+
 		return arr;
-		
+
 	}
 
 
@@ -221,7 +241,7 @@ public class MinHeap <T extends Comparable<T>> {
 
 
 
-	/** 
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -229,19 +249,19 @@ public class MinHeap <T extends Comparable<T>> {
 		return "MinHeap [heapArrList=" + heapArrList + ", heapSize=" + heapSize
 				+ "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,13 +1,33 @@
 package Sort;
 
-import DataStructures.MinHeap;
-import Exceptions.EmptyHeapException;
+import java.util.ArrayList;
 
-public class HeapSort <T extends Comparable<T>> {
+import DataStructures.MinHeap;
+import Exceptions.EmptyArrayException;
+import Exceptions.EmptyHeapException;
+import Exceptions.OutOfBoundException;
+
+public class HeapSort <T extends Comparable<T>> extends Sort<T> {
 
 	
-	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
+	
+	/**
+	 * 
+	 * Constructor With Generic Array Parameter
+	 * Sorts The Whole Array
+	 * 
+	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * @throws EmptyHeapException 
+	 * 
+	 */
+	public HeapSort(T[] Array) throws EmptyArrayException, OutOfBoundException, EmptyHeapException {
+		
+		this(Array, 0, Array.length-1);
+		
+	}
+	
 	
 	
 	/**
@@ -16,14 +36,63 @@ public class HeapSort <T extends Comparable<T>> {
 	 * 
 	 * @param Array Array To Sort
 	 * @throws EmptyHeapException 
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
 	 * 
 	 */
-	public HeapSort(T[] Array, int leftBound, int rightBound) throws EmptyHeapException {
+	public HeapSort(T[] Array, int leftBound, int rightBound) throws EmptyHeapException, EmptyArrayException, OutOfBoundException {
 		
-		this.arraySort = Array;
+		super(Array);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
 		
 		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 			
+			this.heapSort(leftBound, rightBound);	
+			
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * Sorts The Whole ArrayList
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * @throws EmptyHeapException 
+	 * 
+	 */
+	public HeapSort(ArrayList<T> ArrayList) throws EmptyArrayException, OutOfBoundException, EmptyHeapException {
+		
+		this(ArrayList, 0, ArrayList.size());
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * @throws EmptyHeapException 
+	 * 
+	 */
+	public HeapSort(ArrayList<T> ArrayList, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException, EmptyHeapException {
+		
+		super(ArrayList);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
+		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
 			this.heapSort(leftBound, rightBound);	
 			
 		}
@@ -51,8 +120,7 @@ public class HeapSort <T extends Comparable<T>> {
 	 * 
 	 */
 	private void heapSort(int leftBound, int rightBound) throws EmptyHeapException {
-		
-		
+						
 		@SuppressWarnings("unchecked")
 		T[] arrTMP = (T[]) new Comparable[rightBound-leftBound+1];
 		
@@ -69,40 +137,8 @@ public class HeapSort <T extends Comparable<T>> {
 			this.arraySort[j] = heap.extractMinValue();
 				
 		}
-
-	
-		/*MinHeap<T> heap = new MinHeap<T>();
-			
-		for (int i = leftBound; i <= rightBound; i++) {
-				
-			heap.insert(this.arraySort[i]);
-				
-		}
-			
-		for (int j = leftBound; j <= rightBound; j++) {
-				
-			this.arraySort[j] = heap.extractMinValue();
-				
-		}
-		*/
 			
 	}
-
-	
-	
-	/**
-	 * 
-	 * Return The Sorted Array
-	 * 
-	 * @return The Array
-	 * 
-	 */
-	public T[] getArraySort() {
-		
-		return arraySort;
-	
-	}
-
 	
 
 }

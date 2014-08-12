@@ -1,31 +1,97 @@
 package Sort;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import Exceptions.EmptyArrayException;
+import Exceptions.OutOfBoundException;
 
 
-public class MergeHybridSort <T extends Comparable<T>> {
+public class MergeHybridSort <T extends Comparable<T>> extends Sort<T> {
 	
 	
-	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
 	
+	/**
+	 * 
+	 * Constructor With Generic Array Parameter
+	 * Sorts The Whole Array
+	 * 
+	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeHybridSort(T[] Array) throws EmptyArrayException, OutOfBoundException {
 		
+		this(Array, 0, Array.length-1);
+		
+	}
+	
+	
+
 	/**
 	 * 
 	 * Constructor With Generic Array Parameter
 	 * 
 	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
 	 * 
 	 */
-	public MergeHybridSort(T[] Array, int leftBound, int rightBound) {
+	public MergeHybridSort(T[] Array, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
 		
-		this.arraySort = Array;
+		super(Array);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
 		
 		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 			
 			this.mergeHybridSort (leftBound, rightBound);	
 			
 		}	
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * Sorts The Whole ArrayList
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeHybridSort(ArrayList<T> ArrayList) throws EmptyArrayException, OutOfBoundException {
+		
+		this(ArrayList, 0, ArrayList.size());
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeHybridSort(ArrayList<T> ArrayList, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
+		
+		super(ArrayList);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
+		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
+			this.mergeHybridSort(leftBound, rightBound);	
+			
+		}
 		
 	}
 	
@@ -58,7 +124,7 @@ public class MergeHybridSort <T extends Comparable<T>> {
 			
 		} else {
 			
-			if ((rightBound - leftBound) <= 20) {
+			if ((rightBound - leftBound) <= 50) {
 				
 				this.insertionSort(leftBound, rightBound);
 				
@@ -89,7 +155,7 @@ public class MergeHybridSort <T extends Comparable<T>> {
 	 * @param rightBound right limit
 	 * 
 	 */
-	protected void merge (int leftBound, int center, int rightBound) {
+	private void merge (int leftBound, int center, int rightBound) {
 		
 		// Create Left Array
 		@SuppressWarnings("unchecked")
@@ -161,21 +227,6 @@ public class MergeHybridSort <T extends Comparable<T>> {
 			
 		}
 		
-	}
-	
-	
-	
-	/**
-	 * 
-	 * Return The Sorted Array
-	 * 
-	 * @return The Array
-	 * 
-	 */
-	public T[] getArraySort() {
-		
-		return arraySort;
-	
 	}
 	
 	

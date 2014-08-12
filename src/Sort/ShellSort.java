@@ -1,29 +1,95 @@
 package Sort;
 
+import java.util.ArrayList;
 
-public class ShellSort <T extends Comparable<T>> {
+import Exceptions.EmptyArrayException;
+import Exceptions.OutOfBoundException;
+
+
+public class ShellSort <T extends Comparable<T>> extends Sort<T> {
+
 	
-	
-	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
+	/**
+	 * 
+	 * Constructor With Generic Array Parameter
+	 * Sorts The Whole Array
+	 * 
+	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public ShellSort(T[] Array) throws EmptyArrayException, OutOfBoundException {
 		
+		this(Array, 0, Array.length-1);
+		
+	}
+	
+	
 	
 	/**
 	 * 
 	 * Constructor With Generic Array Parameter
 	 * 
 	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
 	 * 
 	 */
-	public ShellSort(T[] Array, int leftBound, int rightBound) {
+	public ShellSort(T[] Array, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
 		
-		this.arraySort = Array;
+		super(Array);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
 		
 		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 			
 			this.shellSort(leftBound, rightBound);
 			
-		}		
+		}	
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * Sorts The Whole ArrayList
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public ShellSort(ArrayList<T> ArrayList) throws EmptyArrayException, OutOfBoundException {
+		
+		this(ArrayList, 0, ArrayList.size());
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public ShellSort(ArrayList<T> ArrayList, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
+		
+		super(ArrayList);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
+		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
+			this.shellSort(leftBound, rightBound);	
+			
+		}
 		
 	}
 	
@@ -96,22 +162,5 @@ public class ShellSort <T extends Comparable<T>> {
 		
 	}
 
-	
-	
-	
-	/**
-	 * 
-	 * Return The Sorted Array
-	 * 
-	 * @return The Array
-	 * 
-	 */
-	public T[] getArraySort() {
-		
-		return arraySort;
-	
-	}
-
-	
 }
 

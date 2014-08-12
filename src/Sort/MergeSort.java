@@ -1,13 +1,32 @@
 package Sort;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import Exceptions.EmptyArrayException;
+import Exceptions.OutOfBoundException;
 
 
-public class MergeSort <T extends Comparable<T>> {
+public class MergeSort <T extends Comparable<T>> extends Sort<T> {
 	
 	
-	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
+	
+	/**
+	 * 
+	 * Constructor With Generic Array Parameter
+	 * Sorts The Whole Array
+	 * 
+	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeSort(T[] Array) throws EmptyArrayException, OutOfBoundException {
+		
+		this(Array, 0, Array.length-1);
+		
+	}
+	
 	
 		
 	/**
@@ -15,11 +34,15 @@ public class MergeSort <T extends Comparable<T>> {
 	 * Constructor With Generic Array Parameter
 	 * 
 	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
 	 * 
 	 */
-	public MergeSort(T[] Array, int leftBound, int rightBound) {
+	public MergeSort(T[] Array, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
 		
-		this.arraySort = Array;
+		super(Array);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
 		
 		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 			
@@ -27,6 +50,49 @@ public class MergeSort <T extends Comparable<T>> {
 			
 		}
 				
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * Sorts The Whole ArrayList
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeSort(ArrayList<T> ArrayList) throws EmptyArrayException, OutOfBoundException {
+		
+		this(ArrayList, 0, ArrayList.size());
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public MergeSort(ArrayList<T> ArrayList, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
+		
+		super(ArrayList);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
+		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
+			this.mergeSort(leftBound, rightBound);	
+			
+		}
+		
 	}
 	
 	
@@ -157,18 +223,7 @@ public class MergeSort <T extends Comparable<T>> {
 	
 	
 	
-	/**
-	 * 
-	 * Return The Sorted Array
-	 * 
-	 * @return The Array
-	 * 
-	 */
-	public T[] getArraySort() {
-		
-		return arraySort;
-	
-	}
+
 
 	
 }

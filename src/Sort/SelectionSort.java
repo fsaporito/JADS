@@ -1,25 +1,91 @@
 package Sort;
 
-public class SelectionSort <T extends Comparable<T>> {
-		
+import java.util.ArrayList;
+
+import Exceptions.EmptyArrayException;
+import Exceptions.OutOfBoundException;
+
+public class SelectionSort <T extends Comparable<T>> extends Sort<T> {
 	
-	/** Array To Be Sorted (Holds The Final Result) */
-	private T[] arraySort;
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic Array Parameter
+	 * Sorts The Whole Array
+	 * 
+	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public SelectionSort(T[] Array) throws EmptyArrayException, OutOfBoundException {
 		
+		this(Array, 0, Array.length);
+		
+	}
+	
 	
 	/**
 	 * 
 	 * Constructor With Generic Array Parameter
 	 * 
 	 * @param Array Array To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
 	 * 
 	 */
-	public SelectionSort(T[] Array, int leftBound, int rightBound) {
+	public SelectionSort(T[] Array, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
 		
-		this.arraySort = Array;
+		super(Array);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
 		
 		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
 			
+			this.selectionSort(leftBound, rightBound);	
+			
+		}
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * Sorts The Whole ArrayList
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public SelectionSort(ArrayList<T> ArrayList) throws EmptyArrayException, OutOfBoundException {
+		
+		this(ArrayList, 0, ArrayList.size());
+		
+	}
+	
+	
+	
+	/**
+	 * 
+	 * Constructor With Generic ArrayList Parameter
+	 * 
+	 * @param ArrayList ArrayList To Sort
+	 * @throws EmptyArrayException 
+	 * @throws OutOfBoundException 
+	 * 
+	 */
+	public SelectionSort(ArrayList<T> ArrayList, int leftBound, int rightBound) throws EmptyArrayException, OutOfBoundException {
+		
+		super(ArrayList);
+		
+		this.exceptionOutOfBoundThrower (leftBound, rightBound);
+		
+		if ((rightBound - leftBound) != 0) { // One Element => Already Sorted
+		
 			this.selectionSort(leftBound, rightBound);	
 			
 		}
@@ -77,46 +143,5 @@ public class SelectionSort <T extends Comparable<T>> {
 		
 	}
 
-	
-	/**
-	 * Swaps Element i With Element J
-	 * 
-	 * @throws OutOfBoundException 
-	 * 
-	 */
-	private void swap (int i, int j) {
-		
-		if (i != j) {
-			
-			if (this.arraySort[i] != null && this.arraySort[j] != null) {
-					
-				T tmp = this.arraySort[i];
-					
-				this.arraySort[i] = this.arraySort[j];
-					
-				this.arraySort[j] = tmp;
-											
-			}
-		
-		}
-		
-		
-	}
 
-		
-	
-	/**
-	 * 
-	 * Return The Sorted Array
-	 * 
-	 * @return The Array
-	 * 
-	 */
-	public T[] getArraySort() {
-		
-		return arraySort;
-	
-	}
-
-	
 }
