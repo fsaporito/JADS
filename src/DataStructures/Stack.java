@@ -179,7 +179,15 @@ public class Stack<T> {
 	 */
 	public ArrayList<T> toArrayList () {
 		
-		return (this.Stack);
+		ArrayList<T> arrayListTMP = new ArrayList<T> ();
+		
+		for (int i = 0; i < this.Stack.size(); i++) {
+			
+			arrayListTMP.add(this.Stack.get(i));
+			
+		}
+		
+		return (arrayListTMP);
 		
 	}
 	
@@ -190,7 +198,15 @@ public class Stack<T> {
 	 */
 	public Stack<T> clone () {
 		
-		return (this);
+		Stack<T> tmpStack = new Stack<T> ();
+		
+		for (int i = 0; i < this.Stack.size(); i++) {
+			
+			tmpStack.pushStack(this.Stack.get(i));
+			
+		}
+		
+		return tmpStack;
 		
 	}
 

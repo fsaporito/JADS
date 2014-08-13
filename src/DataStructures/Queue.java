@@ -158,7 +158,15 @@ public class Queue<T> {
 	 */
 	public ArrayList<T> toArrayList () {
 		
-		return (this.Queue);
+		ArrayList<T> arrayListTMP = new ArrayList<T> ();
+		
+		for (int i = 0; i < this.Queue.size(); i++) {
+			
+			arrayListTMP.add(this.Queue.get(i));
+			
+		}
+		
+		return (arrayListTMP);
 		
 	}
 	
@@ -170,7 +178,15 @@ public class Queue<T> {
 	 */
 	public Queue<T> clone () {
 		
-		return (this);
+		Queue<T> tmpQueue = new Queue<T> ();
+		
+		for (int i = 0; i < this.Queue.size(); i++) {
+			
+			tmpQueue.enQueue(this.Queue.get(i));
+			
+		}
+		
+		return tmpQueue;
 		
 	}
 

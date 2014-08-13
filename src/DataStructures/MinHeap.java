@@ -17,6 +17,7 @@ public class MinHeap <T extends Comparable<T>> {
 	private int heapSize;
 
 
+	
 	public MinHeap () {
 
 		this.heapSize = -1;

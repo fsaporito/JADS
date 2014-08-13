@@ -40,7 +40,7 @@ public abstract class Sort <T extends Comparable<T>> {
 			
 		}
 		
-		this.arraySort = array;
+		this.arraySort = array.clone();
 		
 	}
 	
@@ -251,7 +251,7 @@ public abstract class Sort <T extends Comparable<T>> {
 	 */
 	public T[] getArray() {
 		
-		return this.arraySort;
+		return this.arraySort.clone();
 	
 	}
 	
@@ -276,11 +276,7 @@ public abstract class Sort <T extends Comparable<T>> {
 		
 		return arrayListTmp;
 	
-	}
-	
-	
-
-	
+	}	
 
 	
 	
