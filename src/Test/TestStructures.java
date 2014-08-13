@@ -17,8 +17,8 @@ public class TestStructures {
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException {
 		
 		
-		boolean TEST_QUEUE = false;
-		boolean TEST_STACK = true;
+		boolean TEST_QUEUE = true;
+		boolean TEST_STACK = false;
 		boolean TEST_HEAP_MAX = false;
 		boolean TEST_HEAP_MIN = false;
 		
@@ -51,6 +51,9 @@ public class TestStructures {
 		
 			System.out.println("Queue Test: \n");
 		
+			
+			// With Array
+			
 			System.out.println("With Array");
 		
 			Queue<Integer> q = new Queue<Integer>(Arr);
@@ -66,11 +69,18 @@ public class TestStructures {
 			q.deQueue();
 		
 			System.out.println(q.toString());
+			
+			q.reverseQueue();
+			
+			System.out.println(q.toString());
 		
 			q.clear();
 		
 			System.out.println("Empty: " + q.emptyQueue());
 		
+			
+			// With ArrayList
+			
 			System.out.println("\n\nWith ArrayList");
 		
 			q = new Queue<Integer>(ArrList);
@@ -85,6 +95,10 @@ public class TestStructures {
 		
 			q.deQueue();
 		
+			System.out.println(q.toString());
+			
+			q.reverseQueue();
+			
 			System.out.println(q.toString());
 		
 			q.clear();

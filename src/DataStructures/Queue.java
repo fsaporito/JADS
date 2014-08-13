@@ -149,7 +149,13 @@ public class Queue<T> {
 			
 		}
 		
-		this.Queue = tmpStack.toArrayList();
+		this.Queue.clear();
+		
+		while (!tmpStack.emptyStack()) {
+			
+			this.enQueue(tmpStack.popStack());
+			
+		}
 		
 		
 	}
