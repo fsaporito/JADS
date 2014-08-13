@@ -153,12 +153,24 @@ public class Queue<T> {
 	
 	
 	/**
+	 *  Create An ArrayList With The Elements Of The Queue
+	 *  @return ArrayList With The Elements Of The Queue
+	 */
+	public ArrayList<T> toArrayList () {
+		
+		return (this.Queue);
+		
+	}
+	
+	
+	
+	/**
 	 *  Clone The Current Queue Returning A Copy
 	 *  @return A New Queue 
 	 */
-	public ArrayList<T> clone () {
+	public Queue<T> clone () {
 		
-		return (this.Queue);
+		return (this);
 		
 	}
 

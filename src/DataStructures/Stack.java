@@ -102,7 +102,7 @@ public class Stack<T> {
 		
 		if (!this.emptyStack()) { 
 			
-			return this.Stack.get(this.Stack.size());
+			return this.Stack.get(this.Stack.size()-1);
 		
 		} else {
 			
@@ -147,7 +147,7 @@ public class Stack<T> {
 			
 		}
 		
-		this.Stack = tmpStack.clone();
+		this.Stack = tmpStack.toArrayList();
 		
 		
 	}
@@ -174,12 +174,23 @@ public class Stack<T> {
 	
 	
 	/**
+	 *  Create An ArrayList With The Elements Of The Stack
+	 *  @return Create An ArrayList With The Elements Of The Stack
+	 */
+	public ArrayList<T> toArrayList () {
+		
+		return (this.Stack);
+		
+	}
+	
+	
+	/**
 	 *  Clone The Current Stack Returning A Copy
 	 *  @return A New Stack 
 	 */
-	public ArrayList<T> clone () {
+	public Stack<T> clone () {
 		
-		return (this.Stack);
+		return (this);
 		
 	}
 
