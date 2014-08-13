@@ -11,7 +11,7 @@ public class MaxHeap <T extends Comparable<T>> {
 	/** ArrayList Used To Contain The Heap's Elements */
 	private ArrayList<T> heapArrList;
 	
-	/** Heap'Elements Numner */
+	/** Heap'Elements Number */
 	private int heapSize;
 	
 	

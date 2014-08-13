@@ -7,13 +7,13 @@ import Exceptions.GraphNotReadyException;
 
 public abstract class Graph<T> {
 
-	/** Nodes List*/
+	/** Nodes List */
 	protected ArrayList<Node<T>> nodes;
 	
 	/** Archs List */
 	protected ArrayList<Arch<T>> archs;
 	
-	/** Graph's Name*/
+	/** Graph's Name */
 	protected String name;
 	
 	

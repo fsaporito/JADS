@@ -135,6 +135,26 @@ public class Stack<T> {
 	
 	
 	/**
+	 * Reverse The Order Of The Element In The Stack
+	 */
+	public void reverseStack () {
+		
+		Stack<T> tmpStack = new Stack<T>();
+		
+		while (!this.emptyStack()) {
+			
+			tmpStack.pushStack(this.popStack());
+			
+		}
+		
+		this.Stack = tmpStack.clone();
+		
+		
+	}
+	
+	
+	
+	/**
 	 * Create An Array With The Elements Of The Stack
 	 * @return The Array
 	 */

@@ -17,12 +17,12 @@ public class TestStructures {
 	public static void main(String[] args) throws EmptyArrayException, EmptyHeapException {
 		
 		
-		boolean TEST_QUEUE = true;
-		boolean TEST_STACK = false;
+		boolean TEST_QUEUE = false;
+		boolean TEST_STACK = true;
 		boolean TEST_HEAP_MAX = false;
 		boolean TEST_HEAP_MIN = false;
 		
-		int LENGHT = 100;
+		int LENGHT = 10;
 		int RANGE = 100;		
 		
 		
@@ -106,6 +106,9 @@ public class TestStructures {
 		
 			System.out.println("Stack Test: \n");
 		
+			
+			// Array
+			
 			System.out.println("With Array");
 		
 			Stack<Integer> s = new Stack<Integer>(Arr);
@@ -121,11 +124,18 @@ public class TestStructures {
 			s.popStack();
 		
 			System.out.println(s.toString());
+			
+			s.reverseStack();
+			
+			System.out.println(s.toString());
 		
 			s.clear();
 		
 			System.out.println("Empty: " + s.emptyStack());
 		
+			
+			// ArrayList
+			
 			System.out.println("\n\nWith ArrayList");
 		
 			s = new Stack<Integer>(ArrList);
@@ -140,6 +150,10 @@ public class TestStructures {
 		
 			s.popStack();
 		
+			System.out.println(s.toString());
+			
+			s.reverseStack();
+			
 			System.out.println(s.toString());
 		
 			s.clear();
