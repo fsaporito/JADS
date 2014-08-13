@@ -137,6 +137,26 @@ public class Queue<T> {
 	
 	
 	/**
+	 * Reverse The Order Of The Element In The Queue
+	 */
+	public void reverseQueue () {
+		
+		Stack<T> tmpStack = new Stack<T>();
+		
+		while (!this.emptyQueue()) {
+			
+			tmpStack.pushStack(this.deQueue());
+			
+		}
+		
+		this.Queue = tmpStack.toArrayList();
+		
+		
+	}
+	
+	
+	
+	/**
 	 * Create An Array With The Elements Of The Queue
 	 * @return The Array
 	 */
