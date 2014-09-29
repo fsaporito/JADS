@@ -133,6 +133,17 @@ public class Stack<T> {
 	}
 	
 	
+	/**
+	 * Returns The Stack's Elements Number
+	 * 
+	 * @return Stack Size
+	 */
+	public int size() {
+		
+		return this.Stack.size();
+		
+	}
+	
 	
 	/**
 	 * Reverse The Order Of The Element In The Stack

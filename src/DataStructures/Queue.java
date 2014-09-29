@@ -137,6 +137,19 @@ public class Queue<T> {
 	
 	
 	/**
+	 * Returns The Queue's Elements Number
+	 * 
+	 * @return Queue Size
+	 */
+	public int size() {
+		
+		return this.Queue.size();
+		
+	}
+	
+	
+	
+	/**
 	 * Reverse The Order Of The Element In The Queue
 	 */
 	public void reverseQueue () {

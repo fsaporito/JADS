@@ -35,8 +35,8 @@ public class TestSortDynamic {
 		boolean TEST_HEAP_SORT = true;
 		
 		int SEED = 1111;
-		int LENGHT = 100000;
-		int RANGE = 100;	
+		int LENGHT = 1000000;
+		int RANGE = 1000;	
 		
 		long timeStart = 0;
 		long timeEnd = 0;
