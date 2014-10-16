@@ -10,7 +10,7 @@ public abstract class Graph<T> {
 	/** Nodes List */
 	protected ArrayList<Node<T>> nodes;
 	
-	/** Archs List */
+	/** Arches List */
 	protected ArrayList<Arch<T>> archs;
 	
 	/** Graph's Name */
@@ -40,9 +40,9 @@ public abstract class Graph<T> {
 	 * Constructor That Creates The Graph
 	 * 
 	 * @param Nodes Nodes List
-	 * @param Archs Archs List
+	 * @param Archs Arches List
 	 * @param name Graph Name
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	public Graph (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, String name) throws GraphNotReadyException {
 		
@@ -64,7 +64,7 @@ public abstract class Graph<T> {
 	 * Method To Add A Node To The Graph
 	 * 
 	 * @param Node Node To Add
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	public void addNode (Node<T> Node) throws GraphNotReadyException {
 		
@@ -84,7 +84,7 @@ public abstract class Graph<T> {
 	 * Method To Add An Arch To The Graph
 	 * 
 	 * @param Arch Arch To Add
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	public abstract void addArch (Arch<T> Arch) throws GraphNotReadyException;
 		
@@ -140,7 +140,7 @@ public abstract class Graph<T> {
 	 * Checks If The Arch Is Correct
 	 * 
 	 * @param arch Arch To Check
-	 * @throws GraphNotReadyException Graph No Correctly Initialised
+	 * @throws GraphNotReadyException Graph No Correctly Initialized
 	 * 
 	 */
 	protected abstract boolean checkArch (Arch<T> arch) throws GraphNotReadyException;
@@ -152,7 +152,7 @@ public abstract class Graph<T> {
 	 * By Calling checkArch On Every Single Arch
 	 * And checkArchDuplicates To See If There Are Doubles
 	 *  
-	 * @throws AutomatonNotReadyException Wrong Archs
+	 * @throws AutomatonNotReadyException Wrong Arches
 	 */
 	protected void checkArchsList () throws GraphNotReadyException {
 		
@@ -173,9 +173,9 @@ public abstract class Graph<T> {
 	
 	
 	/**
-	 * Check If The Archs List Has Duplicates
+	 * Check If The Arches List Has Duplicates
 	 * 
-	 * @throws GraphNotReadyException Duplicate Arch In The Archs List
+	 * @throws GraphNotReadyException Duplicate Arch In The Arches List
 	 */
 	protected void checkArchDuplicates () throws GraphNotReadyException {
 		
@@ -218,10 +218,10 @@ public abstract class Graph<T> {
 	
 	
 	/**
-	 * Check If The Graph Correctly Initialised
+	 * Check If The Graph Is Correctly Initialized
 	 * 
 	 * @param checkZero Flag Used To Check If The Graph Is NonEmpty
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	protected void checkGraphReady(boolean checkZero) throws GraphNotReadyException {
 		
@@ -266,10 +266,10 @@ public abstract class Graph<T> {
 	
 	
 	/**
-	 * Finds All The Archs With Label label
+	 * Finds All The Arches With Label label
 	 * 
 	 * @param label Label To Look For
-	 * @return The Arraylist Containing All The Arch Wich Match The Lablel, Null If No Arch Found
+	 * @return The ArrayList Containing All The Arch Which Match The Label, Null If No Arch Found
 	 * @throws GraphNotReadyException 
 	 */
 	public abstract ArrayList<Arch<T>> archsWithLabel (String label) throws GraphNotReadyException;
@@ -277,31 +277,31 @@ public abstract class Graph<T> {
 	
 	
 	/**
-	 * Finds All The Archs Between Two Nodes
+	 * Finds All The Arches Between Two Nodes
 	 * 
 	 * @param node1 First Node
 	 * @param node2 Second Node
-	 * @return The Arraylist Containing All The Arch, Null If No Arch Between The Two Nodes
+	 * @return The ArrayList Containing All The Arch, Null If No Arch Between The Two Nodes
 	 */
 	public abstract ArrayList<Arch<T>> archsBetweenNodes (Node<T> node1, Node<T> node2);
 	
 	
 	
 	/**
-	 * Method To Find All The Archs Starting From node
+	 * Method To Find All The Arches Starting From node
 	 * 
 	 * @param node Starting Node
-	 * @return The Archs List, Null If Empty
+	 * @return The Arches List, Null If Empty
 	 */
 	public abstract ArrayList<Arch<T>> archsFromNode (Node<T> node);
 	
 	
 	
 	/**
-	 * Method To Find All The Archs Ending At node
+	 * Method To Find All The Arches Ending At node
 	 * 
 	 * @param node End Node Node
-	 * @return The Archs List, Null If Empty
+	 * @return The Arches List, Null If Empty
 	 */
 	public abstract ArrayList<Arch<T>> archsToNode (Node<T> node);
 	
@@ -336,7 +336,7 @@ public abstract class Graph<T> {
 	 * Method To Find All Of The Neighbors Of A Node In The Graph
 	 * 
 	 * @param node Node Of Whom Is To Be Found The Neighborhood
-	 * @return Arraylist Containing All The Neighors, Null If None Or If The node Isn't Present In The Graph
+	 * @return ArrayList Containing All The Neighbors, Null If None Or If The node Isn't Present In The Graph
 	 */
 	public ArrayList<Node<T>> neighborhood (Node<T> node) {
 		
@@ -375,7 +375,7 @@ public abstract class Graph<T> {
 	 * Check If The Graph Is Connected
 	 * 
 	 * @return True If The Graph Is Connected, False Otherwise
-	 * @throws GraphNotReadyException Graph Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Not Correctly Initialized
 	 */
 	public boolean isConnected () throws GraphNotReadyException {
 		
@@ -387,11 +387,11 @@ public abstract class Graph<T> {
 		
 		for (int i = 0; (i < this.nodes.size() && returnValue); i++) { // Loop Over All Nodes
 			
-			nodeTMP = this.nodes.get(i); // Temporary Node Assignament
+			nodeTMP = this.nodes.get(i); // Temporary Node Assignment
 			
 			for (int j = 0; (i < this.nodes.size() && returnValue); j++) { // Loop Over All The Others Nodes
 				
-				if (!nodeTMP.equals(this.nodes.get(j))) { // Don't Analise The Temporary Node
+				if (!nodeTMP.equals(this.nodes.get(j))) { // Don't Analyze The Temporary Node
 					
 					if (!this.neighbor(nodeTMP, this.nodes.get(j))) { // Check If Neighbor With The Generic Node
 						

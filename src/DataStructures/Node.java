@@ -9,6 +9,7 @@ public class Node<T> {
 	private boolean fixedValue; 
 	
 	
+	
 	/**
 	 * Constructor That Creates The Node
 	 * (fixedValue = true)

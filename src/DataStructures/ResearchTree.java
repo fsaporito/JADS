@@ -3,7 +3,7 @@ package DataStructures;
 import Exceptions.NotResearchTreeException;
 
 
-public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
+public class ResearchTree <T extends Comparable<T>> extends BinaryTree<T> {
 
 	
 	/** 
@@ -27,11 +27,11 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 	
 	
 	/**
-	 * Set The Left SubTree To left Mantaining The Research Tree Structure
+	 * Set The Left SubTree To left Maintaining The Research Tree Structure
 	 * @param left Tree To Use As Left SubTree
 	 */
 	@Override
-	public void setLeft(Tree<T> left) {
+	public void setLeft(BinaryTree<T> left) {
 	
 		this.left = left;
 		
@@ -53,11 +53,11 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 	
 	
 	/**
-	 * Set The Right SubTree To right Mantaining The Research Tree Structure
+	 * Set The Right SubTree To right Maintaining The Research Tree Structure
 	 * @param right Tree To Use As Right SubTree
 	 */
 	@Override
-	public void setRight(Tree<T> right) {
+	public void setRight(BinaryTree<T> right) {
 
 		this.right = right;
 		
@@ -80,7 +80,7 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 	
 	/**
 	 *
-	 * Set The Root Value To value Mantaining The Research Tree Structure
+	 * Set The Root Value To value Maintaining The Research Tree Structure
 	 *
 	 */
 	@Override
@@ -186,7 +186,7 @@ public class ResearchTree <T extends Comparable<T>> extends Tree<T> {
 			
 			} else {
 				
-				ResearchTree<T> RNewLeaf = (ResearchTree<T>) new Tree<T>(value,null,null);
+				ResearchTree<T> RNewLeaf = (ResearchTree<T>) new BinaryTree<T>(value,null,null);
 			
 				if (this.getValue().compareTo(value) <= 0) {
 					

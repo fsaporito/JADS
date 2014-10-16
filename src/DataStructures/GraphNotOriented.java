@@ -23,9 +23,9 @@ public class GraphNotOriented<T> extends Graph<T> {
 	 * Constructor That Creates The Graph
 	 * 
 	 * @param Nodes Nodes List
-	 * @param Archs Archs List
+	 * @param Archs Arches List
 	 * @param name Graph Name
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	public GraphNotOriented(ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, String name) throws GraphNotReadyException {
 		
@@ -38,7 +38,7 @@ public class GraphNotOriented<T> extends Graph<T> {
 	 * Method To Add An Arch To The Graph
 	 * 
 	 * @param Arch Arch To Add
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
 	 */
 	@Override
 	public void addArch(Arch<T> Arch) throws GraphNotReadyException {
