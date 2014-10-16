@@ -38,12 +38,12 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * Constructor That Creates The LambdaNDFA
 	 * 
 	 * @param Nodes Nodes List
-	 * @param Archs Archs List
+	 * @param Archs Arches List
 	 * @param Start Start State
 	 * @param FinalNodes FinalNodes List
 	 * @param Name LambdaNDFA's Name
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	public LambdaNDFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, AutomatonNotReadyException {
 		
@@ -64,12 +64,12 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 
 
 	/**
-	 * Check If The Automaton Is Correctly Initialised
+	 * Check If The Automaton Is Correctly Initialized
 	 * 
 	 * @param checkStart Check The Start State
 	 * @param checkFinal Check If There Is A FinalState List
 	 * @param checkEmptyFinalNodes Check If The FinalState List Is Empty
-	 * @throws AutomatonNotReadyException Automaton Not Correctly Initialised
+	 * @throws AutomatonNotReadyException Automaton Not Correctly Initialized
 	 */
 	protected void checkAutomatonReady (boolean checkStart, boolean checkFinal, boolean checkEmptyFinalNodes) throws AutomatonNotReadyException {
 		
@@ -122,7 +122,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * - Starting And Ending Nodes Are In nodeList 
 	 * 
 	 * @param arch Arch To Check
-	 * @throws GraphNotReadyException Graph No Correctly Initialised
+	 * @throws GraphNotReadyException Graph No Correctly Initialized
 	 * 
 	 */
 	@Override
@@ -176,7 +176,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * If Not Present In The Nodes List, Adds It
 	 * 
 	 * @param Node Final Node
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	public void addFinalNode (Node<T> Node) throws AutomatonNotReadyException {
 		
@@ -211,7 +211,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * If Not Present In The Nodes List, Adds It
 	 * 
 	 * @param Start Start Node
-	 * @throws AutomatonNotReadyException Automaton Not Correctly Initialised
+	 * @throws AutomatonNotReadyException Automaton Not Correctly Initialized
 	 */
 	public void setStart (Node<T> Start) throws AutomatonNotReadyException {
 		
@@ -239,7 +239,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * (Must Be With fixedLabel)
 	 * 
 	 * @param Arch Arch To Be Added To The NDFA
-	 * @throws GraphNotReadyException The Graph Is Not Correctly Initialised
+	 * @throws GraphNotReadyException The Graph Is Not Correctly Initialized
 	 */
 	@Override
 	public void addArch (Arch<T> Arch) throws GraphNotReadyException {
@@ -281,8 +281,8 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	 * Enclose The Current State
 	 * 
 	 * @param currentState DFA Current State
-	 * @return Arrayist With The Nodes
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @return ArrayList With The Nodes
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	public ArrayList<Node<T>> enClose (Node<T> currentState, ArrayList<Node<T>> enclosedStates) throws AutomatonNotReadyException {
 		
@@ -294,7 +294,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 		 
 		ArrayList<Arch<T>> encloseArch = new ArrayList<Arch<T>>(); // Arch With Lambda Transition
 		
-		// Find Lambda Transition Archs
+		// Find Lambda Transition Arches
 		try {
 			
 			encloseArch = this.archsWithLabel("");
@@ -317,7 +317,7 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 				
 			}
 			
-			if (enclosedNodes.size() > 0) { // At Least One Reachale Node With Lamda Transition
+			if (enclosedNodes.size() > 0) { // At Least One Reachable Node With Lambda Transition
 				
 				ArrayList<Node<T>> enclosedNodesTMP = new ArrayList<Node<T>>(); // Enclosed Nodes List
 				
@@ -346,12 +346,12 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	
 	
 	/**
-	 * Transiction Function 
+	 * Transition Function 
 	 * 
 	 * @param a Symbol To Check
 	 * @param currentState DFA Current State
-	 * @return The Arriving Node If There Is An Arch Labelled a From currentState, Null Otherwise
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @return The Arriving Node If There Is An Arch Labeled a From currentState, Null Otherwise
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	private ArrayList<Node<T>> transitionFunction (String a, Node<T> currentState) throws AutomatonNotReadyException {
 		
@@ -386,12 +386,12 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 		
 	
 	/**
-	 * Transiction Function Extended To String, To Check If The
+	 * Transition Function Extended To String, To Check If The
 	 * Passed String Is Accepted By The NDFA
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	public boolean transitionFunctionExtended (String word) throws AutomatonNotReadyException {
 		
@@ -412,13 +412,13 @@ public class LambdaNDFA<T> extends GraphOriented<T> {
 	
 	
 	/**
-	 * Recursive Transiction Function To Check If The Passed String Is Accepted
+	 * Recursive Transition Function To Check If The Passed String Is Accepted
 	 * By Calling Itself On Every State Generate By The TransictionFunction, 
 	 * Reducing Step By Step The Word
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	private boolean recursiveTransictionFunctionExtended (String word, Node<T> currentState) throws AutomatonNotReadyException {
 		

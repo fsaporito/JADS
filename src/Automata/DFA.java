@@ -33,12 +33,12 @@ public class DFA<T> extends NDFA<T> {
 	 * Constructor That Creates The DFA
 	 * 
 	 * @param Nodes Nodes List
-	 * @param Archs Archs List
+	 * @param Archs Arches List
 	 * @param Start Start State
 	 * @param FinalNodes FinalNodes List
 	 * @param Name DFA's Name
-	 * @throws GraphNotReadyException Graph Is Not Correctly Initialised
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws GraphNotReadyException Graph Is Not Correctly Initialized
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	public DFA (ArrayList<Node<T>> Nodes, ArrayList<Arch<T>> Archs, Node<T> Start, ArrayList<Node<T>> FinalNodes, String Name) throws GraphNotReadyException, AutomatonNotReadyException {
 		
@@ -51,13 +51,13 @@ public class DFA<T> extends NDFA<T> {
 	
 	
 	/**
-	 * Checks If The Archs Are Correct:
+	 * Checks If The Arches Are Correct:
 	 * 1) Starting And Ending Nodes Are In nodeList
 	 * 2) No Lambda Transition 
-	 * 3) No DUplicate Label For The Same Node (DETERMINISTIC AUTOMATON)
+	 * 3) No Duplicate Label For The Same Node (DETERMINISTIC AUTOMATON)
 	 * 
 	 * @param arch Arch To Check
-	 * @throws GraphNotReadyException Graph No Correctly Initialised 
+	 * @throws GraphNotReadyException Graph No Correctly Initialized 
 	 * 
 	 */
 	@Override
@@ -94,12 +94,12 @@ public class DFA<T> extends NDFA<T> {
 	
 	
 	/**
-	 * Transiction Function 
+	 * Transition Function 
 	 * 
 	 * @param a Symbol To Check
 	 * @param currentState DFA Current State
-	 * @return The Arriving Node If There Is An Arch Labelled a From currentState, Null Otherwise
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @return The Arriving Node If There Is An Arch Labeled a From currentState, Null Otherwise
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	private Node<T> transitionFunction (String a, Node<T> currentState) throws AutomatonNotReadyException {
 		
@@ -109,7 +109,7 @@ public class DFA<T> extends NDFA<T> {
 		
 		boolean foundArch = false; // Arch Found Flag
 		
-		// Takes Only The Archs With currentState As Initial Node
+		// Takes Only The Arches With currentState As Initial Node
 		ArrayList<Arch<T>> archsList = this.archsFromNode(currentState);
 		 
 		for (int j = 0; (j < archsList.size() && !foundArch); j++) {
@@ -134,12 +134,12 @@ public class DFA<T> extends NDFA<T> {
 		
 	
 	/**
-	 * Transiction Function Extended To String, To Check If The
+	 * Transition Function Extended To String, To Check If The
 	 * Passed String Is Accepted By The DFA
 	 * 
 	 * @param word Word To Check
 	 * @return True If The Word Belongs To The DFA's Language, False Otherwise
-	 * @throws AutomatonNotReadyException DFA Not Correctly Initialised
+	 * @throws AutomatonNotReadyException DFA Not Correctly Initialized
 	 */
 	@Override
 	public boolean transitionFunctionExtended (String word) throws AutomatonNotReadyException {
