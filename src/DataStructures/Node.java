@@ -8,11 +8,15 @@ public class Node<T> {
 	/** Flag For Editing The Value */
 	private boolean fixedValue; 
 	
+	/** Node Color */
+	private String color;
+	
 	
 	
 	/**
 	 * Constructor That Creates The Node
 	 * (fixedValue = true)
+	 * (color = WHITE)
 	 * 
 	 * @param value Node's Value
 	 */
@@ -26,6 +30,7 @@ public class Node<T> {
 	
 	/**
 	 * Constructor That Creates The Node
+	 * (color = WHITE)
 	 * 
 	 * @param value Node's Value
 	 * @param fixedValue Tells If The Value Is Fixed Or Not
@@ -35,6 +40,8 @@ public class Node<T> {
 		this.value = value;
 		
 		this.fixedValue = fixedValue;
+		
+		this.color = "WHITE";
 		
 	}
 	
@@ -72,6 +79,47 @@ public class Node<T> {
 	
 	
 	/**
+	 * Returns The Node's Value
+	 * 
+	 * @return the color
+	 */
+	public String getColor () {
+		
+		return this.color;
+		
+	}
+	
+	
+	/**
+	 * Changes The Current Color To Color
+	 * 
+	 * @return the color
+	 */
+	public void setColor (String color) {
+		
+		if (color != null) {
+			
+			this.color = color;
+			
+		}
+		
+	}
+	
+	
+	/**
+	 * Changes The Current Color To WHITE
+	 * 
+	 * @return the color
+	 */
+	public void setColorWhite () {
+		
+		this.color = "WHITE";
+		
+	}
+	
+	
+	
+	/**
 	 * Check If The Label Is Fixed
 	 * 
 	 * @return fixedLabel boolean flag
@@ -91,13 +139,14 @@ public class Node<T> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + (fixedValue ? 1231 : 1237);
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
 
 	
-
+	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -111,6 +160,11 @@ public class Node<T> {
 			return false;
 		@SuppressWarnings("rawtypes")
 		Node other = (Node) obj;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
 		if (fixedValue != other.fixedValue)
 			return false;
 		if (value == null) {
@@ -120,9 +174,9 @@ public class Node<T> {
 			return false;
 		return true;
 	}
-
 	
 
+	
 	/** 
 	 * @see java.lang.Object#toString()
 	 */
@@ -140,6 +194,8 @@ public class Node<T> {
 			toString += " (Non Fixed Value)";
 			
 		}
+		
+		toString += " - color=" + this.color;
 		
 		toString += " - hashCode()=" + hashCode();
 		
