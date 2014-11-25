@@ -11,12 +11,16 @@ public class Node<T> {
 	/** Node Color */
 	private String color;
 	
+	/** Parent Node In A Walk */
+	private Node<T> parent;
+	
 	
 	
 	/**
 	 * Constructor That Creates The Node
 	 * (fixedValue = true)
 	 * (color = WHITE)
+	 * (parent = NULL)
 	 * 
 	 * @param value Node's Value
 	 */
@@ -31,6 +35,7 @@ public class Node<T> {
 	/**
 	 * Constructor That Creates The Node
 	 * (color = WHITE)
+	 * (parent = NULL)
 	 * 
 	 * @param value Node's Value
 	 * @param fixedValue Tells If The Value Is Fixed Or Not
@@ -42,6 +47,8 @@ public class Node<T> {
 		this.fixedValue = fixedValue;
 		
 		this.color = "WHITE";
+		
+		this.parent = null;
 		
 	}
 	
@@ -129,9 +136,35 @@ public class Node<T> {
 		return this.fixedValue;
 		
 	}
+	
+	
+	
 
 	
+	/**
+	 * Returns The Node's Parent
+	 * 
+	 * @return the parent
+	 */
+	public Node<T> getParent() {
+		
+		return this.parent;
 	
+	}
+
+
+	/**
+	 * Changes The Current Parent Node To Parent
+	 * 
+	 * @return the color
+	 */
+	public void setParent (Node<T> parent) {
+		
+		this.parent = parent;
+	
+	}
+
+
 	/** 
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -141,11 +174,11 @@ public class Node<T> {
 		int result = 1;
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + (fixedValue ? 1231 : 1237);
+		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
 
-	
 	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -166,6 +199,11 @@ public class Node<T> {
 		} else if (!color.equals(other.color))
 			return false;
 		if (fixedValue != other.fixedValue)
+			return false;
+		if (parent == null) {
+			if (other.parent != null)
+				return false;
+		} else if (!parent.equals(other.parent))
 			return false;
 		if (value == null) {
 			if (other.value != null)
@@ -196,6 +234,16 @@ public class Node<T> {
 		}
 		
 		toString += " - color=" + this.color;
+		
+		if (this.parent != null) {
+			
+			if (this.parent.getValue() != null) {
+				
+				toString += " - parent=" + this.parent.getValue();
+				
+			}
+			
+		}
 		
 		toString += " - hashCode()=" + hashCode();
 		
