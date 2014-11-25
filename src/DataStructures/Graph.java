@@ -505,13 +505,57 @@ public abstract class Graph<T> {
 		
 		ArrayList<Node<T>> neighborhoodTMP = this.neighborhood(sourceNode);
 		
+		ArrayList<Arch<T>> archFromSource = this.archsFromNode(sourceNode);
+		
 		for (int i = 0; i < neighborhoodTMP.size(); i++) {
 			
 			if (neighborhoodTMP.get(i).isColorWhite()) {
 				
+				for (int j = 0; j < archFromSource.size(); j++) {
+					
+					if (archFromSource.get(j).getB().equals(neighborhoodTMP.get(i))) {
+						
+						archFromSource.get(j).setTypeTreeEdge();
+						
+					}
+					
+				}
+				
 				neighborhoodTMP.get(i).setParent(sourceNode);
 				
 				time = this.dfsVisit (neighborhoodTMP.get(i), time);
+				
+			} else if (neighborhoodTMP.get(i).isColorGray()) {
+				
+				for (int j = 0; j < archFromSource.size(); j++) {
+					
+					if (archFromSource.get(j).getB().equals(neighborhoodTMP.get(i))) {
+						
+						archFromSource.get(j).setTypeBackEdge();
+						
+					}
+					
+				}
+				
+			} else if (neighborhoodTMP.get(i).isColorBlack()) {
+				
+				for (int j = 0; j < archFromSource.size(); j++) {
+					
+					if (archFromSource.get(j).getB().equals(neighborhoodTMP.get(i))) {
+						
+						if (sourceNode.getDiscoveryTIME() < neighborhoodTMP.get(i).getDiscoveryTIME()) {
+						
+							archFromSource.get(j).setTypeForwardEdge();
+							
+						} else {
+							
+							archFromSource.get(j).setTypeCrossEdge();
+							
+						}
+						
+					}
+					
+				}
 				
 			}
 			

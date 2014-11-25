@@ -219,7 +219,99 @@ public class Arch<T> {
 		return this.type;
 	}
 
-
+	
+	/**
+	 * Check The Current Type Is TreeEdge
+	 * 
+	 */
+	public boolean IsTypeTreeEdge () {
+		
+		boolean returnValue = false;
+		
+		if (this.type != null) {
+		
+			if (this.type.equals("TreeEdge")) {
+			
+				returnValue = true;
+			
+			}
+			
+		}
+		
+		return returnValue;
+	
+	}
+	
+	
+	/**
+	 * Check The Current Type Is BackEdge
+	 * 
+	 */
+	public boolean IsTypeBackEdge () {
+		
+		boolean returnValue = false;
+		
+		if (this.type != null) {
+		
+			if (this.type.equals("BackEdge")) {
+			
+				returnValue = true;
+			
+			}
+			
+		}
+		
+		return returnValue;
+	
+	}
+	
+	
+	/**
+	 * Check The Current Type Is ForwardEdge
+	 * 
+	 */
+	public boolean IsTypeForwardEdge () {
+		
+		boolean returnValue = false;
+		
+		if (this.type != null) {
+		
+			if (this.type.equals("ForwardEdge")) {
+			
+				returnValue = true;
+			
+			}
+			
+		}
+		
+		return returnValue;
+	
+	}
+	
+	
+	/**
+	 * Check The Current Type Is CrossEdge
+	 * 
+	 */
+	public boolean IsTypeCrossEdge () {
+		
+		boolean returnValue = false;
+		
+		if (this.type != null) {
+		
+			if (this.type.equals("CrossEdge")) {
+			
+				returnValue = true;
+			
+			}
+			
+		}
+		
+		return returnValue;
+	
+	}
+	
+	
 
 	/**
 	 * Changes The Current Type To type
@@ -231,7 +323,53 @@ public class Arch<T> {
 		this.type = type;
 	
 	}
+	
+	
+	
+	/**
+	 * Changes The Current Type To TreeEdge
+	 * 
+	 */
+	public void setTypeTreeEdge () {
+		
+		this.type = "TreeEdge";
+	
+	}
+	
+	
+	/**
+	 * Changes The Current Type To BackEdge
+	 * 
+	 */
+	public void setTypeBackEdge () {
+		
+		this.type = "BackEdge";
+	
+	}
+	
+	
+	/**
+	 * Changes The Current Type To ForwardEdge
+	 * 
+	 */
+	public void setTypeForwardEdge () {
+		
+		this.type = "ForwardEdge";
+	
+	}
+	
 
+	/**
+	 * Changes The Current Type To CrossEdge
+	 * 
+	 */
+	public void setTypeCrossEdge () {
+		
+		this.type = "CrossEdge";
+	
+	}	
+	
+	
 
 	/** 
 	 * @see java.lang.Object#equals(java.lang.Object)
