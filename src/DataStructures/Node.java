@@ -100,7 +100,6 @@ public class Node<T> {
 	/**
 	 * Changes The Current Color To Color
 	 * 
-	 * @return the color
 	 */
 	public void setColor (String color) {
 		
@@ -116,7 +115,6 @@ public class Node<T> {
 	/**
 	 * Changes The Current Color To WHITE
 	 * 
-	 * @return the color
 	 */
 	public void setColorWhite () {
 		
@@ -156,7 +154,6 @@ public class Node<T> {
 	/**
 	 * Changes The Current Parent Node To Parent
 	 * 
-	 * @return the color
 	 */
 	public void setParent (Node<T> parent) {
 		
