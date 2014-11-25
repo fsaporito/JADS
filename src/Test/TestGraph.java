@@ -57,6 +57,10 @@ public class TestGraph {
 			G1.addArch(A10);
 			G1.addArch(A11);
 			
+			//System.out.println(G1.toString());
+			
+			G1.bfs(Q0);
+			
 			System.out.println(G1.toString());
 		
 		} catch (GraphNotReadyException e) {

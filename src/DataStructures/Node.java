@@ -232,13 +232,13 @@ public class Node<T> {
 		
 		toString += " - color=" + this.color;
 		
-		if (this.parent != null) {
+		if (this.parent != null && this.parent.getValue() != null) {
 			
-			if (this.parent.getValue() != null) {
+			toString += " - parent=" + this.parent.getValue();
 				
-				toString += " - parent=" + this.parent.getValue();
-				
-			}
+		} else {
+			
+			toString += " - parent=NULL";
 			
 		}
 		

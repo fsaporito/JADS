@@ -87,5 +87,41 @@ public class GraphNotOriented<T> extends Graph<T> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	/**
+	 * Check If The Graph Is Connected Using BFS
+	 * 
+	 * @return True If The Graph Is Connected, False Otherwise
+	 * @throws GraphNotReadyException Graph Not Correctly Initialized
+	 */
+	@Override
+	public boolean isConnected () throws GraphNotReadyException {
+		
+		boolean returnValue = true; // Return Value
+		
+		this.checkGraphReady(true); // Check If The Graph Is Ready
+		
+		Node<T> nodeTMP; // Temporary Node
+		
+		this.bfs(this.nodes.get(0));
+		
+		for (int i = 0; (i < this.nodes.size() && returnValue); i++) { // Loop Over All Nodes
+			
+			nodeTMP = this.nodes.get(i); // Temporary Node Assignment
+			
+			if (!nodeTMP.getColor().equals("BLACK")) {
+				
+				returnValue = false;
+				
+			}
+						
+		}
+		
+		return returnValue;
+		
+		
+	}
+	
 
 }

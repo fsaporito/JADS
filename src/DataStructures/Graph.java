@@ -372,6 +372,68 @@ public abstract class Graph<T> {
 	
 	
 	/**
+	 * Visits The Graph With A Breath First Search
+	 * 
+	 * @param sourceNode Starting Node
+	 * @throws GraphNotReadyException 
+	 * 
+	 */
+	public void bfs (Node<T> sourceNode) throws GraphNotReadyException {
+		
+		if (!this.nodes.contains(sourceNode)) {
+			
+			throw new GraphNotReadyException ("Node: " + sourceNode.getValue() + "Doesn't Belong To The Graoh!!!");
+			
+		}
+		
+		this.checkGraphReady(false);
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			this.nodes.get(i).setColorWhite();
+			
+			this.nodes.get(i).setParent(null);
+			
+		}
+		
+		Queue<Node<T>> nodeQueue = new Queue<Node<T>>();
+		
+		sourceNode.setColor("GRAY");
+		
+		nodeQueue.enQueue(sourceNode);
+		
+		Node<T> nodeTMP = null;
+		
+		ArrayList<Node<T>> neighborhoodTMP = new ArrayList<Node<T>>();
+		
+		while (!nodeQueue.emptyQueue()) {
+			
+			nodeTMP = nodeQueue.deQueue();
+			
+			neighborhoodTMP = this.neighborhood(nodeTMP);
+			
+			for (int i = 0; i < neighborhoodTMP.size(); i++) {
+				
+				if (neighborhoodTMP.get(i).getColor().equals("WHITE")) {
+					
+					neighborhoodTMP.get(i).setColor("GRAY");
+					
+					neighborhoodTMP.get(i).setParent(nodeTMP);
+					
+					nodeQueue.enQueue(neighborhoodTMP.get(i));					
+					
+				}
+				
+			}
+			
+			nodeTMP.setColor("BLACK");
+			
+		}
+		
+	}
+	
+	
+	/**
 	 * Check If The Graph Is Connected
 	 * 
 	 * @return True If The Graph Is Connected, False Otherwise
