@@ -60,6 +60,9 @@ public class GraphNotOriented<T> extends Graph<T> {
 	@Override
 	protected boolean checkArch(Arch<T> arch) throws GraphNotReadyException {
 		// TODO Auto-generated method stub
+		
+		this.connectedComponents();
+		
 		return false;
 	}
 

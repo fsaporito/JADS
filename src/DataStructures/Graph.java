@@ -16,7 +16,8 @@ public abstract class Graph<T> {
 	/** Graph's Name */
 	protected String name;
 	
-	
+	/** Number Of Connected Components */
+	protected int connectedComponents;
 	
 	/**
 	 * Constructor That Creates An Empty Graph
@@ -29,8 +30,9 @@ public abstract class Graph<T> {
 		
 		this.archs = new ArrayList<Arch<T>> ();
 		
-		this.name = name;
+		this.name = name;	
 		
+		this.connectedComponents = 0;
 		
 	}
 
@@ -54,7 +56,11 @@ public abstract class Graph<T> {
 		
 		this.name = name;
 		
+		this.connectedComponents = 0;
+		
 		this.checkGraphReady(false);
+		
+		this.connectedComponents();
 		
 	}
 	
@@ -75,6 +81,8 @@ public abstract class Graph<T> {
 			this.nodes.add(Node);
 		
 		}	
+		
+		this.connectedComponents();
 			
 	}
 
@@ -433,6 +441,104 @@ public abstract class Graph<T> {
 	}
 	
 	
+	
+	/**
+	 * Visits The Graph With A Breath First Search
+	 * 
+	 * @return Number Of Connected Components
+	 * @throws GraphNotReadyException 
+	 * 
+	 */
+	public int dfs () throws GraphNotReadyException {
+		
+		this.checkGraphReady(false);
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			this.nodes.get(i).setColorWhite();
+			
+			this.nodes.get(i).setParent(null);
+			
+		}
+		
+		int time = 0;
+		
+		int connectedComponents = 0;
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			if (this.nodes.get(i).getColor().equals("WHITE")) {
+				
+				connectedComponents++;
+				
+				time = this.dfsVisit (this.nodes.get(i), time);
+				
+			}
+			
+		}
+		
+		return connectedComponents;
+		
+	}
+	
+	
+	/**
+	 * Recursive Step For Deep Search
+	 * 
+	 * @param sourceNode Starting Node
+	 * @param time Time Parameter
+	 * @return Number of Connected Components
+	 */
+	private int dfsVisit (Node<T> sourceNode, int time) {
+		
+		time++;
+		
+		sourceNode.setColor("GRAY");
+		
+		ArrayList<Node<T>> neighborhoodTMP = this.neighborhood(sourceNode);
+		
+		for (int i = 0; i < neighborhoodTMP.size(); i++) {
+			
+			if (neighborhoodTMP.get(i).getColor().equals("WHITE")) {
+				
+				neighborhoodTMP.get(i).setParent(sourceNode);
+				
+				time = this.dfsVisit (neighborhoodTMP.get(i), time);
+				
+			}
+			
+		}
+		
+		sourceNode.setColor("BLACK");
+		
+		return time;
+		
+	}
+	
+	
+	/**
+	 * Update The Field ConnectedComponents
+	 * And Sets The Colors To Default
+	 *  
+	 * @return Connected Components Number
+	 * @throws GraphNotReadyException
+	 */
+	public int connectedComponents () throws GraphNotReadyException {
+		
+		this.connectedComponents = this.dfs();
+		
+		for (int i = 0; i < this.nodes.size(); i++) {
+			
+			this.nodes.get(i).setColorWhite();
+			
+		}
+		
+		return this.connectedComponents;
+		
+	}
+	
+	
+	
 	/**
 	 * Check If The Graph Is Connected
 	 * 
@@ -521,6 +627,9 @@ public abstract class Graph<T> {
 			e.printStackTrace();
 			
 		}
+		
+		toString += "\n\n\tConnected Components: " + this.connectedComponents;
+		
 		
 		toString += "\n\n\tNeighbors: ";
 		

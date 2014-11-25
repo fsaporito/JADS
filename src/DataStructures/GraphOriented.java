@@ -59,6 +59,8 @@ public class GraphOriented<T> extends Graph<T> {
 			}
 		
 		}	
+		
+		this.connectedComponents();
 			
 	}
 		
