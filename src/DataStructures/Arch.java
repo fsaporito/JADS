@@ -16,11 +16,17 @@ public class Arch<T> {
 	/** Flag For Editing The Label */
 	private boolean fixedLabel; 
 	
+	/** Arch Weight */
+	private double weight;
+	
+	/** Arch Type */
+	private String type;
 	
 	
 	/**
 	 * Constructor That Creates The Arch
 	 * (fixedLabel = True)
+	 * (weight = 1)
 	 * 
 	 * @param A First Node
 	 * @param B Second Node
@@ -29,7 +35,7 @@ public class Arch<T> {
 	 */
 	public Arch (Node<T> A, Node<T> B, String label) throws WrongArchException {
 		
-		this(A, B, label, true);
+		this(A, B, label, true, 1.0);
 		
 	}
 	
@@ -42,11 +48,12 @@ public class Arch<T> {
 	 * @param B Second Node
 	 * @param label Arch's Label
 	 * @param fixedLabel Tells If The Label Is Fixed Or Not
+	 * @param weight Arch Weight (Default = 1)
 	 * @throws WrongArchException Wrong Parameter (Null)
 	 */
-	public Arch (Node<T> A, Node<T> B, String label, boolean fixedLabel) throws WrongArchException {
+	public Arch (Node<T> A, Node<T> B, String label, boolean fixedLabel, double weight) throws WrongArchException {
 		
-		this.archChecker(A, B, label);
+		this.archChecker(A, B, label, weight);
 		
 		this.A = A;
 		
@@ -55,6 +62,10 @@ public class Arch<T> {
 		this.label = label;
 		
 		this.fixedLabel = fixedLabel;
+		
+		this.weight = weight;
+		
+		this.type = null;
 		
 	}
 
@@ -66,9 +77,10 @@ public class Arch<T> {
 	 * @param A First Node
 	 * @param B Second Node
 	 * @param label Arch's Label
+	 * @param weight Arch Weight
 	 * @throws WrongArchException Wrong Parameter (Null)
 	 */
-	private void archChecker (Node<T> A, Node<T> B, String label) throws WrongArchException {
+	private void archChecker (Node<T> A, Node<T> B, String label, double weight) throws WrongArchException {
 		
 		if (A == null) {
 			
@@ -88,7 +100,14 @@ public class Arch<T> {
 	
 		}
 		
+		if (weight < 0) {
+			
+			throw new WrongArchException ("Weight Is Negative!!!");
+	
+		}
+		
 	}
+	
 
 	/**
 	 * Returns The Arch's Label
@@ -158,14 +177,64 @@ public class Arch<T> {
 	 */
 	public Node<T> getB() {
 		
-		return B;
+		return this.B;
 		
 	}
-
+	
 	
 	
 	/**
-	 * @see java.lang.Object#hashCode()
+	 * Returns The Arch Weight
+	 * 
+	 * @return the Weight
+	 */
+	public double getWeight() {
+		
+		return this.weight;
+	
+	}
+
+
+	/**
+	 * Changes The Weight To weight
+	 * 
+	 * @param weight the new weight
+	 */
+	public void setWeight (double weight) {
+		
+		this.weight = weight;
+	
+	}
+
+
+	
+	/**
+	 * Returns The Arch Type
+	 * (Null If Not Set)
+	 * 
+	 * @return the arch type
+	 */
+	public String getType() {
+		
+		return this.type;
+	}
+
+
+
+	/**
+	 * Changes The Current Type To type
+	 * 
+	 * @param type the new arch type
+	 */
+	public void setType (String type) {
+		
+		this.type = type;
+	
+	}
+
+
+	/** 
+	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public int hashCode() {
@@ -175,16 +244,16 @@ public class Arch<T> {
 		result = prime * result + ((B == null) ? 0 : B.hashCode());
 		result = prime * result + (fixedLabel ? 1231 : 1237);
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(weight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-
-
 	
 	
-	
-	/** 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -213,13 +282,18 @@ public class Arch<T> {
 				return false;
 		} else if (!label.equals(other.label))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (Double.doubleToLongBits(weight) != Double
+				.doubleToLongBits(other.weight))
+			return false;
 		return true;
 	}
 
 
-
-	
-	
 	
 	/**
 	 * @see java.lang.Object#toString()
@@ -227,9 +301,25 @@ public class Arch<T> {
 	@Override
 	public String toString() {
 		
-		return "Arch:" + "  (" + this.A.getValue().toString() 
-				+ "  , " + this.B.getValue().toString() + " , " + this.label + ")"
-				+ "  -> FixedLabel = " + this.fixedLabel;
+		String archString =  "Arch:";
+		
+		archString += "  (" + this.A.getValue().toString();
+		
+		archString += "  , " + this.B.getValue().toString();
+		
+		archString += " , " + this.label + ")";
+		
+		archString += "  -> Weight = " + this.weight;
+		
+		if (this.type != null && this.type != "") {
+			
+			archString += "  - Type = " + this.type;
+			
+		}	
+		
+		archString += "  - FixedLabel = " + this.fixedLabel;
+		
+		return archString;
 	
 	}
 	
