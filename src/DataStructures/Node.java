@@ -14,6 +14,15 @@ public class Node<T> {
 	/** Parent Node In A Walk */
 	private Node<T> parent;
 	
+	/** Node DIstance From Current Source */
+	private double distance;
+	
+	/** Node Discovery Time In The Visit */
+	private double discoveryTIME;
+	
+	/** Node Final Time In The Visit */
+	private double finalTIME;
+	
 	
 	
 	/**
@@ -49,6 +58,12 @@ public class Node<T> {
 		this.color = "WHITE";
 		
 		this.parent = null;
+		
+		this.distance = 0;
+		
+		this.discoveryTIME = 0;;
+		
+		this.finalTIME = 0;
 		
 	}
 	
@@ -86,7 +101,7 @@ public class Node<T> {
 	
 	
 	/**
-	 * Returns The Node's Value
+	 * Returns The Node's Color
 	 * 
 	 * @return the color
 	 */
@@ -95,6 +110,7 @@ public class Node<T> {
 		return this.color;
 		
 	}
+	
 	
 	
 	/**
@@ -112,6 +128,99 @@ public class Node<T> {
 	}
 	
 	
+	
+	/**
+	 *  Check If The Current Color Is BLACK
+	 */
+	public boolean isColorBlack () {
+		
+		boolean returnValue = false;
+		
+		if (this.color != null) {
+			
+			if (this.color.equals("BLACK")) {
+				
+				returnValue = true;
+				
+			}
+			
+		}
+		
+		return returnValue;
+		
+	}
+	
+	
+	
+	/**
+	 *  Check If The Current Color Is GRAY
+	 */
+	public boolean isColorGray () {
+		
+		boolean returnValue = false;
+		
+		if (this.color != null) {
+			
+			if (this.color.equals("GRAY")) {
+				
+				returnValue = true;
+				
+			}
+			
+		}
+		
+		return returnValue;
+		
+	}
+	
+	
+	
+	/**
+	 *  Check If The Current Color Is WHITE
+	 */
+	public boolean isColorWhite () {
+		
+		boolean returnValue = false;
+		
+		if (this.color != null) {
+			
+			if (this.color.equals("WHITE")) {
+				
+				returnValue = true;
+				
+			}
+			
+		}
+		
+		return returnValue;
+		
+	}
+	
+	
+	
+	/**
+	 * Changes The Current Color To BLACK
+	 * 
+	 */
+	public void setColorBlack () {
+		
+		this.color = "BLACK";
+		
+	}
+	
+	
+	/**
+	 * Changes The Current Color To GRAY
+	 * 
+	 */
+	public void setColorGray () {
+		
+		this.color = "GRAY";
+		
+	}
+	
+	
+	
 	/**
 	 * Changes The Current Color To WHITE
 	 * 
@@ -120,7 +229,7 @@ public class Node<T> {
 		
 		this.color = "WHITE";
 		
-	}
+	}	
 	
 	
 	
@@ -135,8 +244,6 @@ public class Node<T> {
 		
 	}
 	
-	
-	
 
 	
 	/**
@@ -150,16 +257,111 @@ public class Node<T> {
 	
 	}
 
+	
 
 	/**
-	 * Changes The Current Parent Node To Parent
+	 * Changes The Current Parent Node To parent
 	 * 
+	 * @param parent New Parent
 	 */
 	public void setParent (Node<T> parent) {
 		
 		this.parent = parent;
 	
 	}
+
+	
+	
+	
+	/**
+	 * Returns The Node's Distance From Source
+	 * 
+	 * @return the parent
+	 */
+	public double getDistance() {
+		
+		return this.distance;
+	
+	}
+	
+	
+	/**
+	 * Changes The Current Distance To dist
+	 * 
+	 * @param dist New Distance
+	 */
+
+
+
+	public void setDistance (double dist) {
+		
+		this.distance = dist;
+	
+	}
+	
+	
+	/**
+	 * Returns The Node's Discovery Time
+	 * 
+	 * @return Discovery Time
+	 */
+
+
+
+	public double getDiscoveryTIME() {
+		
+		return this.discoveryTIME;
+	
+	}
+	
+	
+	/**
+	 * Changes The Current Discovery Time To discTIME
+	 * 
+	 * @param discTIME New Discovery Time
+	 */
+
+
+
+	public void setDiscoveryTIME (double discTIME) {
+		
+		this.discoveryTIME = discTIME;
+		
+	}
+	
+	
+	/**
+	 * Returns The Node's Discovery Time
+	 * 
+	 * @return Discovery Time
+	 */
+
+
+
+	public double getFinalTIME() {
+		
+		return this.finalTIME;
+		
+	}
+	
+	
+	/**
+	 * Changes The Current Final Time To finalTIME
+	 * 
+	 * @param finalTIME New FInal Time 
+	 */
+
+
+
+	public void setFinalTIME (double finalTIME) {
+		
+		this.finalTIME = finalTIME;
+	
+	}
+	
+	
+	
+
 
 
 	/** 
@@ -247,7 +449,6 @@ public class Node<T> {
 		return toString;
 	
 	}
-
 
 
 }

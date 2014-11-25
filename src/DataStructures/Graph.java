@@ -402,11 +402,15 @@ public abstract class Graph<T> {
 			
 			this.nodes.get(i).setParent(null);
 			
+			this.nodes.get(i).setDistance(Double.POSITIVE_INFINITY);
+			
 		}
 		
 		Queue<Node<T>> nodeQueue = new Queue<Node<T>>();
 		
-		sourceNode.setColor("GRAY");
+		sourceNode.setColorGray();
+		
+		sourceNode.setDistance(0);
 		
 		nodeQueue.enQueue(sourceNode);
 		
@@ -422,9 +426,11 @@ public abstract class Graph<T> {
 			
 			for (int i = 0; i < neighborhoodTMP.size(); i++) {
 				
-				if (neighborhoodTMP.get(i).getColor().equals("WHITE")) {
+				if (neighborhoodTMP.get(i).isColorWhite()) {
+										
+					neighborhoodTMP.get(i).setColorGray();
 					
-					neighborhoodTMP.get(i).setColor("GRAY");
+					neighborhoodTMP.get(i).setDistance(nodeTMP.getDistance()+1);
 					
 					neighborhoodTMP.get(i).setParent(nodeTMP);
 					
@@ -434,7 +440,7 @@ public abstract class Graph<T> {
 				
 			}
 			
-			nodeTMP.setColor("BLACK");
+			nodeTMP.setColorBlack();
 			
 		}
 		
@@ -467,7 +473,7 @@ public abstract class Graph<T> {
 		
 		for (int i = 0; i < this.nodes.size(); i++) {
 			
-			if (this.nodes.get(i).getColor().equals("WHITE")) {
+			if (this.nodes.get(i).isColorWhite()) {
 				
 				connectedComponents++;
 				
@@ -493,13 +499,15 @@ public abstract class Graph<T> {
 		
 		time++;
 		
-		sourceNode.setColor("GRAY");
+		sourceNode.setDiscoveryTIME(time);
+		
+		sourceNode.setColorGray();
 		
 		ArrayList<Node<T>> neighborhoodTMP = this.neighborhood(sourceNode);
 		
 		for (int i = 0; i < neighborhoodTMP.size(); i++) {
 			
-			if (neighborhoodTMP.get(i).getColor().equals("WHITE")) {
+			if (neighborhoodTMP.get(i).isColorWhite()) {
 				
 				neighborhoodTMP.get(i).setParent(sourceNode);
 				
@@ -509,7 +517,11 @@ public abstract class Graph<T> {
 			
 		}
 		
-		sourceNode.setColor("BLACK");
+		sourceNode.setColorBlack();
+		
+		time++;
+		
+		sourceNode.setDiscoveryTIME(time);
 		
 		return time;
 		
