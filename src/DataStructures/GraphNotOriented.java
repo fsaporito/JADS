@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Exceptions.GraphNotReadyException;
 
-public class GraphNotOriented<T> extends Graph<T> {
+public class GraphNotOriented<T extends Comparable<T>> extends Graph<T> {
 
 	
 	/**

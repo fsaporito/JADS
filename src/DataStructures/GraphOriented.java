@@ -1,12 +1,14 @@
 package DataStructures;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import Exceptions.GraphNotReadyException;
 
 
 
-public class GraphOriented<T> extends Graph<T> {
+
+public class GraphOriented<T extends Comparable<T>> extends Graph<T> {
 		
 	
 	
@@ -307,6 +309,49 @@ public class GraphOriented<T> extends Graph<T> {
 		}
 		
 		return archsList;
+		
+	}
+	
+	
+	
+	/**
+	 * Gives A Ordered List Of The Visit Path
+	 * Via DFS
+	 * 
+	 * @return the ordered node list 
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<Node<T>> topologicalSort () {
+		
+		try {
+		
+			this.dfs();
+			
+		} catch (GraphNotReadyException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		ArrayList<Node<T>> returnList = new ArrayList<Node<T>>();
+		
+		ArrayList<Node<T>> tmpNodeList = new ArrayList<Node<T>>();
+		
+		for (int i = 0; i < this.nodes.size(); i++) {			
+			
+			tmpNodeList.add((Node<T>) this.nodes.get(i).clone());
+			
+		}
+		
+		Arrays.sort(tmpNodeList.toArray());
+		
+		for (int i = 0; i < this.nodes.size(); i++) {			
+			
+			returnList.add((Node<T>) tmpNodeList.get(i).clone());
+			
+		}
+		
+		return returnList;	
 		
 	}
 

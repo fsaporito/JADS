@@ -8,7 +8,7 @@ import DataStructures.Node;
 import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
-public class LambdaNDFA<T> extends GraphOriented<T> {
+public class LambdaNDFA<T extends Comparable<T>> extends GraphOriented<T> {
 	
 	// Invert Hierarchy Order:  Actually DFA >> NDFA >> lambdaNFA
 	// Implements checkArchs To Verify 1

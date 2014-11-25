@@ -2,7 +2,7 @@ package DataStructures;
 
 import Exceptions.WrongArchException;
 
-public class Arch<T> {
+public class Arch<T extends Comparable<T>> {
 
 	/** First Node */
 	private Node<T> A; 

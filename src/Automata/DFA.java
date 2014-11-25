@@ -9,7 +9,7 @@ import Exceptions.GraphNotReadyException;
 import java.util.ArrayList;
 
 
-public class DFA<T> extends NDFA<T> {
+public class DFA<T extends Comparable<T>> extends NDFA<T> {
 	
 	
 	

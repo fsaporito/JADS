@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Exceptions.GraphNotReadyException;
 import Exceptions.TreeNotReadyException;
 
-public class Tree<T> extends GraphOriented<T> {
+public class Tree<T extends Comparable<T>> extends GraphOriented<T> {
 	
 	
 	private Node<T> root;

@@ -13,7 +13,7 @@ public class MinHeap <T extends Comparable<T>> {
 	private ArrayList<T> heapArrList;
 
 	
-	/** Heap'Elements Numner */
+	/** Heap'Elements Number */
 	private int heapSize;
 
 

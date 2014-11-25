@@ -8,7 +8,7 @@ import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
 
-public class NDFA<T> extends LambdaNDFA<T> {
+public class NDFA<T extends Comparable<T>> extends LambdaNDFA<T> {
 
 	
 	/**

@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class Node<T> {
+public class Node<T extends Comparable<T>> implements Cloneable, Comparable<Object> {
 	
 	/** Node's Value */
 	private T value; 
@@ -412,7 +412,88 @@ public class Node<T> {
 		return true;
 	}
 	
+	
+	/**
+	 * (Deep) Clone Method, Returns
+	 * An Object Equal To This One
+	 * 
+	 * @return a clone of this object
+	 */
+	@Override 
+	public Object clone() {
+		
+		
+		Node<T> nodeTMP = new Node<T> ((T) this.value, this.fixedValue);
+		
+		nodeTMP.setColor(this.getColor());
+		
+		nodeTMP.setDiscoveryTIME(this.getDiscoveryTIME());
+		
+		nodeTMP.setDistance(this.getDistance());
+		
+		nodeTMP.setFinalTIME(this.getFinalTIME());
+		
+		nodeTMP.setParent(this.parent);
+		
+		return nodeTMP;		
+		
+	}
 
+	
+	/**
+	 *  CompareTo Method
+	 */
+	@SuppressWarnings("unchecked")
+	public int compareTo (Object obj) {
+		
+		int returnValue = 0;
+		
+		if (this == obj) {
+			
+			returnValue = 0;
+			
+		}
+		
+		if (obj == null) {
+			
+			returnValue = 1;
+		
+		}
+		
+		if (this.getClass() != obj.getClass()) {
+			
+			returnValue = 1;
+			
+		}
+		
+		@SuppressWarnings("rawtypes")
+		Node arg0 = (Node) obj;
+		
+		if (this.finalTIME != 0 && arg0.getFinalTIME() != 0) {
+			
+			if (this.finalTIME > arg0.getFinalTIME()) {
+				
+				returnValue = 1;
+				
+			} else if (this.finalTIME == arg0.getFinalTIME()) {
+				
+				returnValue = 0;
+				
+			} else {
+				
+				returnValue = -1;
+				
+			}
+			
+		} else {
+			
+			returnValue = this.value.compareTo((T) arg0.getValue());			
+			
+		}
+		
+		return returnValue;
+		
+	}
 	
 	/** 
 	 * @see java.lang.Object#toString()
@@ -449,6 +530,9 @@ public class Node<T> {
 		return toString;
 	
 	}
+
+
+
 
 
 }

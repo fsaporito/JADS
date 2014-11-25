@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Exceptions.AutomatonNotReadyException;
 import Exceptions.GraphNotReadyException;
 
-public abstract class Graph<T> {
+public abstract class Graph<T extends Comparable<T>> {
 
 	/** Nodes List */
 	protected ArrayList<Node<T>> nodes;
